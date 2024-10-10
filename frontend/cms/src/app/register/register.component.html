@@ -1,0 +1,14 @@
+<div id="registerPage">
+    <div id="registerPanel">
+      <h1 id="regpanelTitle">Regisztráció</h1>
+      <form id="registerForm" (ngSubmit)="onSubmit()">
+        <input class="registerInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username"><br>
+        <input class="registerInputs" type="email" placeholder="E-mail" [(ngModel)]="email" name="email"><br>
+        <input class="registerInputs" type="tel" placeholder="Telefonszám" [(ngModel)]="phone" name="phone"><br>
+        <input class="registerInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password"><br>
+        <input class="registerInputs" type="password" placeholder="Jelszó mégegyszer" [(ngModel)]="confirmPassword" name="confirmPassword"><br>
+        <button id="registerSubmit" type="submit">Regisztráció</button>
+      </form>
+    </div>
+  </div>
+  
