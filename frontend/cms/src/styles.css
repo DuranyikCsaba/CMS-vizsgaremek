@@ -4,8 +4,8 @@
     width: fit-content;
     padding: 0.8vw 2.5vw 2vw 2.5vw;
     background-color: #3A4750;
+    font-family: 'Montserrat', sans-serif;
     color: #EEEEEE;
-    font-family: cursive;
     margin: auto;
 }
 
@@ -41,4 +41,10 @@
 
 #registerForm{
     margin: auto;
+}
+
+#registerToLogin{
+  margin: 2vw auto;
+  max-width: 80%;
+  display: block;
 }

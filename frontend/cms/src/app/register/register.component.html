@@ -1,14 +1,29 @@
 <div id="registerPage">
-    <div id="registerPanel">
-      <h1 id="regpanelTitle">Regisztráció</h1>
-      <form id="registerForm" (ngSubmit)="onSubmit()">
-        <input class="registerInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username"><br>
-        <input class="registerInputs" type="email" placeholder="E-mail" [(ngModel)]="email" name="email"><br>
-        <input class="registerInputs" type="tel" placeholder="Telefonszám" [(ngModel)]="phone" name="phone"><br>
-        <input class="registerInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password"><br>
-        <input class="registerInputs" type="password" placeholder="Jelszó mégegyszer" [(ngModel)]="confirmPassword" name="confirmPassword"><br>
-        <button id="registerSubmit" type="submit">Regisztráció</button>
-      </form>
-    </div>
+  <div id="registerPanel">
+    <h1 id="regpanelTitle">Regisztráció</h1>
+    <form id="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Felhasználónév -->
+      <input class="registerInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username"><br>
+      <span class="error" *ngIf="usernameError">{{ usernameError }}</span><br>
+
+      <!-- E-mail -->
+      <input class="registerInputs" type="email" placeholder="E-mail" [(ngModel)]="email" name="email"><br>
+      <span class="error" *ngIf="emailError">{{ emailError }}</span><br>
+
+      <!-- Telefonszám -->
+      <input class="registerInputs" type="tel" placeholder="Telefonszám" [(ngModel)]="phone" name="phone"><br>
+      <span class="error" *ngIf="phoneError">{{ phoneError }}</span><br>
+
+      <!-- Jelszó -->
+      <input class="registerInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password"><br>
+      <span class="error" *ngIf="passwordError">{{ passwordError }}</span><br>
+
+      <!-- Jelszó mégegyszer -->
+      <input class="registerInputs" type="password" placeholder="Jelszó mégegyszer" [(ngModel)]="confirmPassword" name="confirmPassword"><br>
+      <span class="error" *ngIf="confirmPasswordError">{{ confirmPasswordError }}</span><br>
+
+      <button id="registerSubmit" type="submit">Regisztráció</button>
+      <p id="registerToLogin">Már regisztráltál? <a routerLink="/login">Jelentkezz be!</a></p>
+    </form>
   </div>
-  
+</div>
