@@ -81,7 +81,7 @@ export class RegisterComponent {
 
     return isValid;
   }
-
+  
   onSubmit() {
     if (this.validateForm()) {
       this.successMessage = ''; // Reset success üzenet
