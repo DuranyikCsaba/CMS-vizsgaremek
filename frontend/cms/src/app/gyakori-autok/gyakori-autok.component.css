@@ -1,0 +1,48 @@
+#ismertetoBody {
+  font-family: 'Montserrat', sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #3A4750;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #EEEEEE;
+}
+
+#ismertetoBody h1 {
+  font-size: 2em;
+  color: #EEEEEE;
+  margin-bottom: 20px;
+}
+
+#ismertetoBody h2 {
+  font-size: 1.5em;
+  color: #00ADB5;
+  margin-top: 20px;
+}
+
+#ismertetoBody ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+}
+
+#ismertetoBody ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+#ismertetoBody p {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#ismertetoBody li {
+  margin-bottom: 10px;
+}
+
+#ismertetoBody li ul {
+  margin-top: 5px;
+}
+
+#ismertetoBody li ul li {
+  margin-bottom: 5px;
+}

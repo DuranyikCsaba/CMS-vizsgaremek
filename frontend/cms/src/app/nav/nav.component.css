@@ -1,0 +1,31 @@
+.custom-navbar {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #3A4750;
+  border-radius: 30px;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #EEEEEE;
+}
+
+.navbar-brand, .nav-link {
+  color: #EEEEEE !important;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link.active {
+  color: #00ADB5 !important;
+}
+
+.nav-link:hover {
+  color: #00ADB5 !important;
+}
+
+.navbar-toggler {
+  border-color: #EEEEEE;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(238, 238, 238, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
