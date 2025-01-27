@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import sequelize  from './config/database.js';
 import authRoutes from './routes/authRoutes.js';
+import hirdetesekRoute from './routes/hirdetesekRoute.js';
 
 dotenv.config();
 
@@ -10,6 +11,9 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+
+app.use('/hirdetesek', hirdetesekRoute);
+
 
 sequelize.authenticate()
 .then(()=>{
