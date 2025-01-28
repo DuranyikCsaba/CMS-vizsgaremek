@@ -29,7 +29,7 @@ const Felhasznalok = sequelize.define('Felhasznalok', {
     defaultValue: 1
   }
 }, {
-  tableName: 'felhasznalok', // Itt adhatod meg a tábla nevét
+  tableName: 'felhasznalok',
   timestamps: true
 });
 

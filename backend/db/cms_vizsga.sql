@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 27. 08:50
+-- Létrehozás ideje: 2025. Jan 27. 22:30
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -92,6 +92,12 @@ CREATE TABLE `hirdetesek` (
   `megtekintesek` int(11) NOT NULL,
   `torles` tinyint(1) NOT NULL,
   `adatok` text CHARACTER SET utf8 COLLATE utf8_hungarian_ci NOT NULL,
+  `modell` text NOT NULL,
+  `marka` text NOT NULL,
+  `ajtok_szama` int(11) NOT NULL,
+  `hengerurtartalom` float NOT NULL,
+  `uzemanyag` text NOT NULL,
+  `evjarat` int(11) NOT NULL,
   `kep1` text NOT NULL,
   `kep2` text NOT NULL,
   `kep3` text NOT NULL,
@@ -103,6 +109,14 @@ CREATE TABLE `hirdetesek` (
   `kep9` text NOT NULL,
   `kep10` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `hirdetesek`
+--
+
+INSERT INTO `hirdetesek` (`id`, `felhasznalo_id`, `letrehozas`, `modositas`, `megtekintesek`, `torles`, `adatok`, `modell`, `marka`, `ajtok_szama`, `hengerurtartalom`, `uzemanyag`, `evjarat`, `kep1`, `kep2`, `kep3`, `kep4`, `kep5`, `kep6`, `kep7`, `kep8`, `kep9`, `kep10`) VALUES
+(0, 0, '2024-12-04 22:20:09', '2024-12-04 22:20:09', 0, 0, '', '', '', 0, 0, '', 0, '', '', '', '', '', '', '', '', '', ''),
+(0, 0, '2024-12-04 22:22:15', '2024-12-04 22:22:15', 0, 0, 'rover 45 gondos férfi tulaj nem dohányzó', '', '', 0, 0, '', 0, '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 

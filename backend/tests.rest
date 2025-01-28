@@ -1,0 +1,20 @@
+POST  http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "nev" : "admin",
+    "jelszo" : "admin123"
+},
+
+PUT http://localhost:5000/hirdetesek/1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "modell": "Astra",
+  "marka": "Opel",
+  "ajtok_szama": 5,
+  "hengerurtartalom": 1.6,
+  "uzemanyag": "benzin",
+  "evjarat": 2012
+}

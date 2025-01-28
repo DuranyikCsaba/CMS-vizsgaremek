@@ -9,7 +9,7 @@ export const registerUser = async (req, res) => {
   try {
     const userExists = await Felhasznalok.findOne({ where: { nev } });
     if (userExists) {
-      return res.status(400).json({ message: 'User with this username already exists.' });
+      return res.status(400).json({ message: 'A felhasználó ezzel a felhasználónévvel már létezik.' });
     }
 
     const hashedPassword = await bcrypt.hash(jelszo, 10);
@@ -22,10 +22,10 @@ export const registerUser = async (req, res) => {
       tipus: 1,
     });
 
-    res.status(201).json({ message: 'User registered successfully!', user: newUser });
+    res.status(201).json({ message: 'A felhasználó sikeresen regisztrálva lett!', user: newUser });
   } catch (error) {
-    console.error('Registration error:', error);
-    res.status(500).json({ message: 'Something went wrong during registration.' });
+    console.error('Regisztrációs hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a regisztráció során.' });
   }
 };
 
@@ -33,35 +33,35 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { nev, jelszo } = req.body;
   if (!nev || !jelszo) {
-    return res.status(400).json({ message: 'Username and password are required' });
+    return res.status(400).json({ message: 'Felhasználónév és jelszó szükséges' });
   }
   try {
     const user = await Felhasznalok.findOne({ where: { nev } });
     if (!user) {
-      return res.status(400).json({ message: 'No user found with this username' });
+      return res.status(400).json({ message: 'Nincs felhasználó ezzel a felhasználónévvel' });
     }
 
     const isMatch = await bcrypt.compare(jelszo, user.jelszo);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Incorrect password' });
+      return res.status(400).json({ message: 'Hibás jelszó' });
     }
 
     const token = jwt.sign({ id: user.id, nev: user.nev, email: user.email }, process.env.SECRET_KEY, {
       expiresIn: '1h',
     });
-    res.status(200).json({ message: 'Login successful', token });
+    res.status(200).json({ message: 'Bejelentkezés sikeres', token });
   } catch (err) {
-    console.error('Login error:', err);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error('Bejelentkezési hiba:', err);
+    res.status(500).json({ message: 'Belső szerver hiba' });
   }
 };
 
 // Kilépés
 export const logoutUser = async (req, res) => {
   try {
-    res.status(200).json({ message: 'Logout successful' });
+    res.status(200).json({ message: 'Kilépés sikeres' });
   } catch (error) {
-    console.error('Logout error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error('Kilépési hiba:', error);
+    res.status(500).json({ message: 'Belső szerver hiba' });
   }
 };
