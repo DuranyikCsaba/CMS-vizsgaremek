@@ -1,94 +1,33 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Jan 27. 22:30
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT;
+SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS;
+SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION;
+SET NAMES utf8mb4;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Adatbázis: `cms_vizsga`
---
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `felhasznalok`
---
+CREATE DATABASE IF NOT EXISTS `cms_vizsga`;
+USE `cms_vizsga`;
 
 CREATE TABLE `felhasznalok` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nev` varchar(255) NOT NULL,
   `jelszo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `tel` varchar(255) DEFAULT NULL,
   `tipus` int(11) DEFAULT 1,
   `createdAt` datetime DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `felhasznalok`
---
 
 INSERT INTO `felhasznalok` (`id`, `nev`, `jelszo`, `email`, `tel`, `tipus`, `createdAt`, `updatedAt`) VALUES
 (1, 'Gamma', '$2b$10$ntcI/jdmEKrWQHhL3O/wBOsNwXIUJUuH8lLsU5crIitiiUaL4B1ie', 'aladnyulok@gmail.com', '06204300883', 1, '2024-11-25 07:39:40', '2024-11-25 07:39:40');
 
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `forum_bejegyzes`
---
-
-CREATE TABLE `forum_bejegyzes` (
-  `id` int(5) NOT NULL,
-  `topic` tinyint(1) NOT NULL,
-  `felhasznalo_id` int(5) NOT NULL,
-  `tartalom` text NOT NULL,
-  `letrehozas` datetime NOT NULL,
-  `modositas` datetime NOT NULL,
-  `megtekintese` int(11) NOT NULL,
-  `torles` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `forum_komment`
---
-
-CREATE TABLE `forum_komment` (
-  `id` int(11) NOT NULL,
-  `bejegyzes_id` int(11) NOT NULL,
-  `felhasznalo_id` int(11) NOT NULL,
-  `tartalom` text NOT NULL,
-  `letrehozas` datetime NOT NULL,
-  `modositas` datetime NOT NULL,
-  `torles` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `hirdetesek`
---
-
 CREATE TABLE `hirdetesek` (
-  `id` int(5) NOT NULL,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `felhasznalo_id` int(5) NOT NULL,
-  `letrehozas` datetime NOT NULL,
-  `modositas` datetime NOT NULL,
   `megtekintesek` int(11) NOT NULL,
   `torles` tinyint(1) NOT NULL,
   `adatok` text CHARACTER SET utf8 COLLATE utf8_hungarian_ci NOT NULL,
@@ -107,63 +46,122 @@ CREATE TABLE `hirdetesek` (
   `kep7` text NOT NULL,
   `kep8` text NOT NULL,
   `kep9` text NOT NULL,
-  `kep10` text NOT NULL
+  `kep10` text NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`felhasznalo_id`) REFERENCES `felhasznalok`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
---
--- A tábla adatainak kiíratása `hirdetesek`
---
+CREATE TABLE `forum_bejegyzes` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `topic` tinyint(1) NOT NULL,
+  `felhasznalo_id` int(5) NOT NULL,
+  `tartalom` text NOT NULL,
+  `megtekintese` int(11) NOT NULL,
+  `torles` tinyint(1) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`felhasznalo_id`) REFERENCES `felhasznalok`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
-INSERT INTO `hirdetesek` (`id`, `felhasznalo_id`, `letrehozas`, `modositas`, `megtekintesek`, `torles`, `adatok`, `modell`, `marka`, `ajtok_szama`, `hengerurtartalom`, `uzemanyag`, `evjarat`, `kep1`, `kep2`, `kep3`, `kep4`, `kep5`, `kep6`, `kep7`, `kep8`, `kep9`, `kep10`) VALUES
-(0, 0, '2024-12-04 22:20:09', '2024-12-04 22:20:09', 0, 0, '', '', '', 0, 0, '', 0, '', '', '', '', '', '', '', '', '', ''),
-(0, 0, '2024-12-04 22:22:15', '2024-12-04 22:22:15', 0, 0, 'rover 45 gondos férfi tulaj nem dohányzó', '', '', 0, 0, '', 0, '', '', '', '', '', '', '', '', '', '');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `markak`
---
+CREATE TABLE `forum_komment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bejegyzes_id` int(11) NOT NULL,
+  `felhasznalo_id` int(11) NOT NULL,
+  `tartalom` text NOT NULL,
+  `torles` tinyint(1) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`felhasznalo_id`) REFERENCES `felhasznalok`(`id`),
+  FOREIGN KEY (`bejegyzes_id`) REFERENCES `forum_bejegyzes`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 CREATE TABLE `markak` (
-  `id` int(5) NOT NULL,
-  `nev` varchar(50) NOT NULL
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `nev` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `modellek`
---
 
 CREATE TABLE `modellek` (
-  `id` int(5) NOT NULL,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `nev` varchar(50) CHARACTER SET utf8 COLLATE utf8_hungarian_ci NOT NULL,
-  `marka_id` int(5) NOT NULL
+  `marka_id` int(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`marka_id`) REFERENCES `markak`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
---
--- Indexek a kiírt táblákhoz
---
+INSERT INTO `markak` (`nev`) VALUES
+('Audi'),
+('BMW'),
+('Mercedes'),
+('Toyota'),
+('Ford');
 
---
--- A tábla indexei `felhasznalok`
---
+INSERT INTO `modellek` (`nev`, `marka_id`) VALUES
+-- Audi modellek
+('A3', 1),
+('A4', 1),
+('A6', 1),
+('Q5', 1),
+('Q7', 1),
+
+-- BMW modellek
+('320i', 2),
+('520d', 2),
+('X1', 2),
+('X3', 2),
+('X5', 2),
+
+-- Mercedes modellek
+('C200', 3),
+('E220', 3),
+('GLA', 3),
+('GLC', 3),
+('S500', 3),
+
+-- Toyota modellek
+('Corolla', 4),
+('Camry', 4),
+('RAV4', 4),
+('Yaris', 4),
+('Prius', 4),
+
+-- Ford modellek
+('Focus', 5),
+('Fiesta', 5),
+('Mustang', 5),
+('Edge', 5),
+('Kuga', 5);
+
+
 ALTER TABLE `felhasznalok`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nev` (`nev`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- A kiírt táblák AUTO_INCREMENT értéke
---
-
---
--- AUTO_INCREMENT a táblához `felhasznalok`
---
 ALTER TABLE `felhasznalok`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `forum_bejegyzes`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `forum_komment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `hirdetesek`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `markak`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `modellek`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT;
+SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS;
+SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION;

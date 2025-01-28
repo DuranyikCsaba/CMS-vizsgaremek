@@ -19,6 +19,7 @@ app.use(cors({
 
 app.use('/api/auth', authRoutes);
 app.use('/api/hirdetesek', hirdetesekRoutes);
+app.use("/hirdetesek", hirdetesekRoutes);
 
 sequelize.authenticate()
 .then(()=>{

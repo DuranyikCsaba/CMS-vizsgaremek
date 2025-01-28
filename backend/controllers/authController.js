@@ -32,27 +32,24 @@ export const registerUser = async (req, res) => {
 // Bejelentkezés
 export const loginUser = async (req, res) => {
   const { nev, jelszo } = req.body;
-  if (!nev || !jelszo) {
-    return res.status(400).json({ message: 'Felhasználónév és jelszó szükséges' });
-  }
+
   try {
     const user = await Felhasznalok.findOne({ where: { nev } });
     if (!user) {
-      return res.status(400).json({ message: 'Nincs felhasználó ezzel a felhasználónévvel' });
+      return res.status(400).json({ message: 'Helytelen felhasználónév vagy jelszó.' });
     }
 
-    const isMatch = await bcrypt.compare(jelszo, user.jelszo);
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Hibás jelszó' });
+    const isPasswordValid = await bcrypt.compare(jelszo, user.jelszo);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: 'Helytelen felhasználónév vagy jelszó.' });
     }
 
-    const token = jwt.sign({ id: user.id, nev: user.nev, email: user.email }, process.env.SECRET_KEY, {
-      expiresIn: '1h',
-    });
-    res.status(200).json({ message: 'Bejelentkezés sikeres', token });
-  } catch (err) {
-    console.error('Bejelentkezési hiba:', err);
-    res.status(500).json({ message: 'Belső szerver hiba' });
+    const token = jwt.sign({ id: user.id, nev: user.nev, email: user.email }, 'titkoskulcs123', { expiresIn: '1h' });
+
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error('Bejelentkezési hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a bejelentkezés során.' });
   }
 };
 

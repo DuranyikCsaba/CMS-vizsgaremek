@@ -1,0 +1,51 @@
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "nev" : "admin",
+    "jelszo" : "Admin123"
+}
+
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "nev": "Ali Hisam Raad",
+    "jelszo": "SodiPDF123",
+    "email": "mcisti@kaffka.com",
+    "tel": "06207654321",
+    "tipus": 0
+}
+
+GET http://localhost:5000/hirdetesek
+Authorization: Bearer <token>
+
+GET http://localhost:5000/hirdetesek/1
+Authorization: Bearer <token>
+
+POST http://localhost:5000/hirdetesek
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczODA3NzEzNywiZXhwIjoxNzM4MDgwNzM3fQ.OjLyM0CxvE3Ddf6iBIZuAgbrD-lxSPL2R4l8gNxMsTE
+Content-Type: application/json
+
+{
+    "megtekintesek": 0,
+    "torles": 0,
+    "adatok": "Nagy Barna kutya volt benne a centrifugában",
+    "modell": "Tivoli",
+    "marka": "Szángjong",
+    "ajtok_szama": 5,
+    "hengerurtartalom": 1.7,
+    "uzemanyag": "Benzin/Gáz",
+    "evjarat": 2015,
+    "kep1": "na az nincs még.jpg",
+    "kep2": "WÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓÓ.jpg",
+    "kep3": "kep3.jpg",
+    "kep4": "kep4.jpg",
+    "kep5": "kep5.jpg",
+    "kep6": "kep6.jpg",
+    "kep7": "kep7.jpg",
+    "kep8": "kep8.jpg",
+    "kep9": "kep9.jpg",
+    "kep10": "kep10.jpg"
+}
