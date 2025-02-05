@@ -1,0 +1,26 @@
+.hirdetes {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #f9f9f9;
+}
+
+.hirdetes h2 {
+  margin-top: 0;
+}
+
+.hirdetes p {
+  margin: 5px 0;
+}
+
+.kepek {
+  margin-top: 20px;
+}
+
+.hirdetes-kep {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

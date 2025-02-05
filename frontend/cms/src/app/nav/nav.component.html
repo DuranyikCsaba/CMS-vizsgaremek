@@ -1,24 +1,24 @@
 <nav class="navbar navbar-expand-lg custom-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" routerLink="/fooldal">Car Merchants' Site</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link active" aria-current="page" routerLink="/fooldal">Home</a>
         <a class="nav-link" routerLink="gyakori-autok">Gyakori autók</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link" aria-disabled="true">Disabled</a>
+        <a class="nav-link" routerLink="hirdetes-list">Elérhető hirdetések</a>
       </div>
       <div class="navbar-nav ms-auto">
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
-          <a class="nav-link" routerLink="login">Login</a>
-          <a class="nav-link" routerLink="register">Register</a>
+          <a class="nav-link" routerLink="login">Bejelentkezés</a>
+          <a class="nav-link" routerLink="register">Regisztráció</a>
         </ng-container>
         <ng-template #loggedInTemplate>
-          <a class="nav-link" routerLink="profile">Profile</a>
-          <a class="nav-link" (click)="logout()">Logout</a>
+          <a class="nav-link" routerLink="create-hirdetes">Hirdetés létrehozása</a>
+          <a class="nav-link" routerLink="profile">Profil</a>
+          <a class="nav-link" (click)="logout()">Kijelentkezés</a>
         </ng-template>
       </div>
     </div>

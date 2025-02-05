@@ -49,12 +49,12 @@ export class RegisterComponent {
     }
 
     // Telefonszám ellenőrzése
-    const phonePattern = /^[0-9]{10,12}$/;
+    const phonePattern = /^\+36[0-9]{9}$/;
     if (!this.phone) {
       this.phoneError = 'A telefonszám megadása kötelező!';
       isValid = false;
     } else if (!phonePattern.test(this.phone)) {
-      this.phoneError = 'Helytelen telefonszám formátum!';
+      this.phoneError = 'Helytelen telefonszám formátum! A helyes formátum: +36nnnnnnnnn';
       isValid = false;
     } else {
       this.phoneError = '';

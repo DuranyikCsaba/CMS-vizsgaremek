@@ -1,0 +1,12 @@
+.carousel {
+    width: 75vw; /* 75% of the viewport width */
+    height: calc(75vw * 9 / 16); /* Maintain 16:9 aspect ratio */
+    margin: auto; /* Center the carousel */
+    padding-top: 5vw;
+  }
+  
+  .carousel-inner img {
+    width: 32vw;
+    height: 30vw;
+    object-fit: fill; /* Ensure the images cover the carousel area */
+  }

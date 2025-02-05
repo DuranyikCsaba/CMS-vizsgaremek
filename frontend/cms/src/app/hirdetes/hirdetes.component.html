@@ -1,0 +1,14 @@
+<div class="hirdetes">
+  <h2>{{ marka }} {{ modell }}</h2>
+  <p><strong>Adatok:</strong> {{ adatok }}</p>
+  <p><strong>Ajtók száma:</strong> {{ ajtok_szama }}</p>
+  <p><strong>Hengerűrtartalom:</strong> {{ hengerurtartalom }} cm<sup>3</sup></p>
+  <p><strong>Üzemanyag:</strong> {{ uzemanyag }}</p>
+  <p><strong>Évjárat:</strong> {{ evjarat }}</p>
+  <div class="kepek">
+    <h3>Képek:</h3>
+    <div *ngFor="let kep of kepek">
+      <img [src]="kep" alt="Hirdetés kép" class="hirdetes-kep">
+    </div>
+  </div>
+</div>

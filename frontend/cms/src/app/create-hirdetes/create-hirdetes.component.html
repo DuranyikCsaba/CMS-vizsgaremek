@@ -1,0 +1,49 @@
+<form id="hirdetesForm" [formGroup]="hirdetesForm" (ngSubmit)="onSubmit()">
+  <div id="hirdetesPanel">
+    <div id="hirdetesTitle">
+      <h2>Hirdetés Feladása</h2>
+    </div>
+    <div class="form-group">
+      <label for="adatok">Adatok</label>
+      <input type="text" id="adatok" class="hirdetesInputs" formControlName="adatok" required>
+    </div>
+    <div class="form-group">
+      <label for="modell">Modell</label>
+      <input type="text" id="modell" class="hirdetesInputs" formControlName="modell" required>
+    </div>
+    <div class="form-group">
+      <label for="marka">Márka</label>
+      <input type="text" id="marka" class="hirdetesInputs" formControlName="marka" required>
+    </div>
+    <div class="form-group">
+      <label for="ajtok_szama">Ajtók száma</label>
+      <input type="number" id="ajtok_szama" class="hirdetesInputs" formControlName="ajtok_szama" required>
+    </div>
+    <div class="form-group">
+      <label for="hengerurtartalom">Hengerűrtartalom</label>
+      <input type="number" step="0.1" id="hengerurtartalom" class="hirdetesInputs" formControlName="hengerurtartalom" required>
+    </div>
+    <div class="form-group">
+      <label for="uzemanyag">Üzemanyag</label>
+      <select id="uzemanyag" class="hirdetesInputs" formControlName="uzemanyag" required>
+        <option value="Benzin">Benzin</option>
+        <option value="Dízel">Dízel</option>
+        <option value="Elektromos">Elektromos</option>
+        <option value="Hibrid">Hibrid</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="evjarat">Évjárat</label>
+      <input type="number" id="evjarat" class="hirdetesInputs" formControlName="evjarat" required>
+    </div>
+    <div formArrayName="kepek">
+      <div *ngFor="let kepek of kepekArray.controls; let i = index" [formGroupName]="i" class="form-group">
+        <label for="imageUrl{{i}}">Kép URL {{i + 1}}:</label>
+        <input type="text" id="imageUrl{{i}}" class="hirdetesInputs" formControlName="url" (keyup.enter)="addImageUrl(i)">
+      </div>
+    </div>
+    <button id="hirdetesSubmit" *ngIf="isLoggedIn$ | async" type="submit" class="btn">Hirdetés Feladása</button>
+    <p id="hirdetesToLogin" *ngIf="!(isLoggedIn$ | async)">Kérjük, jelentkezzen be a hirdetés feladásához.</p>
+  </div>
+</form>
+

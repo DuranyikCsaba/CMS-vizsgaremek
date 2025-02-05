@@ -1,0 +1,98 @@
+#registerPanel {
+    border: 0.3vw solid rgb(54, 54, 54);
+    border-radius: 30px;
+    width: fit-content;
+    padding: 0.8vw 2.5vw 2vw 2.5vw;
+    background-color: #3A4750;
+    font-family: 'Montserrat', sans-serif;
+    color: #EEEEEE;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #registerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .registerInputs {
+    border-radius: 30px;
+    border: #2d3a42 0.2vw solid;
+    width: 20vw;
+    height: 2vw;
+    padding: 0.1vw;
+    margin-bottom: 0.1vw;
+  }
+
+  #regpanelTitle {
+    max-width: 55%;
+    margin: auto;
+    padding-top: 1vw;
+    position: relative;
+    padding-bottom: 1vw;
+    text-align: center;
+  }
+
+  #registerSubmit {
+    background-color: #00ADB5;
+    color: #EEEEEE;
+    border-radius: 30px;
+    border: #00ADB5 0.2vw solid;
+    width: 10vw;
+    height: 2vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw; /* Increased margin-bottom */
+  }
+
+  #registerToLogin {
+    margin-top: 1vw; /* Increased margin-top */
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    #registerPanel {
+      width: 90%;
+      padding: 2vw;
+    }
+
+    .registerInputs {
+      width: 80%;
+      height: 5vw;
+      padding: 1vw;
+    }
+
+    #registerSubmit {
+      width: 50%;
+      height: 5vw;
+    }
+
+    #registerToLogin {
+      margin-top: 2vw; /* Adjusted for responsiveness */
+    }
+  }
+
+  @media (max-width: 480px) {
+    #registerPanel {
+      width: 95%;
+      padding: 3vw;
+    }
+
+    .registerInputs {
+      width: 90%;
+      height: 6vw;
+      padding: 1.5vw;
+    }
+
+    #registerSubmit {
+      width: 60%;
+      height: 6vw;
+    }
+
+    #registerToLogin {
+      margin-top: 3vw; /* Adjusted for responsiveness */
+    }
+  }

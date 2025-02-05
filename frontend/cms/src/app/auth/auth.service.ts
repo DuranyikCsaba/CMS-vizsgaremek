@@ -1,23 +1,29 @@
-// filepath: /c:/Users/duran/OneDrive/Asztali gép/Suli/CMS-vizsgaremek/frontend/cms/src/app/auth/auth.service.ts
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = false;
+  private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor() {}
 
-  isLoggedIn(): boolean {
-    return this.loggedIn;
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
   }
 
-  login(): void {
-    this.loggedIn = true;
+  isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
+  login(token: string): void {
+    localStorage.setItem('token', token);
+    this.loggedIn.next(true);
   }
 
   logout(): void {
-    this.loggedIn = false;
+    localStorage.removeItem('token');
+    this.loggedIn.next(false);
   }
 }

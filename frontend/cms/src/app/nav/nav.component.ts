@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service'; // Ensure this path is correct
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
+  private subscription: Subscription = new Subscription();
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
+    this.subscription = this.authService.isLoggedIn().subscribe(
+      (loggedIn: boolean) => {
+        this.isLoggedIn = loggedIn;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   logout(): void {
     this.authService.logout();
-    this.isLoggedIn = false;
   }
 }
