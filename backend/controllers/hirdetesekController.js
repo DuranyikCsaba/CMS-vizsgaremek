@@ -55,7 +55,7 @@ export const createHirdetes = async (req, res) => {
       hirdetes: newHirdetes,
     });
   } catch (error) {
-    console.error('Error creating advertisement:', error);
+    console.error('Hiba a hirdetés létrehozásakor:', error);
     res.status(500).json({ message: 'Hiba a hirdetés létrehozása során.' });
   }
 };
@@ -70,7 +70,7 @@ export const updateHirdetes = async (req, res) => {
     await hirdetes.update(req.body);
     res.status(200).json({ message: 'Hirdetés frissítve', hirdetes });
   } catch (error) {
-    console.error('Error updating advertisement:', error);
+    console.error('Hiba a hirdetés frisítésekor:', error);
     res.status(500).json({ message: 'Hiba a hirdetés frissítése során.' });
   }
 };

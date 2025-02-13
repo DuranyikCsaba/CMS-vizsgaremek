@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", authenticateToken, getAllHirdetesek);
 router.get("/:id", authenticateToken, getHirdetesById);
-router.post("/", authenticateToken, createHirdetes); // Ensure this line exists
+router.post("/", authenticateToken, createHirdetes);
 router.put("/:id", authenticateToken, updateHirdetes);
 router.delete("/:id", authenticateToken, deleteHirdetes);
 
