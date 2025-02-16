@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -18,25 +18,20 @@ export class HirdetesListComponent implements OnInit {
     this.fetchHirdetesek();
   }
 
-  fetchHirdetesek(): void {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
 
-    this.http.get<any[]>('http://localhost:5000/hirdetesek', { headers }).subscribe(data => {
-      this.hirdetesek = data;
+  fetchHirdetesek(): void {
+    this.http.get<any>('http://localhost:5000/hirdetesek').subscribe(response => {
+      console.log('Kapott adatok:', response);
+      this.hirdetesek = response.hirdetes;
     }, error => {
       console.error('Hiba a hirdetések lekérése során:', error);
-      this.errorMessage = 'Hiba történt a hirdetések lekérése során. Kérjük, próbálja meg később.';
+      this.errorMessage = 'Hiba történt a hirdetések lekérése során.';
     });
   }
+  
 
   viewHirdetesDetails(content: any, id: number): void {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-
-    this.http.get<any>(`http://localhost:5000/hirdetesek/${id}`, { headers }).subscribe(data => {
+    this.http.get<any>(`http://localhost:5000/hirdetesek/${id}`).subscribe(data => {
       this.selectedHirdetes = data;
       this.modalService.open(content, { size: 'lg' });
     }, error => {

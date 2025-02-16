@@ -4,8 +4,8 @@ import { authenticateToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", authenticateToken, getAllHirdetesek);
-router.get("/:id", authenticateToken, getHirdetesById);
+router.get("/", getAllHirdetesek);
+router.get("/:id", getHirdetesById);
 router.post("/", authenticateToken, createHirdetes);
 router.put("/:id", authenticateToken, updateHirdetes);
 router.delete("/:id", authenticateToken, deleteHirdetes);

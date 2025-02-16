@@ -1,49 +1,66 @@
-#ismertetoBody {
-  font-family: 'Montserrat', sans-serif;
-  margin: 20px;
-  padding: 20px;
-  padding-bottom: 80px;
-  background-color: #3A4750;
-  border-radius: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #EEEEEE;
+
+#accordion {
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 1vw;
 }
 
-#ismertetoBody h1 {
-  font-size: 2em;
-  color: #EEEEEE;
-  margin-bottom: 20px;
+#accordion .card {
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#ismertetoBody h2 {
-  font-size: 1.5em;
-  color: #00ADB5;
-  margin-top: 20px;
+#accordion .card-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
 }
 
-#ismertetoBody ol {
-  list-style-type: decimal;
-  margin-left: 20px;
+#accordion .card-header h5 {
+  margin: 0;
 }
 
-#ismertetoBody ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
-#ismertetoBody p {
+#accordion .card-header .btn-link {
+  color: white;
+  text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
 }
 
-#ismertetoBody li {
+#accordion .card-header .btn-link:hover {
+  text-decoration: none;
+  color: #d4d4d4;
+}
+
+#accordion .card-body {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 0 0 10px 10px;
+}
+
+#accordion .card-body ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#accordion .card-body ul li {
   margin-bottom: 10px;
 }
 
-#ismertetoBody li ul {
-  margin-top: 5px;
+#accordion .card-body ul li p {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-#ismertetoBody li ul li {
+#accordion .card-body ul li ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#accordion .card-body ul li ul li {
   margin-bottom: 5px;
 }

@@ -62,3 +62,32 @@ export const logoutUser = async (req, res) => {
     res.status(500).json({ message: 'Belső szerver hiba' });
   }
 };
+
+// Felhasználó lekérdezése
+
+export const getUser = async (req, res) => {
+  const id = req.user.id;
+  Felhasznalok.findByPk(id)
+  .then((user) => {
+    if (user) {
+      res.status(200).json({
+        error: false,
+        message: "A felhasználó lekérdezése sikeres",
+        user
+      })
+    } else {
+      res.status(404).json({
+        error: true,
+        message: "Nincs ilyen felhasználó",
+      })
+    }
+  })
+  .catch((err) => {
+    console.error("A felhasználó lekérdezése sikertelen")
+    console.error(err)
+    res.status(500).json({
+      error: true,
+      message: "A felhasználó lekérdezése során adatbázishiba történt"
+    })
+  })
+};

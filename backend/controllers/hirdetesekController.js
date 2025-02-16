@@ -1,15 +1,22 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import Hirdetesek from '../models/Hirdetesek.js';
 
-export const getAllHirdetesek = async (req, res) => {
-  try {
-    const hirdetesek = await Hirdetesek.findAll();
-    res.status(200).json(hirdetesek);
-  } catch (error) {
-    console.error('Error fetching advertisements:', error);
-    res.status(500).json({ message: 'Hiba a hirdetések lekérdezése során.' });
-  }
+export const getAllHirdetesek = (req, res) => {
+ Hirdetesek.findAll()
+ .then((hirdetes) => {{
+  res.status(200).json({
+    error: false,
+    message: "A hirdetések sikeresen lekérdezve!",
+    hirdetes
+  })
+ }})
+ .catch((err) => {
+  console.error("Hiba történt a hirdetések lekérdezése során: ");
+  console.error(err);
+  res.status(500).json({
+    error: true,
+    message: "Adatbázishiba a lekérdezés során"
+  })
+ })
 };
 
 export const getHirdetesById = async (req, res) => {
@@ -21,7 +28,7 @@ export const getHirdetesById = async (req, res) => {
     }
     res.status(200).json(hirdetes);
   } catch (error) {
-    console.error('Error fetching advertisement:', error);
+    console.error('Hiba a hirdetés lekérdezése során:', error);
     res.status(500).json({ message: 'Hiba a hirdetés lekérdezése során.' });
   }
 };
@@ -85,7 +92,7 @@ export const deleteHirdetes = async (req, res) => {
     await hirdetes.destroy();
     res.status(200).json({ message: 'Hirdetés törölve' });
   } catch (error) {
-    console.error('Error deleting advertisement:', error);
+    console.error('Hiba a hirdetés törlése során:', error);
     res.status(500).json({ message: 'Hiba a hirdetés törlése során.' });
   }
 };

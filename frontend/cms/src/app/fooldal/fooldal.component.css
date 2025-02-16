@@ -1,12 +1,27 @@
 .carousel {
-    width: 75vw; /* 75% of the viewport width */
-    height: calc(75vw * 9 / 16); /* Maintain 16:9 aspect ratio */
-    margin: auto; /* Center the carousel */
+    width: 75vw;
+    height: calc(75vw * 9 / 16);
+    margin: auto;
     padding-top: 5vw;
   }
   
   .carousel-inner img {
     width: 32vw;
     height: 30vw;
-    object-fit: fill; /* Ensure the images cover the carousel area */
+    object-fit: fill;
   }
+
+h1{
+  text-align: center;
+  padding-top: 1vw;
+  font-size: 40pt; 
+}
+
+.tartalom{
+  max-width: 75%;
+  display: block;
+  margin: auto;
+  padding-bottom: 3vw;
+  font-weight: 500;
+  font-size: large;
+}

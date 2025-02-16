@@ -41,7 +41,7 @@ const Hirdetesek = sequelize.define('Hirdetesek', {
   }
 }, {
   tableName: 'hirdetesek',
-  timestamps: true // Ensure timestamps are enabled
+  timestamps: true 
 });
 
 export default Hirdetesek;

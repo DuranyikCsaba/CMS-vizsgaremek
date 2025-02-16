@@ -16,8 +16,8 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "nev": "Ali Hisam Raad",
-    "jelszo": "SodiPDF123",
+    "nev": "admin",
+    "jelszo": "Admin123",
     "email": "mcisti@kaffka.com",
     "tel": "06207654321",
     "tipus": 0
@@ -25,17 +25,15 @@ Content-Type: application/json
 
 ### Hirdetesek Endpoints ###
 
-// Get all hirdetesek
 GET http://localhost:5000/hirdetesek
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczODA5OTU0NSwiZXhwIjoxNzM4MTAzMTQ1fQ.qdH9VLzolJc_xyLOcNWNyJuHzkSEBZdgYYHIrmEqABc
 
-// Get hirdetes by ID
-GET http://localhost:5000/hirdetesek/1
-Authorization: Bearer <token>
+###
+
+GET http://localhost:5000/hirdetesek/6
 
 ### Create a new hirdetes ###
 POST http://localhost:5000/hirdetesek
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczODA3NzEzNywiZXhwIjoxNzM4MDgwNzM3fQ.OjLyM0CxvE3Ddf6iBIZuAgbrD-lxSPL2R4l8gNxMsTE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiYWRtaW4iLCJlbWFpbCI6Im1jaXN0aUBrYWZma2EuY29tIiwiaWF0IjoxNzM5NzE5ODQyLCJleHAiOjE3Mzk3MjM0NDJ9.zF3OkJtkN-yvStUL_wcfBqLC8-sBeEnKUovHZ6CHiaM
 Content-Type: application/json
 
 {
