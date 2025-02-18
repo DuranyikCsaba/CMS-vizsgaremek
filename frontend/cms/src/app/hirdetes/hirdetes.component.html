@@ -8,7 +8,7 @@
   <div class="kepek">
     <h3>Képek:</h3>
     <div *ngFor="let kep of kepek">
-      <img [src]="kep" alt="Hirdetés kép" class="hirdetes-kep">
+      <img [src]="+ kep" alt="Hirdetés kép" class="hirdetes-kep" ngOptimizedImage>
     </div>
   </div>
 </div>

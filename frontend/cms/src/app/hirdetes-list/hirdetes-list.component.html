@@ -2,15 +2,18 @@
   <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
     {{ errorMessage }}
   </div>
+  <div *ngIf="loading" class="spinner-border" role="status">
+    <span class="visually-hidden">Betöltés...</span>
+  </div>
   <div class="row">
     <div class="col-md-4" *ngFor="let hirdetes of hirdetesek">
       <div class="card mb-4">
-        <img *ngIf="hirdetes.kepek && hirdetes.kepek.length > 0" [src]="hirdetes.kepek[0]" class="card-img-top" alt="Hirdetés kép">
+        <img *ngIf="hirdetes.kepek && hirdetes.kepek.length > 0" [src]="hirdetes.kepek[0].file_path" class="card-img-top" alt="Hirdetés kép" ngOptimizedImage>
         <div class="card-body">
           <h5 class="card-title">{{ hirdetes.marka }} {{ hirdetes.modell }}</h5>
-          <p class="card-text"><strong>Adatok:</strong> {{ hirdetes.adatok }}</p>
+          <p class="card-text"><strong>Adatok:</strong> {{ getTruncatedAdatok(hirdetes.adatok) }}</p>
           <p class="card-text"><strong>Ajtók száma:</strong> {{ hirdetes.ajtok_szama }}</p>
-          <p class="card-text"><strong>Hengerűrtartalom:</strong> {{ hirdetes.hengerurtartalom }} cm<sup>3</sup></p>
+          <p class="card-text"><strong>Hengerűrtartalom:</strong> {{ hirdetes.hengerurtartalom }} cm³</p>
           <p class="card-text"><strong>Üzemanyag:</strong> {{ hirdetes.uzemanyag }}</p>
           <p class="card-text"><strong>Évjárat:</strong> {{ hirdetes.evjarat }}</p>
           <button class="btn btn-primary" (click)="viewHirdetesDetails(content, hirdetes.id)">Részletek</button>
@@ -19,26 +22,24 @@
     </div>
   </div>
 
-  <!-- Modal -->
   <ng-template #content let-modal>
     <div class="modal-header">
       <h5 class="modal-title">{{ selectedHirdetes?.marka }} {{ selectedHirdetes?.modell }}</h5>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
     </div>
     <div class="modal-body">
-      <app-hirdetes
-        [adatok]="selectedHirdetes?.adatok"
-        [modell]="selectedHirdetes?.modell"
-        [marka]="selectedHirdetes?.marka"
-        [ajtok_szama]="selectedHirdetes?.ajtok_szama"
-        [hengerurtartalom]="selectedHirdetes?.hengerurtartalom"
-        [uzemanyag]="selectedHirdetes?.uzemanyag"
-        [evjarat]="selectedHirdetes?.evjarat"
-        [kepek]="selectedHirdetes?.kepek">
-      </app-hirdetes>
+      <div *ngIf="selectedHirdetes">
+        <p><strong>Adatok:</strong> {{ selectedHirdetes.adatok }}</p>
+        <p><strong>Ajtók száma:</strong> {{ selectedHirdetes.ajtok_szama }}</p>
+        <p><strong>Hengerűrtartalom:</strong> {{ selectedHirdetes.hengerurtartalom }} cm³</p>
+        <p><strong>Üzemanyag:</strong> {{ selectedHirdetes.uzemanyag }}</p>
+        <p><strong>Évjárat:</strong> {{ selectedHirdetes.evjarat }}</p>
+        <div *ngFor="let kep of selectedHirdetes.kepek">
+          <img [src]="'http://localhost:5000/' + kep.file_path" class="img-fluid" alt="Hirdetés kép" ngOptimizedImage>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Bezárás</button>
     </div>
   </ng-template>
-</div>

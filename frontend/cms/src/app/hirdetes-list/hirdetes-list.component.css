@@ -1,6 +1,7 @@
 .card {
   border-radius: 10px;
   overflow: hidden;
+  min-height: 25vw;
 }
 
 .card-img-top {

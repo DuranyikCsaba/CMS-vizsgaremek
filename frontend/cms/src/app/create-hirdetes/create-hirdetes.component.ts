@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
@@ -12,54 +12,97 @@ import { Observable } from 'rxjs';
 export class CreateHirdetesComponent implements OnInit {
   hirdetesForm: FormGroup;
   isLoggedIn$: Observable<boolean>;
+  selectedFiles: File[] = []; // Fájlok tárolása
+  imageUrls: (string | ArrayBuffer)[] = []; // Képek előnézete
+  currentYear: number; // Az aktuális év változója
 
   constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.currentYear = new Date().getFullYear(); // Az aktuális év inicializálása
+
+    // Űrlap inicializálása
     this.hirdetesForm = this.fb.group({
       adatok: ['', Validators.required],
       modell: ['', Validators.required],
       marka: ['', Validators.required],
-      ajtok_szama: ['', Validators.required],
-      hengerurtartalom: ['', Validators.required],
+      ajtok_szama: ['', [Validators.required, Validators.min(1)]],
+      hengerurtartalom: ['', [Validators.required, Validators.min(0)]],
       uzemanyag: ['', Validators.required],
-      evjarat: ['', Validators.required],
-      kepek: this.fb.array([this.createImageUrlField()])
+      evjarat: ['', [Validators.required, Validators.min(1900), Validators.max(this.currentYear)]],
     });
   }
 
   ngOnInit(): void {}
 
-  get kepekArray(): FormArray {
-    return this.hirdetesForm.get('kepek') as FormArray;
-  }
+  // Fájlok kiválasztásának kezelése
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFiles = Array.from(input.files); // Fájlok hozzáadása a tömbhöz
+      this.imageUrls = []; // Tömb ürítése új fájlokhoz
 
-  createImageUrlField(): FormGroup {
-    return this.fb.group({
-      url: ['', Validators.required]
-    });
-  }
+      // Minden kiválasztott fájl beolvasása és előnézetének létrehozása
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        const file = this.selectedFiles[i];
+        const reader = new FileReader();
 
-  addImageUrl(index: number): void {
-    if (this.kepekArray.length < 10 && this.kepekArray.at(index).get('url')?.value) {
-      this.kepekArray.push(this.createImageUrlField());
+        reader.onload = (e) => {
+          this.imageUrls.push(reader.result as string); // URL hozzáadása a tömbhöz
+        };
+
+        reader.readAsDataURL(file); // Fájl olvasása Data URL-ként
+      }
     }
   }
 
-  get kepekUrls(): string[] {
-    return this.kepekArray.controls.map(control => control.get('url')?.value);
-  }
-
+  // Űrlap elküldése
   onSubmit(): void {
-    if (this.hirdetesForm.valid) {
-      this.http.post('http://localhost:5000/hirdetesek', this.hirdetesForm.value, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }).subscribe(response => {
-        console.log('Hirdetés sikeresen feladva!', response);
-      }, error => {
-        console.error('Hiba a hirdetés feladása során:', error);
+    if (this.hirdetesForm.valid && this.selectedFiles.length > 0) {
+      // Felhasználó ID lekérése a tokenből
+      const currentUser = this.authService.getCurrentUser();
+      if (!currentUser) {
+        console.error('Felhasználó nincs bejelentkezve!');
+        return;
+      }
+
+      // FormData létrehozása
+      const formData = new FormData();
+
+      // Űrlap adatainak hozzáadása a FormData-hoz
+      Object.keys(this.hirdetesForm.controls).forEach(key => {
+        formData.append(key, this.hirdetesForm.get(key)?.value);
       });
+
+      // Felhasználó ID hozzáadása
+      formData.append('felhasznalo_id', currentUser.id.toString());
+
+      // Képek hozzáadása a FormData-hoz
+      this.selectedFiles.forEach((file, index) => {
+        formData.append('kepek', file, file.name);
+      });
+
+      // Feltöltés a szerverre FormData formátumban
+      this.http.post('http://localhost:5000/hirdetesek', formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      }).subscribe(
+        response => {
+          console.log('Hirdetés sikeresen feladva!', response);
+          // Űrlap resetelése
+          this.hirdetesForm.reset();
+          this.selectedFiles = [];
+          this.imageUrls = [];
+        },
+        error => {
+          console.error('Hiba a hirdetés feladása során:', error);
+          if (error.error) {
+            console.error('Szerver válasza:', error.error);
+          }
+        }
+      );
+    } else {
+      console.error('Kérem, töltse ki az összes mezőt és válasszon ki legalább egy képet!');
     }
   }
 }

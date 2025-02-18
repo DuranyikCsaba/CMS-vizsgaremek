@@ -1,31 +1,51 @@
 import Hirdetesek from '../models/Hirdetesek.js';
+import multer from 'multer'
+import Kep from '../models/Kep.js';
 
-export const getAllHirdetesek = (req, res) => {
- Hirdetesek.findAll()
- .then((hirdetes) => {{
-  res.status(200).json({
-    error: false,
-    message: "A hirdetések sikeresen lekérdezve!",
-    hirdetes
-  })
- }})
- .catch((err) => {
-  console.error("Hiba történt a hirdetések lekérdezése során: ");
-  console.error(err);
-  res.status(500).json({
-    error: true,
-    message: "Adatbázishiba a lekérdezés során"
-  })
- })
+const upload = multer({ dest: 'uploads/' });
+
+export const getAllHirdetesek = async (req, res) => {
+  try {
+    const hirdetesek = await Hirdetesek.findAll({
+      include: [{ model: Kep, as: 'kepek' }]
+    });
+
+    const baseUrl = "http://localhost:5000/";
+
+    const modifiedHirdetesek = hirdetesek.map(hirdetes => ({
+      ...hirdetes.toJSON(),
+      kepek: hirdetes.kepek.map(kep => ({
+        ...kep.toJSON(),
+        file_path: baseUrl + kep.file_path
+      }))
+    }));
+
+    res.status(200).json({ hirdetesek: modifiedHirdetesek });
+  } catch (error) {
+    console.error('Hiba a hirdetések lekérése során:', error);
+    res.status(500).json({ message: 'Hiba a hirdetések lekérése során.' });
+  }
 };
+
 
 export const getHirdetesById = async (req, res) => {
   const { id } = req.params;
   try {
-    const hirdetes = await Hirdetesek.findByPk(id);
+    const hirdetes = await Hirdetesek.findByPk(id, {
+      include: [{ model: Kep, as: 'kepek' }]
+    });
+
     if (!hirdetes) {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
+
+    // Képek elérési útjának módosítása
+    const baseUrl = "http://localhost:5000/";
+    hirdetes.kepek = hirdetes.kepek.map(kep => ({
+      ...kep.toJSON(),
+      file_path: baseUrl + kep.file_path
+    }));
+
     res.status(200).json(hirdetes);
   } catch (error) {
     console.error('Hiba a hirdetés lekérdezése során:', error);
@@ -35,31 +55,42 @@ export const getHirdetesById = async (req, res) => {
 
 export const createHirdetes = async (req, res) => {
   try {
+    const { adatok, modell, marka, ajtok_szama, hengerurtartalom, uzemanyag, evjarat } = req.body;
+    const felhasznalo_id = req.user.id; // Felhasználó ID a tokenből
+
+    const kepek = req.files; // Feltöltött képek
+
+    if (!modell || !marka || !ajtok_szama || !hengerurtartalom || !uzemanyag || !evjarat || !felhasznalo_id) {
+      return res.status(400).json({
+        error: true,
+        message: "Minden kötelező mezőt ki kell tölteni!",
+      });
+    }
+
+    // Új hirdetés létrehozása
     const newHirdetes = await Hirdetesek.create({
-      felhasznalo_id: req.user.id,
-      megtekintesek: req.body.megtekintesek,
-      torles: req.body.torles,
-      adatok: req.body.adatok,
-      modell: req.body.modell,
-      marka: req.body.marka,
-      ajtok_szama: req.body.ajtok_szama,
-      hengerurtartalom: req.body.hengerurtartalom,
-      uzemanyag: req.body.uzemanyag,
-      evjarat: req.body.evjarat,
-      kep1: req.body.kep1,
-      kep2: req.body.kep2,
-      kep3: req.body.kep3,
-      kep4: req.body.kep4,
-      kep5: req.body.kep5,
-      kep6: req.body.kep6,
-      kep7: req.body.kep7,
-      kep8: req.body.kep8,
-      kep9: req.body.kep9,
-      kep10: req.body.kep10,
+      adatok,
+      modell,
+      marka,
+      ajtok_szama,
+      hengerurtartalom,
+      uzemanyag,
+      evjarat,
+      felhasznalo_id
     });
+
+    // Képek elmentése a Kep táblába
+    if (kepek && kepek.length > 0) {
+      const kepAdatok = kepek.map(file => ({
+        hirdetes_id: newHirdetes.id,
+        file_path: file.path
+      }));
+      await Kep.bulkCreate(kepAdatok);
+    }
+
     res.status(201).json({
       message: 'A hirdetés sikeresen létrejött!',
-      hirdetes: newHirdetes,
+      hirdetes: newHirdetes
     });
   } catch (error) {
     console.error('Hiba a hirdetés létrehozásakor:', error);
@@ -89,6 +120,9 @@ export const deleteHirdetes = async (req, res) => {
     if (!hirdetes) {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
+    if (hirdetes.felhasznalo_id !== req.user.id) {
+      return res.status(403).json({ error: true, message: "Nincs jogosultságod a módosításhoz." });
+    }    
     await hirdetes.destroy();
     res.status(200).json({ message: 'Hirdetés törölve' });
   } catch (error) {

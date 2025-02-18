@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const Hirdetesek = sequelize.define('Hirdetesek', {
   id: {
@@ -41,7 +41,7 @@ const Hirdetesek = sequelize.define('Hirdetesek', {
   }
 }, {
   tableName: 'hirdetesek',
-  timestamps: true 
+  timestamps: true
 });
 
 export default Hirdetesek;

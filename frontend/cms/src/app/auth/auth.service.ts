@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,20 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.loggedIn.next(false);
+  }
+
+  // Token dekódolása és felhasználó adatainak visszaadása
+  getCurrentUser(): { id: number } | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token) as { id: number }; // Token dekódolása
+        return decodedToken;
+      } catch (error) {
+        console.error('Hiba a token dekódolása során:', error);
+        return null;
+      }
+    }
+    return null;
   }
 }

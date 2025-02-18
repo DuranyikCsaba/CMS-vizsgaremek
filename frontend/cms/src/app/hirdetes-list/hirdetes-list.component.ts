@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Hirdetes } from '../models/hirdetes.model';
 
 @Component({
   selector: 'app-hirdetes-list',
@@ -8,9 +9,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./hirdetes-list.component.css']
 })
 export class HirdetesListComponent implements OnInit {
-  hirdetesek: any[] = [];
-  selectedHirdetes: any = null;
+  hirdetesek: Hirdetes[] = [];
+  selectedHirdetes: Hirdetes | null = null;
   errorMessage: string = '';
+  loading: boolean = false;
+
+  // Maximum karakterek száma
+  maxChars: number = 30; // Például 100 karakter
 
   constructor(private http: HttpClient, private modalService: NgbModal) {}
 
@@ -18,24 +23,54 @@ export class HirdetesListComponent implements OnInit {
     this.fetchHirdetesek();
   }
 
-
   fetchHirdetesek(): void {
-    this.http.get<any>('http://localhost:5000/hirdetesek').subscribe(response => {
-      console.log('Kapott adatok:', response);
-      this.hirdetesek = response.hirdetes;
-    }, error => {
-      console.error('Hiba a hirdetések lekérése során:', error);
-      this.errorMessage = 'Hiba történt a hirdetések lekérése során.';
-    });
+    this.loading = true;
+    this.http.get<{ hirdetesek: Hirdetes[] }>('http://localhost:5000/hirdetesek')
+      .subscribe({
+        next: (response) => {
+          this.hirdetesek = response.hirdetesek.map(hirdetes => ({
+            ...hirdetes,
+            kepek: hirdetes.kepek ? hirdetes.kepek.map(kep => ({
+              file_path: `${kep.file_path}`
+            })) : []
+          }));
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Hiba a hirdetések lekérése során:', error);
+          this.errorMessage = 'Hiba történt a hirdetések lekérése során.';
+          this.loading = false;
+        }
+      });
   }
-  
 
   viewHirdetesDetails(content: any, id: number): void {
-    this.http.get<any>(`http://localhost:5000/hirdetesek/${id}`).subscribe(data => {
-      this.selectedHirdetes = data;
-      this.modalService.open(content, { size: 'lg' });
-    }, error => {
-      console.error('Hiba a hirdetés részleteinek lekérése során:', error);
-    });
+    this.http.get<Hirdetes>(`http://localhost:5000/hirdetesek/${id}`)
+      .subscribe({
+        next: (data) => {
+          this.selectedHirdetes = {
+            ...data,
+            kepek: data.kepek ? data.kepek.map(kep => ({
+              file_path: `${kep.file_path}`
+            })) : []
+          };
+          this.modalService.open(content, { size: 'lg' });
+        },
+        error: (error) => {
+          console.error('Hiba a hirdetés részleteinek lekérése során:', error);
+        }
+      });
+  }
+
+  closeModal(): void {
+    this.modalService.dismissAll();
+  }
+
+  // Getter a levágott adatokhoz
+  getTruncatedAdatok(adatok: string): string {
+    if (adatok.length > this.maxChars) {
+      return adatok.substring(0, this.maxChars) + '...'; // Levágja és hozzáad egy "..." jelzést
+    }
+    return adatok;
   }
 }
