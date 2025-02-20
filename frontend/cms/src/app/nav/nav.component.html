@@ -9,6 +9,7 @@
         <a class="nav-link active" aria-current="page" routerLink="/fooldal">Home</a>
         <a class="nav-link" routerLink="gyakori-autok">Gyakori autók</a>
         <a class="nav-link" routerLink="hirdetes-list">Elérhető hirdetések</a>
+        <a class="nav-link" routerLink="forum">Fórum</a>
       </div>
       <div class="navbar-nav ms-auto">
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
@@ -16,9 +17,16 @@
           <a class="nav-link" routerLink="register">Regisztráció</a>
         </ng-container>
         <ng-template #loggedInTemplate>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ userName }} Profil
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" routerLink="profil">Profil</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Kijelentkezés</a></li>
+            </ul>
+          </div>
           <a class="nav-link" routerLink="create-hirdetes">Hirdetés létrehozása</a>
-          <a class="nav-link" routerLink="profile">Profil</a>
-          <a class="nav-link" (click)="logout()">Kijelentkezés</a>
         </ng-template>
       </div>
     </div>

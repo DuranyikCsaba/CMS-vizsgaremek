@@ -1,0 +1,11 @@
+<div class="user-profile">
+    <h2>Felhasználói Profil</h2>
+    
+    <div *ngIf="user">
+      <p><strong>Név:</strong> {{ user.nev }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Telefonszám:</strong> {{ user.tel }}</p>
+      <button (click)="updatePassword()">Jelszó Módosítása</button>
+      <button (click)="deleteUser ()">Felhasználó Törlése</button>
+    </div>
+  </div>

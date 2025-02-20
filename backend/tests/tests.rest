@@ -48,6 +48,11 @@ Content-Type: application/json
     "tipus": 0
 }
 
+### 
+
+GET http:localhost:5000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MDA2OTY1NSwiZXhwIjoxNzQwMDczMjU1fQ.rd-foousCs3MsFv1eGvqkIiRCuNblWXL6b_AZ-YjQUI
+
 ### Hirdetesek Endpoints ###
 
 GET http://localhost:5000/hirdetesek
@@ -59,7 +64,7 @@ GET http://localhost:5000/hirdetesek/6
 ### Create a new hirdetes ###
 POST http://localhost:5000/hirdetesek
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTc0NDMxMSwiZXhwIjoxNzM5NzQ3OTExfQ.Bjqc8qVzlKyr_qcQ_5tWhIZzmwOYkSvc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4NzQzNSwiZXhwIjoxNzM5ODkxMDM1fQ.wfOdedt_fs6cBIm8-APd-esA4mC_EA0OGxSSDT0sAak
 
 {
   "modell": "Teszt Modell",
@@ -72,24 +77,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQ
 }
 
 
-### Poszt létrehozása (PUT)
+### Poszt létrehozása (POST)
 
-PUT http://localhost:5000/poszt
+POST http://localhost:5000/api/poszt
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTczOTY2MiwiZXhwIjoxNzM5NzQzMjYyfQ.hgbUPLe_eeRazHBhNKkFrlj3vwMKc-Q5bj_t-qRCHj8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg5NzE3MSwiZXhwIjoxNzM5OTAwNzcxfQ.Ch0-fDedku3cZNeIdGVTyCqMitly_eGvukFto7uNrns
 
 {
-    "tartalom": "Nagy barna kutya"
+    "tartalom": "Ez egy másik poszt"
 }
 
 ### Poszt törlése (DELETE)
 
-DELETE   http://localhost:5000/poszt/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTczOTczODk2MywiZXhwIjoxNzM5NzQyNTYzfQ.jKMyEaTqW4jOvSN4WZcZbO7YKCTqMwKcc6I37p8cpPc
+DELETE   http://localhost:5000/api/poszt/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4NzQzNSwiZXhwIjoxNzM5ODkxMDM1fQ.wfOdedt_fs6cBIm8-APd-esA4mC_EA0OGxSSDT0sAak
 
 ### Poszt módosítása (PATCH)
 
-PATCH  http://localhost:5000/poszt/1
+PATCH  http://localhost:5000/api/poszt/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTczOTczODk2MywiZXhwIjoxNzM5NzQyNTYzfQ.jKMyEaTqW4jOvSN4WZcZbO7YKCTqMwKcc6I37p8cpPc
 
@@ -99,8 +104,45 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2Ijoid
 
 ### Posztok lekérése (GET)
 
-GET http://localhost:5000/poszt/
+GET http://localhost:5000/api/poszt/
 
 ### Posztok lekérése id szerint (GET)
 
-GET http://localhost:5000/poszt/5
+GET http://localhost:5000/api/poszt/1
+
+### Komment létrehozása (PUT)
+
+POST http://localhost:5000/api/komment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg5NzE3MSwiZXhwIjoxNzM5OTAwNzcxfQ.Ch0-fDedku3cZNeIdGVTyCqMitly_eGvukFto7uNrns
+
+{
+    "posztId": 2,
+    "kommentTartalom": "Ez egy szuper poszt!"
+}
+
+### Komment lekérdezése (GET)
+
+GET http://localhost:5000/api/komment/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4MzE0MiwiZXhwIjoxNzM5ODg2NzQyfQ.mNG5RUF9CiCCPpFoyXyyNoV4iJnxNChryyxP5M7vrlo
+
+### Komment törlése (DELETE)
+
+DELETE http://localhost:5000/api/komment/1
+Authorization: Bearer <token>
+
+### Komment módosítása (PATCH)
+
+PATCH http://localhost:5000/api/komment/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4MzE0MiwiZXhwIjoxNzM5ODg2NzQyfQ.mNG5RUF9CiCCPpFoyXyyNoV4iJnxNChryyxP5M7vrlo
+
+{
+    "kommentTartalom": "Ez egy frissített komment!"
+}
+
+
+###
+
+GET http://localhost:5000/api/poszt/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4MzE0MiwiZXhwIjoxNzM5ODg2NzQyfQ.mNG5RUF9CiCCPpFoyXyyNoV4iJnxNChryyxP5M7vrlo

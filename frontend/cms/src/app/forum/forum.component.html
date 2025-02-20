@@ -1,0 +1,57 @@
+<div class="forum-container">
+  <div class="new-post">
+    <textarea [(ngModel)]="newPostContent" placeholder="Írd ide a poszt tartalmát..."></textarea>
+    <button (click)="addPost()">Poszt létrehozása</button>
+  </div>
+
+  <div *ngFor="let post of posts" class="post">
+    <div class="post-header">
+      <span class="post-author">{{ post.felhasznaloNeve }}</span>
+      <span class="post-date">{{ post.letrehozas | date:'short' }}<span *ngIf="post.letrehozas !== post.modositas"> (szerkesztve)</span></span>
+    </div>
+    
+    <div *ngIf="editingPostId === post.id">
+      <textarea [(ngModel)]="newPostContent" placeholder="Írd ide a poszt tartalmát..."></textarea>
+      <button (click)="saveUpdatedPost(post.id)">Mentés</button>
+      <button (click)="editingPostId = null">Mégse</button>
+    </div>
+    
+    <div *ngIf="editingPostId !== post.id">
+      <div class="post-content">{{ post.tartalom }}</div>
+      <div class="post-actions">
+        <button (click)="editingPostId = post.id; newPostContent = post.tartalom">Módosítás</button>
+        <button (click)="deletePost(post.id)">Törlés</button>
+        <button (click)="toggleCommentInput(post.id)">Kommentelés</button>
+        <button (click)="toggleShowAllComments(post.id)">
+          Kommentek ({{ post.kommentek ? post.kommentek.length : 0 }})
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="selectedPostId === post.id" class="comment-input">
+      <textarea [(ngModel)]="newCommentContent" placeholder="Írd ide a kommentet..."></textarea>
+      <button (click)="addComment(post.id)">Komment létrehozása</button>
+    </div>
+
+    <div *ngIf="showAllComments[post.id]" class="comments">
+      <div *ngFor="let comment of post.kommentek" class="comment">
+        <div class="comment-header">
+          <span class="comment-author">{{ comment.felhasznaloNeve }}</span>
+          <span class="comment-date">{{ comment.letrehozas | date:'short' }}</span>
+        </div>
+        <div *ngIf="editingCommentId === comment.id">
+          <textarea [(ngModel)]="newCommentContent" placeholder="Írd ide a kommentet..."></textarea>
+          <button (click)="saveUpdatedComment(comment.id)">Mentés</button>
+          <button (click)="editingCommentId = null">Mégse</button>
+        </div>
+        <div *ngIf="editingCommentId !== comment.id">
+          <div class="comment-content">{{ comment.kommentTartalom }}</div>
+          <div class="comment-actions">
+            <button (click)="editingCommentId = comment.id; newCommentContent = comment.kommentTartalom">Módosítás</button>
+            <button (click)="deleteComment(comment.id)">Törlés</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

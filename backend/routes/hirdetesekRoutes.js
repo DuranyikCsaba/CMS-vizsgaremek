@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 
 router.get("/", getAllHirdetesek);
 router.get("/:id", getHirdetesById);
-router.post("/", authenticateToken, upload.array('kepek', 10), createHirdetes); // Fájlok fogadása
+router.post("/", authenticateToken, upload.array('kepek', 10), createHirdetes); 
 router.put("/:id", authenticateToken, updateHirdetes);
 router.delete("/:id", authenticateToken, deleteHirdetes);
 

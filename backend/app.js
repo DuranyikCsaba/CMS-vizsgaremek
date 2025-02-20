@@ -5,6 +5,7 @@ import db from './config/database.js';
 import authRoutes from './routes/authRoutes.js';
 import hirdetesekRoutes from './routes/hirdetesekRoutes.js';
 import posztRoutes from './routes/posztRoutes.js';
+import kommentRoutes from './routes/kommentRoutes.js';
 import cors from 'cors';
 import Felhasznalok from './models/Felhasznalok.js';
 import Poszt from './models/Poszt.js';
@@ -29,14 +30,15 @@ app.use(cors({
 
 app.use('/api/auth', authRoutes);
 app.use("/hirdetesek", hirdetesekRoutes);
-app.use("/poszt", posztRoutes);
+app.use("/api/poszt", posztRoutes);
+app.use("/api/komment", kommentRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 db.authenticate()
     .then(() => {
         console.log('Az adatbázis kapcsolat sikeresen létrejött');
 
-        return db.sync({ alter: true })
+        return db.sync({ force: true })
             .then(() => {
                 console.log("A modellek szinkronizációja sikeres!");
                 app.listen(PORT, () => {

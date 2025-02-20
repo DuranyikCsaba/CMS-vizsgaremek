@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HirdetesComponent } from './hirdetes/hirdetes.component';
 import { HirdetesListComponent } from './hirdetes-list/hirdetes-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ForumComponent } from './forum/forum.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CreateHirdetesComponent,
     HirdetesComponent,
     HirdetesListComponent,
+    ForumComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

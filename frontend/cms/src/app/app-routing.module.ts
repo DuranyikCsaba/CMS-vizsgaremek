@@ -8,6 +8,8 @@ import { FooldalComponent } from './fooldal/fooldal.component';
 import { CreateHirdetesComponent } from './create-hirdetes/create-hirdetes.component';
 import { HirdetesComponent } from './hirdetes/hirdetes.component';
 import { HirdetesListComponent } from './hirdetes-list/hirdetes-list.component';
+import { ForumComponent } from './forum/forum.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/fooldal', pathMatch: 'full' },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'fooldal', component: FooldalComponent },
   { path: 'create-hirdetes', component: CreateHirdetesComponent },
   { path: 'hirdetes', component: HirdetesComponent },
-  { path: 'hirdetes-list', component: HirdetesListComponent }
+  { path: 'hirdetes-list', component: HirdetesListComponent },
+  { path: 'forum', component: ForumComponent},
+  { path: 'profil', component: ProfilComponent }
 
 ];
 

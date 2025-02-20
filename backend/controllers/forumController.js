@@ -1,7 +1,8 @@
 import PosztModel from "../models/Poszt.js"
+import KommentModel from "../models/Komment.js";
 
 export default {
-    PosztPut: (req, res) => {
+    PosztPost: (req, res) => {
 
         if(!req.body.tartalom){
             return res.status(400).json({
@@ -34,10 +35,15 @@ export default {
         });
     },
     PosztGet: async (req, res) => {
-
         try {
-            const posztok = await PosztModel.findAll();
-
+            const posztok = await PosztModel.findAll({
+                include: [{
+                    model: KommentModel,
+                    as: 'kommentek',
+                    required: false
+                }]
+            });
+    
             res.status(200).json({
                 error: false,
                 message: "A posztok sikeresen lekérve!",
@@ -51,13 +57,19 @@ export default {
             });
         }
     },
+    
     PosztIdGet: async (req, res) => {
-        
         try {
             const { id } = req.params;
-            const posztById = await PosztModel.findByPk(id);
+            const posztById = await PosztModel.findOne({
+                where: { id },
+                include: [{
+                    model: KommentModel,
+                    required: false 
+                }]
+            });
 
-            if(!posztById){
+            if (!posztById) {
                 return res.status(404).json({
                     error: true,
                     message: "A megadott id-vel nem található poszt!"
@@ -77,44 +89,41 @@ export default {
                 message: "Adatbázishiba a poszt lekérésekor!"
             });
         }
-
     },
     PosztIdDelete: async (req, res) => {
-
-        
         try {
             const { id } = req.params;
             const posztById = await PosztModel.findByPk(id);
-
-            if(!posztById){
+    
+            if (!posztById) {
                 return res.status(404).json({
                     error: true,
                     message: "A megadott id-vel nem található poszt!"
                 });
             }
-
+    
             if (req.user.id !== posztById.felhasznaloId) {
                 return res.status(403).json({
                     error: true,
                     message: "Nincs jogosultságod a poszt törléséhez!"
                 });
             }
-
+    
             await posztById.destroy();
-
+    
             res.status(200).json({
                 error: false,
                 message: `A ${id} poszt sikeresen törölve!`,
                 data: posztById
             });
-
+    
         } catch (error) {
             console.error("Hiba történt a poszt törlésekor:", error);
             return res.status(500).json({
                 error: true,
                 message: "Adatbázishiba a poszt törlésekor!"
             });
-        } 
+        }
     },
     PosztIdPatch: async (req, res) => {
 

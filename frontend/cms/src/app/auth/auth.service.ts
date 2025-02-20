@@ -28,12 +28,11 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-  // Token dekódolása és felhasználó adatainak visszaadása
-  getCurrentUser(): { id: number } | null {
+  getCurrentUser (): { id: number; name: string } | null {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token) as { id: number }; // Token dekódolása
+        const decodedToken = jwtDecode(token) as { id: number; name: string };
         return decodedToken;
       } catch (error) {
         console.error('Hiba a token dekódolása során:', error);
@@ -41,5 +40,10 @@ export class AuthService {
       }
     }
     return null;
+  }
+
+  getUserName(): string | null {
+    const user = this.getCurrentUser ();
+    return user ? user.name : "Profil";
   }
 }

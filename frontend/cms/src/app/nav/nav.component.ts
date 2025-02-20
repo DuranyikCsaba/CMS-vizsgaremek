@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class NavComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
+  userName: string | null = null;
   private subscription: Subscription = new Subscription();
 
   constructor(private authService: AuthService) {}
@@ -17,6 +18,11 @@ export class NavComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.isLoggedIn().subscribe(
       (loggedIn: boolean) => {
         this.isLoggedIn = loggedIn;
+        if (loggedIn) {
+          this.userName = this.authService.getUserName();
+        } else {
+          this.userName = null;
+        }
       }
     );
   }

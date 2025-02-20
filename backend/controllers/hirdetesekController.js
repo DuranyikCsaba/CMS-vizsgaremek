@@ -39,7 +39,6 @@ export const getHirdetesById = async (req, res) => {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
 
-    // Képek elérési útjának módosítása
     const baseUrl = "http://localhost:5000/";
     hirdetes.kepek = hirdetes.kepek.map(kep => ({
       ...kep.toJSON(),
@@ -56,9 +55,9 @@ export const getHirdetesById = async (req, res) => {
 export const createHirdetes = async (req, res) => {
   try {
     const { adatok, modell, marka, ajtok_szama, hengerurtartalom, uzemanyag, evjarat } = req.body;
-    const felhasznalo_id = req.user.id; // Felhasználó ID a tokenből
+    const felhasznalo_id = req.user.id;
 
-    const kepek = req.files; // Feltöltött képek
+    const kepek = req.files;
 
     if (!modell || !marka || !ajtok_szama || !hengerurtartalom || !uzemanyag || !evjarat || !felhasznalo_id) {
       return res.status(400).json({
@@ -67,7 +66,6 @@ export const createHirdetes = async (req, res) => {
       });
     }
 
-    // Új hirdetés létrehozása
     const newHirdetes = await Hirdetesek.create({
       adatok,
       modell,
@@ -79,7 +77,6 @@ export const createHirdetes = async (req, res) => {
       felhasznalo_id
     });
 
-    // Képek elmentése a Kep táblába
     if (kepek && kepek.length > 0) {
       const kepAdatok = kepek.map(file => ({
         hirdetes_id: newHirdetes.id,
