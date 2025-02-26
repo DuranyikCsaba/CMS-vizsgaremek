@@ -10,6 +10,11 @@ import { HirdetesComponent } from './hirdetes/hirdetes.component';
 import { HirdetesListComponent } from './hirdetes-list/hirdetes-list.component';
 import { ForumComponent } from './forum/forum.component';
 import { ProfilComponent } from './profil/profil.component';
+import { GyikAtiratasComponent } from './gyik-atiratas/gyik-atiratas.component';
+import { GyikAdasveteliComponent } from './gyik-adasveteli/gyik-adasveteli.component';
+import { GyikKotelezoComponent } from './gyik-kotelezo/gyik-kotelezo.component';
+import { GyikCascoComponent } from './gyik-casco/gyik-casco.component';
+import { GyikBetetlapComponent } from './gyik-betetlap/gyik-betetlap.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/fooldal', pathMatch: 'full' },
@@ -22,7 +27,12 @@ const routes: Routes = [
   { path: 'hirdetes', component: HirdetesComponent },
   { path: 'hirdetes-list', component: HirdetesListComponent },
   { path: 'forum', component: ForumComponent},
-  { path: 'profil', component: ProfilComponent }
+  { path: 'profil', component: ProfilComponent },
+  { path: 'gyik-atiratas', component: GyikAtiratasComponent },
+  { path: 'gyik-adasveteli', component: GyikAdasveteliComponent },
+  { path: 'gyik-kotelezo', component: GyikKotelezoComponent },
+  { path: 'gyik-casco', component: GyikCascoComponent },
+  { path: 'gyik-betetlap', component: GyikBetetlapComponent },
 
 ];
 

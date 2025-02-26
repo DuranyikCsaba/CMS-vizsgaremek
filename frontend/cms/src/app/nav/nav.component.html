@@ -10,7 +10,20 @@
         <a class="nav-link" routerLink="gyakori-autok">Gyakori autók</a>
         <a class="nav-link" routerLink="hirdetes-list">Elérhető hirdetések</a>
         <a class="nav-link" routerLink="forum">Fórum</a>
-      </div>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="gyikDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            GYIK
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="gyikDropdown">
+            <li><a class="dropdown-item" routerLink="gyik-atiratas">Gépjármű átiratás</a></li>
+            <li><a class="dropdown-item" routerLink="gyik-adasveteli">Adásvételi minta</a></li>
+            <li><a class="dropdown-item" routerLink="gyik-kotelezo">Kötelező biztositás</a></li>
+            <li><a class="dropdown-item" routerLink="gyik-casco">Casco tudnivalók</a></li>
+            <li><a class="dropdown-item" routerLink="gyik-betetlap">Betétlap</a></li>
+          </ul>
+        </div>
+    </div>
+
       <div class="navbar-nav ms-auto">
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
           <a class="nav-link" routerLink="login">Bejelentkezés</a>
