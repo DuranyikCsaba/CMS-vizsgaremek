@@ -29,6 +29,12 @@ export class CreateHirdetesComponent implements OnInit {
       hengerurtartalom: ['', [Validators.required, Validators.min(0)]],
       uzemanyag: ['', Validators.required],
       evjarat: ['', [Validators.required, Validators.min(1900), Validators.max(this.currentYear)]],
+      futott_kilometer: ['', [Validators.required, Validators.min(0)]],
+      szin: ['', Validators.required],
+      sebessegvalto_tipus: ['', Validators.required],
+      kiegészítők: [''],
+      muszaki_vizsga_ervenyes: [''],
+      baleseti_előzmények: ['']
     });
   }
 
@@ -59,8 +65,8 @@ export class CreateHirdetesComponent implements OnInit {
   onSubmit(): void {
     if (this.hirdetesForm.valid && this.selectedFiles.length > 0) {
       // Felhasználó ID lekérése a tokenből
-      const currentUser = this.authService.getCurrentUser();
-      if (!currentUser) {
+      const currentUser  = this.authService.getCurrentUser ();
+      if (!currentUser ) {
         console.error('Felhasználó nincs bejelentkezve!');
         return;
       }
@@ -74,10 +80,10 @@ export class CreateHirdetesComponent implements OnInit {
       });
 
       // Felhasználó ID hozzáadása
-      formData.append('felhasznalo_id', currentUser.id.toString());
+      formData.append('felhasznalo_id', currentUser .id.toString());
 
       // Képek hozzáadása a FormData-hoz
-      this.selectedFiles.forEach((file, index) => {
+      this.selectedFiles.forEach((file) => {
         formData.append('kepek', file, file.name);
       });
 

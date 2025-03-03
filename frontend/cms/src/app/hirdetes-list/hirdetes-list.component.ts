@@ -14,8 +14,7 @@ export class HirdetesListComponent implements OnInit {
   errorMessage: string = '';
   loading: boolean = false;
 
-  // Maximum karakterek száma
-  maxChars: number = 30; // Például 100 karakter
+  maxChars: number = 30;
 
   constructor(private http: HttpClient, private modalService: NgbModal) {}
 
@@ -66,10 +65,9 @@ export class HirdetesListComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  // Getter a levágott adatokhoz
   getTruncatedAdatok(adatok: string): string {
     if (adatok.length > this.maxChars) {
-      return adatok.substring(0, this.maxChars) + '...'; // Levágja és hozzáad egy "..." jelzést
+      return adatok.substring(0, this.maxChars) + '...';
     }
     return adatok;
   }

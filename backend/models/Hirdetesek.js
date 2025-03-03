@@ -31,6 +31,30 @@ const Hirdetesek = sequelize.define('Hirdetesek', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  futott_kilometer: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  szin: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  sebessegvalto_tipus: {
+    type: DataTypes.STRING,
+    allowNull: false // pl. 'automata' vagy 'manuális'
+  },
+  kiegészítők: {
+    type: DataTypes.STRING,
+    allowNull: true // pl. 'légkondicionáló, navigáció'
+  },
+  muszaki_vizsga_ervenyes: {
+    type: DataTypes.DATE,
+    allowNull: true // a műszaki vizsga érvényességi dátuma
+  },
+  baleseti_előzmények: {
+    type: DataTypes.STRING,
+    allowNull: true // pl. 'soha nem volt balesete'
+  },
   felhasznalo_id: {
     type: DataTypes.INTEGER,
     allowNull: false

@@ -35,12 +35,22 @@
 }
 
 .hirdetesInputs {
-  border-radius: 30px;
+  border-radius: 10px;
   border: #2d3a42 0.2vw solid;
   width: 100%; /* Increased width */
   height: 2vw;
   padding: 0.1vw;
   margin-bottom: 0.1vw;
+}
+
+textarea{
+  border-radius: 10px;
+  border: #2d3a42 0.2vw solid;
+  width: 100%; 
+  height: 5vw;
+  padding: 0.1vw;
+  margin-bottom: 0.1vw;
+  min-height: 5vh;
 }
 
 #hirdetesTitle {
@@ -66,6 +76,10 @@
 
 #hirdetesToLogin {
   margin-top: 1vw;
+}
+
+.error-message{
+  color: red;
 }
 
 /* Responsive adjustments */

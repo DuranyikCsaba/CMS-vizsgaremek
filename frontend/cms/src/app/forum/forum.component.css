@@ -2,8 +2,8 @@
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -16,8 +16,8 @@ textarea {
     width: 100%;
     height: 100px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
     resize: none;
 }
 
@@ -25,10 +25,18 @@ button {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-right: 0.6vh;
+    font-size: small;
+}
+
+img{
+    width: 2vh;
+    height: 2vh;
+    filter: invert(100%);
 }
 
 button:hover {
@@ -36,8 +44,8 @@ button:hover {
 }
 
 .post {
-    border: 1px solid #ddd;
-    padding: 15px;
+    border: 2px solid #ddd;
+    padding: 10px 10px 5px 10px;
     margin-bottom: 15px;
     border-radius: 4px;
     background-color: #fff;
@@ -48,10 +56,12 @@ button:hover {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    font-size: larger;
 }
 
 .post-author {
     font-weight: bold;
+    font-size: larger;
 }
 
 .post-date {
@@ -61,6 +71,7 @@ button:hover {
 
 .post-content {
     margin: 10px 0;
+    font-size: larger;
 }
 
 .post-actions {
@@ -79,6 +90,7 @@ button:hover {
 
 .comment-author {
     font-weight: bold;
+    font-size: larger;
 }
 
 .comment-date {
@@ -88,6 +100,7 @@ button:hover {
 
 .comment-content {
     margin: 5px 0;
+    font-size: larger;
 }
 
 .comment-actions {

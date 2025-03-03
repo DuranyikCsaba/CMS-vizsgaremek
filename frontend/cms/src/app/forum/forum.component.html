@@ -20,20 +20,16 @@
       <div class="post-content">{{ post.tartalom }}</div>
       <div class="post-actions">
         <button (click)="editingPostId = post.id; newPostContent = post.tartalom">Módosítás</button>
-        <button (click)="deletePost(post.id)">Törlés</button>
-        <button (click)="toggleCommentInput(post.id)">Kommentelés</button>
+        <button (click)="deletePost(post.id)"><img src="../../assets/img/pngegg.png"></button>
+        <button (click)="toggleCommentInput(post.id)"><img src="../../assets/img/pngegg (1).png"></button>
         <button (click)="toggleShowAllComments(post.id)">
           Kommentek ({{ post.kommentek ? post.kommentek.length : 0 }})
         </button>
       </div>
     </div>
 
-    <div *ngIf="selectedPostId === post.id" class="comment-input">
-      <textarea [(ngModel)]="newCommentContent" placeholder="Írd ide a kommentet..."></textarea>
-      <button (click)="addComment(post.id)">Komment létrehozása</button>
-    </div>
-
     <div *ngIf="showAllComments[post.id]" class="comments">
+      <hr>
       <div *ngFor="let comment of post.kommentek" class="comment">
         <div class="comment-header">
           <span class="comment-author">{{ comment.felhasznaloNeve }}</span>
@@ -48,10 +44,17 @@
           <div class="comment-content">{{ comment.kommentTartalom }}</div>
           <div class="comment-actions">
             <button (click)="editingCommentId = comment.id; newCommentContent = comment.kommentTartalom">Módosítás</button>
-            <button (click)="deleteComment(comment.id)">Törlés</button>
+            <button (click)="deleteComment(comment.id)"><img src="../../assets/img/pngegg.png"></button>
           </div>
         </div>
       </div>
     </div>
+
+    <div *ngIf="selectedPostId === post.id" class="comment-input">
+      <textarea [(ngModel)]="newCommentContent" placeholder="Írd ide a kommentet..."></textarea>
+      <button (click)="addComment(post.id)">Komment létrehozása</button>
+    </div>
+
+    
   </div>
 </div>

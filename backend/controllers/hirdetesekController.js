@@ -1,5 +1,5 @@
 import Hirdetesek from '../models/Hirdetesek.js';
-import multer from 'multer'
+import multer from 'multer';
 import Kep from '../models/Kep.js';
 
 const upload = multer({ dest: 'uploads/' });
@@ -27,7 +27,6 @@ export const getAllHirdetesek = async (req, res) => {
   }
 };
 
-
 export const getHirdetesById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -54,7 +53,7 @@ export const getHirdetesById = async (req, res) => {
 
 export const createHirdetes = async (req, res) => {
   try {
-    const { adatok, modell, marka, ajtok_szama, hengerurtartalom, uzemanyag, evjarat } = req.body;
+    const { adatok, modell, marka, ajtok_szama, hengerurtartalom, uzemanyag, evjarat, futott_kilometer, szin, sebessegvalto_tipus, kiegészítők, muszaki_vizsga_ervenyes, baleseti_előzmények } = req.body;
     const felhasznalo_id = req.user.id;
 
     const kepek = req.files;
@@ -74,6 +73,12 @@ export const createHirdetes = async (req, res) => {
       hengerurtartalom,
       uzemanyag,
       evjarat,
+      futott_kilometer,
+      szin,
+      sebessegvalto_tipus,
+      kiegészítők,
+      muszaki_vizsga_ervenyes,
+      baleseti_előzmények,
       felhasznalo_id
     });
 
@@ -102,10 +107,19 @@ export const updateHirdetes = async (req, res) => {
     if (!hirdetes) {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
-    await hirdetes.update(req.body);
+    const updatedData = {
+      ...req.body,
+      futott_kilometer: req.body.futott_kilometer || hirdetes.futott_kilometer,
+      szin: req.body.szin || hirdetes.szin,
+      sebessegvalto_tipus: req.body.sebessegvalto_tipus || hirdetes.sebessegvalto_tipus,
+      kiegészítők: req.body.kiegészítők || hirdetes.kiegészítők,
+      muszaki_vizsga_ervenyes: req.body.muszaki_vizsga_ervenyes || hirdetes.muszaki_vizsga_ervenyes,
+      baleseti_előzmények: req.body.baleseti_előzmények || hirdetes.baleseti_előzmények,
+    };
+    await hirdetes.update(updatedData);
     res.status(200).json({ message: 'Hirdetés frissítve', hirdetes });
   } catch (error) {
-    console.error('Hiba a hirdetés frisítésekor:', error);
+    console.error('Hiba a hirdetés frissítésekor:', error);
     res.status(500).json({ message: 'Hiba a hirdetés frissítése során.' });
   }
 };
