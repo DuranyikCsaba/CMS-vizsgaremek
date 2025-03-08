@@ -1,42 +1,83 @@
 footer {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #3A4750;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: #EEEEEE;
-    position: flex;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-    }
+  font-family: 'Montserrat', sans-serif;
+  background-color: #3A4750;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  color: #EEEEEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-    footer ul {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      gap: 400px;
-      margin: 0;
-    }
+.footer-content {
+  max-width: 1200px; /* Maximális szélesség a lábléhez */
+  width: 100%;
+}
 
-    footer li {
-      margin-bottom: 0;
-    }
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between; /* Egyenletes elosztás */
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
 
-    footer a {
-      color: #EEEEEE !important;
-      font-family: 'Montserrat', sans-serif;
-    }
+footer li {
+  display: flex;
+  align-items: center;
+  margin: 0 20px; /* Kisebb margó a listák között */
+}
 
-    footer a:hover {
-      color: #00ADB5 !important;
-    }
+footer span {
+  margin-right: 10px; /* Különbség a név és az ikon között */
+}
 
-    footer img {
-      width: 50px;
-      height: 50px;
-      margin-left: 10px;
-    }
+footer a {
+  color: #EEEEEE !important;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s ease; /* Színátmenet a hover effektushoz */
+}
+
+footer a:hover {
+  color: #00ADB5 !important;
+}
+
+footer img {
+  width: 30px; /* Kisebb ikon méret */
+  height: 30px;
+  margin-left: 5px; /* Kisebb margó az ikon mellett */
+}
+
+/* Rólunk gomb stílus */
+.about-button {
+  margin-top: 15px; /* Különbség a gomb és a lista között */
+}
+
+.about-button a {
+  background-color: #00ADB5; /* Gomb háttérszíne */
+  color: #FFFFFF; /* Gomb szöveg színe */
+  padding: 10px 20px; /* Gomb belső margó */
+  border-radius: 5px; /* Lekerekített sarkok */
+  text-decoration: none; /* Aláhúzás eltávolítása */
+  font-weight: bold; /* Félkövér szöveg */
+  transition: background-color 0.3s ease; /* Színátmenet a hover effektushoz */
+}
+
+.about-button a:hover {
+  background-color: #007B7F; /* Gomb háttérszín hover állapotban */
+}
+
+/* Reszponzív dizájn */
+@media (max-width: 768px) {
+  footer ul {
+      flex-direction: column; /* Oszlopos elrendezés kisebb képernyőkön */
+      align-items: center;
+  }
+
+  footer li {
+      margin: 10px 0; /* Kisebb margó a listák között */
+  }
+}

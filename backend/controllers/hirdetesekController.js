@@ -5,6 +5,7 @@ import Kep from '../models/Kep.js';
 const upload = multer({ dest: 'uploads/' });
 
 export const getAllHirdetesek = async (req, res) => {
+  
   try {
     const hirdetesek = await Hirdetesek.findAll({
       include: [{ model: Kep, as: 'kepek' }]
@@ -53,12 +54,12 @@ export const getHirdetesById = async (req, res) => {
 
 export const createHirdetes = async (req, res) => {
   try {
-    const { adatok, modell, marka, ajtok_szama, hengerurtartalom, uzemanyag, evjarat, futott_kilometer, szin, sebessegvalto_tipus, kiegészítők, muszaki_vizsga_ervenyes, baleseti_előzmények } = req.body;
+    const { adatok, modell, marka, ajtok_szama, hengerurtartalom, uzemanyag, evjarat, futott_kilometer, szin, sebessegvalto_tipus, kiegeszitok, muszaki_vizsga_ervenyes, baleseti_elozmenyek, ar, ert_telszam} = req.body;
     const felhasznalo_id = req.user.id;
 
     const kepek = req.files;
 
-    if (!modell || !marka || !ajtok_szama || !hengerurtartalom || !uzemanyag || !evjarat || !felhasznalo_id) {
+    if (!modell || !marka || !ajtok_szama || !hengerurtartalom || !uzemanyag || !evjarat || !felhasznalo_id || !ar || !ert_telszam) {
       return res.status(400).json({
         error: true,
         message: "Minden kötelező mezőt ki kell tölteni!",
@@ -76,10 +77,12 @@ export const createHirdetes = async (req, res) => {
       futott_kilometer,
       szin,
       sebessegvalto_tipus,
-      kiegészítők,
+      kiegeszitok,
       muszaki_vizsga_ervenyes,
-      baleseti_előzmények,
-      felhasznalo_id
+      baleseti_elozmenyek,
+      felhasznalo_id,
+      ar,
+      ert_telszam
     });
 
     if (kepek && kepek.length > 0) {
@@ -109,12 +112,19 @@ export const updateHirdetes = async (req, res) => {
     }
     const updatedData = {
       ...req.body,
+      model : req.body.modell ||hirdetes.modell,
+      marka : req.body.marka ||hirdetes.marka,
+      ajtok_szama : req.body.ajtok_szama ||hirdetes.ajtok_szama,
+      hengerurtartalom : req.body.hengerurtartalom ||hirdetes.hengerurtartalom,
+      uzemanyag : req.body.uzemanyag ||hirdetes.uzemanyag,
+      evjarat : req.body.evjarat ||hirdetes.evjarat,
       futott_kilometer: req.body.futott_kilometer || hirdetes.futott_kilometer,
       szin: req.body.szin || hirdetes.szin,
       sebessegvalto_tipus: req.body.sebessegvalto_tipus || hirdetes.sebessegvalto_tipus,
-      kiegészítők: req.body.kiegészítők || hirdetes.kiegészítők,
+      kiegeszitok: req.body.kiegeszitok || hirdetes.kiegeszitok,
       muszaki_vizsga_ervenyes: req.body.muszaki_vizsga_ervenyes || hirdetes.muszaki_vizsga_ervenyes,
-      baleseti_előzmények: req.body.baleseti_előzmények || hirdetes.baleseti_előzmények,
+      baleseti_elozmenyek: req.body.baleseti_előzmények || hirdetes.baleseti_elozmenyek,
+      ert_telszam: req.body.ert_telszam ||hirdetes.ert_telszam
     };
     await hirdetes.update(updatedData);
     res.status(200).json({ message: 'Hirdetés frissítve', hirdetes });

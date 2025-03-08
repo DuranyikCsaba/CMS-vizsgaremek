@@ -11,11 +11,14 @@ export interface Hirdetes {
   hengerurtartalom: number;
   uzemanyag: string;
   evjarat: number;
-  futott_kilometer: number; // Ékezet nélküli mező
-  szin: string; // Ékezet nélküli mező
-  sebessegvalto_tipus: string; // Ékezet nélküli mező
-  kiegeszitok: string; // Ékezet nélküli mező
-  muszaki_vizsga_ervenyes: Date | null; // Ékezet nélküli mező
-  baleseti_elozmenyek: string; // Ékezet nélküli mező
+  futott_kilometer: number; 
+  szin: string; 
+  sebessegvalto_tipus: string;
+  kiegeszitok: string; 
+  muszaki_vizsga_ervenyes: Date | null; 
+  baleseti_elozmenyek: string; 
+  ar: number;
+  createdAt: Date;
+  ert_telszam: number;
   kepek: Kep[];
 }

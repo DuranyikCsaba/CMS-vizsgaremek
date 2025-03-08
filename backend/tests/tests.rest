@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "nev" : "Admin",
-    "jelszo" : "Admin"
+    "jelszo" : "Adminpwd"
 }
 
 ### 2. user számára bejelentkezés (POST)
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 {
     "nev": "Admin",
-    "jelszo": "Admin",
+    "jelszo": "Adminpwd",
     "email": "admin@admin.com",
     "tel": "06201234456",
     "tipus": 0
@@ -64,16 +64,25 @@ GET http://localhost:5000/hirdetesek/6
 ### Create a new hirdetes ###
 POST http://localhost:5000/hirdetesek
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4NzQzNSwiZXhwIjoxNzM5ODkxMDM1fQ.wfOdedt_fs6cBIm8-APd-esA4mC_EA0OGxSSDT0sAak
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTQ2MTYzOSwiZXhwIjoxNzQxNDY1MjM5fQ.mHy1c9Q3F1O6N55L2njJXoPE9aFo8eqs1PS5cbWUtQg
 
 {
-  "modell": "Teszt Modell",
-  "marka": "Teszt Márka",
+  "modell": "Golf",
+  "marka": "Volkswagen",
   "ajtok_szama": 5,
-  "hengerurtartalom": 1165,
-  "uzemanyag": "Benzin",
-  "evjarat": 2020,
-  "adatok": "Teszt adatok"
+  "hengerurtartalom": 1.6,
+  "uzemanyag": "benzin",
+  "evjarat": 2018,
+  "futott_kilometer": 85000,
+  "szin": "fekete",
+  "sebessegvalto_tipus": "manuális",
+  "kiegeszitok": "klíma, ülésfűtés",
+  "muszaki_vizsga_ervenyes": "2026-06-30",
+  "baleseti_elozmenyek": "nincs",
+  "felhasznalo_id": 3,
+  "adatok": "Megkímélt állapot",
+  "ar": 4500000,
+  "ert_telszam": "+36202939772"
 }
 
 

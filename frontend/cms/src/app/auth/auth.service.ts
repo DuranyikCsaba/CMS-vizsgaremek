@@ -28,11 +28,11 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-  getCurrentUser (): { id: number; name: string } | null {
+  getCurrentUser (): { id: number; nev: string } | null {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token) as { id: number; name: string };
+        const decodedToken = jwtDecode(token) as { id: number; nev: string };
         return decodedToken;
       } catch (error) {
         console.error('Hiba a token dekódolása során:', error);
@@ -44,6 +44,6 @@ export class AuthService {
 
   getUserName(): string | null {
     const user = this.getCurrentUser ();
-    return user ? user.name : "Profil";
+    return user ? user.nev : "Profil";
   }
 }

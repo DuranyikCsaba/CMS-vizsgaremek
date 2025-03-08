@@ -19,7 +19,8 @@ export class NavComponent implements OnInit, OnDestroy {
       (loggedIn: boolean) => {
         this.isLoggedIn = loggedIn;
         if (loggedIn) {
-          this.userName = this.authService.getUserName();
+          const user = this.authService.getCurrentUser ();
+          this.userName = user ? user.nev : null;
         } else {
           this.userName = null;
         }

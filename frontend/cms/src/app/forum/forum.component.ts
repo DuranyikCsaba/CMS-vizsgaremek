@@ -40,27 +40,31 @@ export class ForumComponent implements OnInit {
     );
   }
 
-  addPost(): void {
-    if (!this.newPostContent.trim()) {
-      console.error('A tartalom nem lehet üres!');
-      return;
-    }
+  hibaUzenet: string = '';
 
-    const newPost = { tartalom: this.newPostContent };
-    this.forumService.addPost(newPost).subscribe(
-      response => {
-        if (!response.error) {
-          this.posts.unshift(response.data); // Új poszt a lista elejére
-          this.newPostContent = ''; // Reset the input field
-        } else {
-          console.error('Hiba történt az új poszt létrehozásakor:', response.message);
-        }
-      },
-      error => {
-        console.error('Hiba történt az új poszt létrehozásakor:', error);
-      }
-    );
+addPost(): void {
+  if (!this.newPostContent.trim()) {
+    this.hibaUzenet = 'A tartalom nem lehet üres!';
+    return;
   }
+
+  const newPost = { tartalom: this.newPostContent };
+  this.forumService.addPost(newPost).subscribe(
+    response => {
+      if (!response.error) {
+        this.posts.unshift(response.data);
+        this.newPostContent = '';
+        this.hibaUzenet = ''; // Hibaüzenet törlése sikeres poszt esetén
+      } else {
+        this.hibaUzenet = 'Hiba történt az új poszt létrehozásakor: ' + response.message;
+      }
+    },
+    error => {
+      this.hibaUzenet = 'Hiba történt az új poszt létrehozásakor!';
+    }
+  );
+}
+
 
   deletePost(postId: number): void {
     this.forumService.deletePost(postId).subscribe(

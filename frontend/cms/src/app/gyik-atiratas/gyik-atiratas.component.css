@@ -1,0 +1,48 @@
+/* Alap stílusok */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Gyik szekció */
+.gyik-section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Címek stílusa */
+.gyik-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.gyik-section h3 {
+    color: #555;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lista stílusa */
+.gyik-section ul {
+    list-style-type: none; /* Eltávolítja a lista jelöléseket */
+    padding: 0;
+}
+
+.gyik-section ul li {
+    background: #e9ecef;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+/* Kiemelt szöveg stílusa */
+.gyik-section ul li strong {
+    color: #007bff; /* Kék szín a kiemelt szöveghez */
+}

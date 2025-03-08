@@ -4,6 +4,11 @@
     <button (click)="addPost()">Poszt létrehozása</button>
   </div>
 
+  <div *ngIf="hibaUzenet" class="error-message">
+    {{ hibaUzenet }}
+  </div>
+  
+
   <div *ngFor="let post of posts" class="post">
     <div class="post-header">
       <span class="post-author">{{ post.felhasznaloNeve }}</span>

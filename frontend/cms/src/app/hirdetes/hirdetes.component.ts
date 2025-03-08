@@ -21,5 +21,6 @@ export class HirdetesComponent {
   @Input() kiegeszitok: string = ''; 
   @Input() muszaki_vizsga_ervenyes: Date | null = null; 
   @Input() baleseti_elozmenyek: string = ''; 
+  @Input() ar: number = 0;
   @Input() kepek: string[] = [];
 }

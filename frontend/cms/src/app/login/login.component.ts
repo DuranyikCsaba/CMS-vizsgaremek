@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service'; // Ensure this path is correct
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,44 +23,56 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-    this.login();
+    this.serverErrorMessage = ''; // Korábbi hibaüzenet törlése
+    if (this.validateForm()) {
+      this.login();
+    }
   }
 
   validateForm(): boolean {
     this.usernameError = '';
     this.passwordError = '';
 
-    if (!this.username) {
-      this.usernameError = 'Felhasználónév szükséges';
+    // Üres felhasználónév ellenőrzése
+    if (!this.username.trim()) {
+      this.usernameError = 'Felhasználónév megadása kötelező!';
+    } else if (!/^[a-zA-Z0-9]+$/.test(this.username)) {
+      this.usernameError = 'A felhasználónév csak betűket és számokat tartalmazhat!';
     }
 
-    if (!this.password) {
-      this.passwordError = 'Jelszó szükséges';
+    // Üres vagy túl rövid jelszó ellenőrzése
+    if (!this.password.trim()) {
+      this.passwordError = 'Jelszó megadása kötelező!';
+    } else if (this.password.length < 8) {
+      this.passwordError = 'A jelszónak legalább 8 karakter hosszúnak kell lennie!';
     }
 
     return !this.usernameError && !this.passwordError;
   }
 
   login() {
-    if (this.validateForm()) {
-      const payload = { nev: this.username, jelszo: this.password };
-      console.log('Login payload:', payload); 
+    const payload = { nev: this.username, jelszo: this.password };
+    console.log('Login payload:', payload);
 
-      this.http.post('http://localhost:5000/api/auth/login', payload, {
-        headers: { 'Content-Type': 'application/json' }
-      }).subscribe(
-        (response: any) => {
-          
-          this.successMessage = 'Sikeres bejelentkezés!';
-          this.authService.login(response.token); 
-          this.router.navigate(['/']);
-        },
-        (error) => {
-          
-          this.serverErrorMessage = 'Hiba történt a bejelentkezés során!';
-          console.error('Login error:', error); 
+    this.http.post('http://localhost:5000/api/auth/login', payload, {
+      headers: { 'Content-Type': 'application/json' }
+    }).subscribe(
+      (response: any) => {
+        this.successMessage = 'Sikeres bejelentkezés!';
+        this.authService.login(response.token); 
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        console.error('Login error:', error);
+
+        if (error.status === 401) {
+          this.serverErrorMessage = 'Hibás felhasználónév vagy jelszó!';
+        } else if (error.status === 500) {
+          this.serverErrorMessage = 'Szerverhiba! Kérjük, próbálja újra később.';
+        } else {
+          this.serverErrorMessage = 'Hiba történt a bejelentkezés során.';
         }
-      );
-    }
+      }
+    );
   }
 }

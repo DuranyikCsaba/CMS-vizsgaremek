@@ -12,9 +12,9 @@ import { Observable } from 'rxjs';
 export class CreateHirdetesComponent implements OnInit {
   hirdetesForm: FormGroup;
   isLoggedIn$: Observable<boolean>;
-  selectedFiles: File[] = []; // Fájlok tárolása
-  imageUrls: (string | ArrayBuffer)[] = []; // Képek előnézete
-  currentYear: number; // Az aktuális év változója
+  selectedFiles: File[] = [];
+  imageUrls: (string | ArrayBuffer)[] = [];
+  currentYear: number; 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
@@ -32,9 +32,11 @@ export class CreateHirdetesComponent implements OnInit {
       futott_kilometer: ['', [Validators.required, Validators.min(0)]],
       szin: ['', Validators.required],
       sebessegvalto_tipus: ['', Validators.required],
-      kiegészítők: [''],
+      kiegeszitok: ['', Validators.required],
       muszaki_vizsga_ervenyes: [''],
-      baleseti_előzmények: ['']
+      baleseti_elozmenyek: [''],
+      ert_telszam: ['', Validators.required],
+      ar: ['', [Validators.required, Validators.min(0)]]
     });
   }
 

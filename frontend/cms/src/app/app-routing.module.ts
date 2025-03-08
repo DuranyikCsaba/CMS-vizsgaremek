@@ -15,6 +15,8 @@ import { GyikAdasveteliComponent } from './gyik-adasveteli/gyik-adasveteli.compo
 import { GyikKotelezoComponent } from './gyik-kotelezo/gyik-kotelezo.component';
 import { GyikCascoComponent } from './gyik-casco/gyik-casco.component';
 import { GyikBetetlapComponent } from './gyik-betetlap/gyik-betetlap.component';
+import { RolunkComponent } from './rolunk/rolunk.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/fooldal', pathMatch: 'full' },
@@ -33,6 +35,7 @@ const routes: Routes = [
   { path: 'gyik-kotelezo', component: GyikKotelezoComponent },
   { path: 'gyik-casco', component: GyikCascoComponent },
   { path: 'gyik-betetlap', component: GyikBetetlapComponent },
+  { path: 'rolunk', component: RolunkComponent},
 
 ];
 

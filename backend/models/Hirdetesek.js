@@ -41,19 +41,19 @@ const Hirdetesek = sequelize.define('Hirdetesek', {
   },
   sebessegvalto_tipus: {
     type: DataTypes.STRING,
-    allowNull: false // pl. 'automata' vagy 'manuális'
+    allowNull: false
   },
-  kiegészítők: {
+  kiegeszitok: {
     type: DataTypes.STRING,
-    allowNull: true // pl. 'légkondicionáló, navigáció'
+    allowNull: true 
   },
   muszaki_vizsga_ervenyes: {
     type: DataTypes.DATE,
-    allowNull: true // a műszaki vizsga érvényességi dátuma
+    allowNull: true 
   },
-  baleseti_előzmények: {
+  baleseti_elozmenyek: {
     type: DataTypes.STRING,
-    allowNull: true // pl. 'soha nem volt balesete'
+    allowNull: true 
   },
   felhasznalo_id: {
     type: DataTypes.INTEGER,
@@ -62,7 +62,16 @@ const Hirdetesek = sequelize.define('Hirdetesek', {
   adatok: {
     type: DataTypes.STRING,
     allowNull: true
+  },
+  ar: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  ert_telszam: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
+
 }, {
   tableName: 'hirdetesek',
   timestamps: true

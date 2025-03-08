@@ -19,6 +19,7 @@ import { HirdetesListComponent } from './hirdetes-list/hirdetes-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForumComponent } from './forum/forum.component';
 import { ProfilComponent } from './profil/profil.component';
+import { RolunkComponent } from './rolunk/rolunk.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ProfilComponent } from './profil/profil.component';
     HirdetesListComponent,
     ForumComponent,
     ProfilComponent,
+    RolunkComponent,
   ],
   imports: [
     BrowserModule,

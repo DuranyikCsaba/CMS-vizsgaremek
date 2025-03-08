@@ -1,5 +1,6 @@
 <div class="hirdetes">
   <h2>{{ marka }} {{ modell }}</h2>
+  <h3>{{ ar }}</h3>
   <p><strong>Adatok:</strong> {{ adatok }}</p>
   <p><strong>Ajtók száma:</strong> {{ ajtok_szama }}</p>
   <p><strong>Hengerűrtartalom:</strong> {{ hengerurtartalom }} cm<sup>3</sup></p>
@@ -11,6 +12,7 @@
   <p><strong>Kiegészítők:</strong> {{ selectedHirdetes?.kiegeszitok }}</p>
   <p><strong>Baleseti előzmények:</strong> {{ selectedHirdetes?.baleseti_elozmenyek }}</p>
   <p><strong>Műszaki vizsga érvényessége:</strong> {{ selectedHirdetes?.muszaki_vizsga_ervenyes | date:'yyyy-MM-dd'  || "nincs"}}</p>
+  <p>FÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚÚJJJJJJJJJJJJJJJJJJJJJJJJJJJJ</p>
   <div class="kepek">
     <h3>Képek:</h3>
     <div *ngFor="let kep of kepek">

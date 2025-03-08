@@ -2,17 +2,22 @@
   <div id="loginPanel">
     <h1 id="loginPanelTitle">Bejelentkezés</h1>
     <form id="loginForm" (ngSubmit)="onSubmit()">
+      
       <!-- Felhasználónév -->
+      <input class="loginInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username">
       <span class="error" *ngIf="usernameError">{{ usernameError }}</span><br>
-      <input class="loginInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username"><br>
 
       <!-- Jelszó -->
+      <input class="loginInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password">
       <span class="error" *ngIf="passwordError">{{ passwordError }}</span><br>
-      <input class="loginInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password"><br>
 
-      
-      <input type="submit" value="Bejelentkezés" id = "loginSubmit">
-      <p id="loginToRegister">Még nincs fiókod? <a routerLink="/register" id="loginToRegLink">Regisztrálj!</a></p>
+      <!-- Bejelentkezési hibaüzenet (backend-től érkező) -->
+      <p class="server-error" *ngIf="serverErrorMessage">{{ serverErrorMessage }}</p>
+
+      <input type="submit" value="Bejelentkezés" id="loginSubmit">
+      <p id="loginToRegister">Még nincs fiókod? 
+        <a routerLink="/register" id="loginToRegLink">Regisztrálj!</a>
+      </p>
     </form>
   </div>
 </div>

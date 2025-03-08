@@ -108,8 +108,8 @@
 
     <!-- Kiegészítők mező -->
     <div class="form-group">
-      <label for="kiegészítők">Kiegészítők</label>
-      <input type="text" id="kiegészítők" class="hirdetesInputs" formControlName="kiegészítők">
+      <label for="kiegeszitok">Kiegészítők</label>
+      <input type="text" id="kiegeszitok" class="hirdetesInputs" formControlName="kiegeszitok">
     </div>
 
     <!-- Műszaki vizsga érvényessége mező -->
@@ -120,8 +120,24 @@
 
     <!-- Baleseti előzmények mező -->
     <div class="form-group">
-      <label for="baleseti_előzmények">Baleseti előzmények</label>
-      <textarea id="baleseti_előzmények" class="hirdetesInputs" formControlName="baleseti_előzmények"></textarea>
+      <label for="baleseti_elozmenyek">Baleseti előzmények</label>
+      <textarea id="baleseti_elozmenyek" class="hirdetesInputs" formControlName="baleseti_elozmenyek"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="ar">Ár</label>
+      <input type="number" step="0.1" id="ar" class="hirdetesInputs" formControlName="ar" required min="0">
+      <div *ngIf="hirdetesForm.get('ar')?.invalid && hirdetesForm.get('ar')?.touched" class="error-message">
+        Az ár nem lehet negatív!
+      </div>
+    </div>
+
+    <div class="form-group">
+    <label for="ert_telszam">Telefonszám</label>
+    <input type="tel" id="ert_telszam" class="hirdetesInputs" formControlName="ert_telszam" required pattern="^\+36[0-9]{9}$" placeholder="+36xxxxxxxxx">
+    <div *ngIf="hirdetesForm.get('ert_telszam')?.invalid && hirdetesForm.get('ert_telszam')?.touched" class="error-message">
+        Kérjük, adjon meg egy érvényes telefonszámot a következő formátumban: +36xxxxxxxxx!
+    </div>
     </div>
 
     <!-- Képek feltöltése -->

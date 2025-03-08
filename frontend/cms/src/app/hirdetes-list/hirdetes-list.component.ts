@@ -27,12 +27,17 @@ export class HirdetesListComponent implements OnInit {
     this.http.get<{ hirdetesek: Hirdetes[] }>('http://localhost:5000/hirdetesek')
       .subscribe({
         next: (response) => {
-          this.hirdetesek = response.hirdetesek.map(hirdetes => ({
-            ...hirdetes,
-            kepek: hirdetes.kepek ? hirdetes.kepek.map(kep => ({
-              file_path: `${kep.file_path}`
-            })) : []
-          }));
+          const ketHetElott = new Date();
+          ketHetElott.setDate(ketHetElott.getDate() - 14); // 14 nappal korábbi dátum
+
+          this.hirdetesek = response.hirdetesek
+            .filter(hirdetes => new Date(hirdetes.createdAt) >= ketHetElott) // Szűrés
+            .map(hirdetes => ({
+              ...hirdetes,
+              kepek: hirdetes.kepek ? hirdetes.kepek.map(kep => ({
+                file_path: `${kep.file_path}`
+              })) : []
+            }));
           this.loading = false;
         },
         error: (error) => {
@@ -42,6 +47,7 @@ export class HirdetesListComponent implements OnInit {
         }
       });
   }
+
 
   viewHirdetesDetails(content: any, id: number): void {
     this.http.get<Hirdetes>(`http://localhost:5000/hirdetesek/${id}`)
