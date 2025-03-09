@@ -32,7 +32,7 @@ Content-Type: application/json
     "jelszo": "Adminpwd",
     "email": "admin@admin.com",
     "tel": "06201234456",
-    "tipus": 0
+    "tipus": 1
 }
 
 ### 2. user létrehozása (POST)
@@ -51,7 +51,22 @@ Content-Type: application/json
 ### 
 
 GET http:localhost:5000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MDA2OTY1NSwiZXhwIjoxNzQwMDczMjU1fQ.rd-foousCs3MsFv1eGvqkIiRCuNblWXL6b_AZ-YjQUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzNTU3MCwiZXhwIjoxNzQxNTM5MTcwfQ.dQs1MrEio8ygAZQQN8s2kbuppXoWzmjaN0F4CCrXl9A
+
+### Felhasználói adatok frissítése
+POST http://localhost:5000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzNjEyNywiZXhwIjoxNzQxNTM5NzI3fQ.o9AipgkiBJrTe6CrK7cOkmJHuiWrxd_NMUfhsElir4c
+Content-Type: application/json
+
+{
+    "nev": "AdminUpdated",
+    "email": "adminupdated@admin.com",
+    "tel": "06201234457"
+}
+
+### Felhasználó törlése
+DELETE http://localhost:5000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzMDI2MywiZXhwIjoxNzQxNTMzODYzfQ.H71IiEUBybnm3U26IausBKu2slXC9FTvrXrpaYm71lQ
 
 ### Hirdetesek Endpoints ###
 

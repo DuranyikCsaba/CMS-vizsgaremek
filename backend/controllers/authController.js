@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import Felhasznalok from '../models/Felhasznalok.js';
 
 // Regisztráció
-export const registerUser = async (req, res) => {
+export const registerUser  = async (req, res) => {
   const { nev, jelszo, email, tel } = req.body;
 
   try {
@@ -14,7 +14,7 @@ export const registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(jelszo, 10);
 
-    const newUser = await Felhasznalok.create({
+    const newUser  = await Felhasznalok.create({
       nev,
       jelszo: hashedPassword,
       email,
@@ -22,7 +22,7 @@ export const registerUser = async (req, res) => {
       tipus: 1,
     });
 
-    res.status(201).json({ message: 'A felhasználó sikeresen regisztrálva lett!', user: newUser });
+    res.status(201).json({ message: 'A felhasználó sikeresen regisztrálva lett!', user: newUser  });
   } catch (error) {
     console.error('Regisztrációs hiba:', error);
     res.status(500).json({ message: 'Hiba történt a regisztráció során.' });
@@ -30,7 +30,7 @@ export const registerUser = async (req, res) => {
 };
 
 // Bejelentkezés
-export const loginUser = async (req, res) => {
+export const loginUser  = async (req, res) => {
   const { nev, jelszo } = req.body;
 
   try {
@@ -54,7 +54,7 @@ export const loginUser = async (req, res) => {
 };
 
 // Kilépés
-export const logoutUser = async (req, res) => {
+export const logoutUser  = async (req, res) => {
   try {
     res.status(200).json({ message: 'Kilépés sikeres' });
   } catch (error) {
@@ -64,30 +64,116 @@ export const logoutUser = async (req, res) => {
 };
 
 // Felhasználó lekérdezése
-
-export const getUser = async (req, res) => {
+export const getUser  = async (req, res) => {
   const id = req.user.id;
-  Felhasznalok.findByPk(id)
-  .then((user) => {
+  try {
+    const user = await Felhasznalok.findByPk(id);
     if (user) {
       res.status(200).json({
         error: false,
         message: "A felhasználó lekérdezése sikeres",
         user
-      })
+      });
     } else {
       res.status(404).json({
         error: true,
         message: "Nincs ilyen felhasználó",
-      })
+      });
     }
-  })
-  .catch((err) => {
-    console.error("A felhasználó lekérdezése sikertelen")
-    console.error(err)
+  } catch (err) {
+    console.error("A felhasználó lekérdezése sikertelen", err);
     res.status(500).json({
       error: true,
       message: "A felhasználó lekérdezése során adatbázishiba történt"
-    })
-  })
+    });
+  }
+};
+
+// Felhasználói adatok módosítása
+export const updateUserData = async (req, res) => {
+  const id = req.user.id; // A felhasználó azonosítója a JWT-ből
+  const { nev, email , tel } = req.body; // Felhasználói adatok
+
+  try {
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
+    }
+
+    // Felhasználói adatok frissítése
+    if (nev) user.nev = nev;
+    if (email) user.email = email;
+    if (tel) user.tel = tel;
+
+    await user.save(); // Változások mentése
+
+    res.status(200).json({ message: 'A felhasználói adatok sikeresen frissítve lettek!', user });
+  } catch (error) {
+    console.error('Felhasználói adatok módosítása hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a felhasználói adatok módosítása során.' });
+  }
+};
+
+// Jelszó módosítása
+export const updatePassword = async (req, res) => {
+  const id = req.user.id; // A felhasználó azonosítója a JWT-ből
+  const { jelszo, ujJelszo, ujJelszoMegint } = req.body; // Jelszó mezők
+
+  try {
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
+    }
+
+    // Jelenlegi jelszó ellenőrzése
+    const isPasswordValid = await bcrypt.compare(jelszo, user.jelszo);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: 'Helytelen előző jelszó.' });
+    }
+
+    // Új jelszavak ellenőrzése
+    if (ujJelszo && ujJelszo !== ujJelszoMegint) {
+      return res.status(400).json({ message: 'Az új jelszavak nem egyeznek.' });
+    }
+
+    // Jelszó frissítése
+    user.jelszo = await bcrypt.hash(ujJelszo, 10); // Új jelszó hash-elése
+    await user.save(); // Változások mentése
+
+    res.status(200).json({ message: 'A jelszó sikeresen frissítve lett!' });
+  } catch (error) {
+    console.error('Jelszó módosítása hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a jelszó módosítása során.' });
+  }
+};
+
+// Felhasználó törlése
+export const deleteUser  = async (req, res) => {
+  const id = req.user.id; // A felhasználó azonosítója a JWT-ből
+  const { jelszo, jelszoMegint } = req.body; // Jelszó és megerősítés
+
+  try {
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
+    }
+
+    // Jelszó ellenőrzése
+    const isPasswordValid = await bcrypt.compare(jelszo, user.jelszo);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: 'Helytelen jelszó.' });
+    }
+
+    // Megerősítés ellenőrzése
+    if (jelszo !== jelszoMegint) {
+      return res.status(400).json({ message: 'A jelszavak nem egyeznek.' });
+    }
+
+    await Felhasznalok.destroy({ where: { id } }); // Felhasználó törlése
+
+    res.status(200).json({ message: 'A felhasználó sikeresen törölve lett.' });
+  } catch (error) {
+    console.error('Felhasználó törlése hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a felhasználó törlése során.' });
+  }
 };

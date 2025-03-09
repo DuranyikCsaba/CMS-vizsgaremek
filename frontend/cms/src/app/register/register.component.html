@@ -12,7 +12,7 @@
 
       <!-- Telefonszám -->
       <span class="error" *ngIf="phoneError">{{ phoneError }}</span><br>
-      <input class="registerInputs" type="tel" placeholder="Telefonszám" [(ngModel)]="phone" name="phone"><br>
+      <input class="registerInputs" type="tel" placeholder="Telefonszám (+36...)" [(ngModel)]="phone" name="phone"><br>
 
       <!-- Jelszó -->
       <span class="error" *ngIf="passwordError">{{ passwordError }}</span><br>

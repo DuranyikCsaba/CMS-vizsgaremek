@@ -65,7 +65,7 @@ export class RegisterComponent {
       this.passwordError = 'A jelszó megadása kötelező!';
       isValid = false;
     } else if (this.password.length < 8) {
-      this.passwordError = 'Min. karakterhossz: 6 karakter';
+      this.passwordError = 'Min. karakterhossz: 8 karakter';
       isValid = false;
     } else {
       this.passwordError = '';

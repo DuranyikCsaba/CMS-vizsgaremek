@@ -1,11 +1,64 @@
+<div *ngIf="feedbackMessage" class="feedback-message">
+  {{ feedbackMessage }}
+</div>
 <div class="user-profile">
-    <h2>Felhasználói Profil</h2>
+  <h2>Felhasználói Profil</h2>
+  
+  <div *ngIf="user">
+    <p><strong>Név:</strong> {{ user.nev }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Telefonszám:</strong> {{ user.tel }}</p>
     
-    <div *ngIf="user">
-      <p><strong>Név:</strong> {{ user.nev }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Telefonszám:</strong> {{ user.tel }}</p>
-      <button (click)="updatePassword()">Jelszó Módosítása</button>
-      <button (click)="deleteUser ()">Felhasználó Törlése</button>
+    <button (click)="showUserDataForm = !showUserDataForm">Felhasználói Adatok Módosítása</button>
+    <button (click)="showPasswordForm = !showPasswordForm">Jelszó Módosítása</button>
+    <button (click)="showDeleteForm = !showDeleteForm">Felhasználó Törlése</button>
+    
+    <!-- Felhasználói adatok módosító űrlap -->
+    <div *ngIf="showUserDataForm" class="form-container">
+      <h3>Felhasználói Adatok Módosítása</h3>
+      <form [formGroup]="userDataForm" (ngSubmit)="updateUserData()">
+        <label for="nev">Név:</label>
+        <input id="nev" formControlName="nev" required>
+        
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" required>
+        
+        <label for="tel">Telefonszám:</label>
+        <input id="tel" formControlName="tel" required>
+        
+        <button type="submit" [disabled]="userDataForm.invalid">Módosítás</button>
+      </form>
+    </div>
+
+    <!-- Jelszó módosító űrlap -->
+    <div *ngIf="showPasswordForm" class="form-container">
+      <h3>Jelszó Módosítása</h3>
+      <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+        <label for="previousPassword">Előző Jelszó:</label>
+        <input type="password" id="previousPassword" formControlName="previousPassword" required>
+        
+        <label for="newPassword">Új Jelszó:</label>
+        <input type="password" id="newPassword" formControlName="newPassword" required>
+        
+        <label for="confirmPassword">Új Jelszó Megerősítése:</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
+        
+        <button type="submit" [disabled]="passwordForm.invalid">Módosítás</button>
+      </form>
+    </div>
+
+    <!-- Felhasználó törlő űrlap -->
+    <div *ngIf="showDeleteForm" class="form-container">
+      <h3>Felhasználó Törlése</h3>
+      <form [formGroup]="deleteForm" (ngSubmit)="deleteUser ()">
+        <label for="deletePassword">Jelszó:</label>
+        <input type="password" id="deletePassword" formControlName="password" required>
+        
+        <label for="confirmDelete Password">Jelszó Megerősítése:</label>
+        <input type="password" id="confirmDeletePassword" formControlName="confirmPassword" required>
+        
+        <button type="submit" [disabled]="deleteForm.invalid">Törlés</button>
+      </form>
     </div>
   </div>
+</div>
