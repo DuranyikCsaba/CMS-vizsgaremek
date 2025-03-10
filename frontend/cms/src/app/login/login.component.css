@@ -6,7 +6,7 @@
   background-color: #3A4750;
   font-family: 'Montserrat', sans-serif;
   color: #EEEEEE;
-  margin: 20px auto;
+  margin: 10vh auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,9 +53,10 @@
   margin: auto;
   max-width: 80%;
   display: block;
+  text-align: center;
 }
 
-#loginToRegLink {
+.loginToRegLink {
   color: #00ADB5;
 }
 

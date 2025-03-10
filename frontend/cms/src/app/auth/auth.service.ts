@@ -33,11 +33,11 @@ export class AuthService {
     }, 2000);
   }
 
-  getCurrentUser  (): { id: number; nev: string } | null {
+  getCurrentUser (): { id: number; nev: string; tipus: number } | null {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token) as { id: number; nev: string };
+        const decodedToken = jwtDecode(token) as { id: number; nev: string; tipus: number }; // Itt hozzáadjuk a tipus mezőt
         return decodedToken;
       } catch (error) {
         console.error('Hiba a token dekódolása során:', error);

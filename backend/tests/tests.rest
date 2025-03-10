@@ -32,7 +32,7 @@ Content-Type: application/json
     "jelszo": "Adminpwd",
     "email": "admin@admin.com",
     "tel": "06201234456",
-    "tipus": 1
+    "tipus": 0
 }
 
 ### 2. user létrehozása (POST)
@@ -99,6 +99,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQ
   "ar": 4500000,
   "ert_telszam": "+36202939772"
 }
+
+
+### Hirdetés létrehozása (DELETE)
+
+DELETE http://localhost:5000/hirdetesek/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTYwMTcxMCwiZXhwIjoxNzQxNjA1MzEwfQ.ZKercUVCU48sIpN1ZI3ia0d9OXDneX5lt7uhjy_TSjk
 
 
 ### Poszt létrehozása (POST)

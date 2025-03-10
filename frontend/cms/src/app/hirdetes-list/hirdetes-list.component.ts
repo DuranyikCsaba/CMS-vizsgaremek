@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hirdetes } from '../models/hirdetes.model';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-hirdetes-list',
@@ -13,10 +14,9 @@ export class HirdetesListComponent implements OnInit {
   selectedHirdetes: Hirdetes | null = null;
   errorMessage: string = '';
   loading: boolean = false;
-
   maxChars: number = 30;
 
-  constructor(private http: HttpClient, private modalService: NgbModal) {}
+  constructor(private http: HttpClient, private modalService: NgbModal, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.fetchHirdetesek();
@@ -48,7 +48,6 @@ export class HirdetesListComponent implements OnInit {
       });
   }
 
-
   viewHirdetesDetails(content: any, id: number): void {
     this.http.get<Hirdetes>(`http://localhost:5000/hirdetesek/${id}`)
       .subscribe({
@@ -76,5 +75,27 @@ export class HirdetesListComponent implements OnInit {
       return adatok.substring(0, this.maxChars) + '...';
     }
     return adatok;
+  }
+
+  deleteHirdetes(id: number): void {
+    if (confirm('Biztosan törölni szeretnéd ezt a hirdetést?')) {
+      this.http.delete(`http://localhost:5000/hirdetesek/${id}`)
+        .subscribe({
+          next: () => {
+            this.hirdetesek = this.hirdetesek.filter(hirdetes => hirdetes.id !== id);
+            alert('Hirdetés törölve.');
+            this.closeModal();
+          },
+          error: (error) => {
+            console.error('Hiba a hirdetés törlése során:', error);
+            alert('Hiba történt a hirdetés törlése során.');
+ }
+        });
+    }
+  }
+
+  canEditOrDelete(hirdetes: Hirdetes): boolean {
+    const user = this.authService.getCurrentUser ();
+    return user !== null && (hirdetes.felhasznalo_id === user.id || user.tipus === 0);
   }
 }

@@ -21,4 +21,6 @@ export interface Hirdetes {
   createdAt: Date;
   ert_telszam: number;
   kepek: Kep[];
+  felhasznalo_id: number;
+  tipus: number;
 }

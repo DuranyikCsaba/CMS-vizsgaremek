@@ -105,7 +105,7 @@ addPost(): void {
         }
       },
       error => {
-        console.error('Hiba történt a pos zt módosításakor:', error);
+        console.error('Hiba történt a poszt módosításakor:', error);
       }
     );
   }

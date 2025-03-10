@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-hirdetes',
@@ -16,7 +17,7 @@ export class CreateHirdetesComponent implements OnInit {
   imageUrls: (string | ArrayBuffer)[] = [];
   currentYear: number; 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService, private router: Router) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
     this.currentYear = new Date().getFullYear(); // Az aktuális év inicializálása
 
@@ -101,6 +102,8 @@ export class CreateHirdetesComponent implements OnInit {
           this.hirdetesForm.reset();
           this.selectedFiles = [];
           this.imageUrls = [];
+          this.router.navigate(['/hirdetes-list']);
+          
         },
         error => {
           console.error('Hiba a hirdetés feladása során:', error);

@@ -15,9 +15,8 @@
       <p class="server-error" *ngIf="serverErrorMessage">{{ serverErrorMessage }}</p>
 
       <input type="submit" value="Bejelentkezés" id="loginSubmit">
-      <p id="loginToRegister">Még nincs fiókod? 
-        <a routerLink="/register" id="loginToRegLink">Regisztrálj!</a>
-      </p>
+      <p id="loginToRegister">Még nincs fiókod? <a routerLink="/register" class="loginToRegLink">Regisztrálj!</a>
+      <p id="loginToRegister">Elfelejtette a jelszavát? Keresse fel az adminisztrátort:  <a href="https://www.instagram.com/_gamauf_marcell_/" target="_blank" class="loginToRegLink">Katt!</a></p>
     </form>
   </div>
 </div>

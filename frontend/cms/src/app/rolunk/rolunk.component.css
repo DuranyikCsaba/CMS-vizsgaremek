@@ -36,6 +36,7 @@ main {
 
 .about {
     margin: 20px 0;
+    text-align: justify;
 }
 
 .about p {
