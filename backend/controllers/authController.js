@@ -93,7 +93,11 @@ export const getUser  = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await Felhasznalok.findAll(); // Lekérjük az összes felhasználót
+    const users = await Felhasznalok.findAll({
+      where: {
+        tipus: 1 // Csak a nem admin felhasználók lekérése
+      }
+    });
     res.status(200).json({
       error: false,
       message: "Felhasználók lekérdezése sikeres",
