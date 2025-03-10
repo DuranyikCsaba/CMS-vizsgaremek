@@ -141,11 +141,13 @@ export const deleteHirdetes = async (req, res) => {
     if (!hirdetes) {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
-    if (hirdetes.felhasznalo_id !== req.user.id) {
-      return res.status(403).json({ error: true, message: "Nincs jogosultságod a módosításhoz." });
-    }    
-    await hirdetes.destroy();
-    res.status(200).json({ message: 'Hirdetés törölve' });
+    if (req.user.tipus === 0 || hirdetes.felhasznalo_id === req.user.id) {
+      await hirdetes.destroy();
+      return res.status(200).json({ message: 'Hirdetés törölve' });
+    } else {
+      console.log(req.user.tipus)
+      return res.status(403).json({ error: true, message: "Nincs jogosultságod a törléshez." });
+    }
   } catch (error) {
     console.error('Hiba a hirdetés törlése során:', error);
     res.status(500).json({ message: 'Hiba a hirdetés törlése során.' });

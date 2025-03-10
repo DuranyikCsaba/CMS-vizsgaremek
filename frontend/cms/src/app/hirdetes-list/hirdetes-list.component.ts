@@ -79,18 +79,23 @@ export class HirdetesListComponent implements OnInit {
 
   deleteHirdetes(id: number): void {
     if (confirm('Biztosan törölni szeretnéd ezt a hirdetést?')) {
-      this.http.delete(`http://localhost:5000/hirdetesek/${id}`)
-        .subscribe({
-          next: () => {
-            this.hirdetesek = this.hirdetesek.filter(hirdetes => hirdetes.id !== id);
-            alert('Hirdetés törölve.');
-            this.closeModal();
-          },
-          error: (error) => {
-            console.error('Hiba a hirdetés törlése során:', error);
-            alert('Hiba történt a hirdetés törlése során.');
- }
-        });
+      const token = this.authService.getToken(); // Token lekérése az AuthService-ből
+      this.http.delete(`http://localhost:5000/hirdetesek/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}` // Token hozzáadása a kéréshez
+        }
+      })
+      .subscribe({
+        next: () => {
+          this.hirdetesek = this.hirdetesek.filter(hirdetes => hirdetes.id !== id);
+          alert('Hirdetés törölve.');
+          this.closeModal();
+        },
+        error: (error) => {
+          console.error('Hiba a hirdetés törlése során:', error);
+          alert('Hiba történt a hirdetés törlése során.');
+        }
+      });
     }
   }
 

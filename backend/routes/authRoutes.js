@@ -9,11 +9,12 @@ router.post("/register", authControllerJs.registerUser);
 router.post("/login", authControllerJs.loginUser);
 
 router.post('/logout', authControllerJs.logoutUser);
-
+router.get('/users', authenticateToken, authControllerJs.getAllUsers);
 router.get('/user', authenticateToken, authControllerJs.getUser);
 router.post('/user', authenticateToken, authControllerJs.updateUserData);
 router.post('/user/password', authenticateToken, authControllerJs.updatePassword);
 router.delete('/user', authenticateToken, authControllerJs.deleteUser);
+router.delete('/user/:id', authenticateToken, authControllerJs.adminDeleteUser);
 
 
 export default router;

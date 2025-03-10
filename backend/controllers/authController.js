@@ -44,7 +44,7 @@ export const loginUser  = async (req, res) => {
       return res.status(400).json({ message: 'Helytelen felhasználónév vagy jelszó.' });
     }
 
-    const token = jwt.sign({ id: user.id, nev: user.nev, email: user.email }, 'titkoskulcs123', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id, nev: user.nev, email: user.email, tipus: user.tipus }, 'titkoskulcs123', { expiresIn: '1h' });
 
     res.status(200).json({ token });
   } catch (error) {
@@ -85,6 +85,25 @@ export const getUser  = async (req, res) => {
     res.status(500).json({
       error: true,
       message: "A felhasználó lekérdezése során adatbázishiba történt"
+    });
+  }
+};
+
+// Minden felhasználó lekérdezése
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await Felhasznalok.findAll(); // Lekérjük az összes felhasználót
+    res.status(200).json({
+      error: false,
+      message: "Felhasználók lekérdezése sikeres",
+      users
+    });
+  } catch (error) {
+    console.error("Hiba történt a felhasználók lekérdezésekor:", error);
+    res.status(500).json({
+      error: true,
+      message: "Hiba történt a felhasználók lekérdezése során."
     });
   }
 };
@@ -167,6 +186,30 @@ export const deleteUser  = async (req, res) => {
     // Megerősítés ellenőrzése
     if (jelszo !== jelszoMegint) {
       return res.status(400).json({ message: 'A jelszavak nem egyeznek.' });
+    }
+
+    await Felhasznalok.destroy({ where: { id } }); // Felhasználó törlése
+
+    res.status(200).json({ message: 'A felhasználó sikeresen törölve lett.' });
+  } catch (error) {
+    console.error('Felhasználó törlése hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a felhasználó törlése során.' });
+  }
+};
+
+// Admin felhasználó törlése
+export const adminDeleteUser  = async (req, res) => {
+  const { id } = req.params; // A törlendő felhasználó azonosítója
+
+  try {
+    // Ellenőrizzük, hogy a kérés indítója admin-e
+    if (req.user.tipus !== 0) {
+      return res.status(403).json({ message: 'Nincs jogosultságod a felhasználó törléséhez.' });
+    }
+
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
     }
 
     await Felhasznalok.destroy({ where: { id } }); // Felhasználó törlése

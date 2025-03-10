@@ -16,13 +16,13 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
-    // Figyelj a bejelentkezési állapotra
+    
     this.subscription.add(
       this.authService.isLoggedIn().subscribe(
         (loggedIn: boolean) => {
           this.isLoggedIn = loggedIn;
           if (loggedIn) {
-            this.loadUserData(); // Betölti a felhasználói adatokat
+            this.loadUserData(); 
           } else {
             this.userName = null;
           }
@@ -30,7 +30,7 @@ export class NavComponent implements OnInit, OnDestroy {
       )
     );
 
-    // Figyelj a felhasználói adatok frissítésére
+    
     this.subscription.add(
       this.userService.userUpdated$.subscribe(() => {
         this.loadUserData(); // Újratölti a felhasználói adatokat
@@ -42,9 +42,12 @@ export class NavComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe(); // Feliratkozások lemondása
   }
 
+  userType: number | null = null;
+
   loadUserData(): void {
     const user = this.authService.getCurrentUser ();
     this.userName = user ? user.nev : null; // Beállítja a felhasználó nevét
+    this.userType = user ? user.tipus : null;
   }
 
   logout(): void {

@@ -51,4 +51,8 @@ export class AuthService {
     const user = this.getCurrentUser ();
     return user ? user.nev : "Profil";
   }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
 }

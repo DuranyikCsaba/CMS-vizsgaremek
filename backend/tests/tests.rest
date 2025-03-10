@@ -48,10 +48,15 @@ Content-Type: application/json
     "tipus": 0
 }
 
-### 
+### Saját felhasználó lekérése
 
 GET http:localhost:5000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzNTU3MCwiZXhwIjoxNzQxNTM5MTcwfQ.dQs1MrEio8ygAZQQN8s2kbuppXoWzmjaN0F4CCrXl9A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjoxLCJpYXQiOjE3NDE2MTkxNDUsImV4cCI6MTc0MTYyMjc0NX0.MRR77JtMaYQ5xLtRhqSZDjpDcV2Jhtdd9G-_toRrlrw
+
+### Minden felhasználó lekérése
+
+GET http://localhost:5000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MTk0OTIsImV4cCI6MTc0MTYyMzA5Mn0.1z7_EjPUTZVJ5c9ZZzf4G7msH6AHDRKhZLDmjXTnCwA
 
 ### Felhasználói adatok frissítése
 POST http://localhost:5000/api/auth/user
@@ -79,7 +84,7 @@ GET http://localhost:5000/hirdetesek/6
 ### Create a new hirdetes ###
 POST http://localhost:5000/hirdetesek
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTQ2MTYzOSwiZXhwIjoxNzQxNDY1MjM5fQ.mHy1c9Q3F1O6N55L2njJXoPE9aFo8eqs1PS5cbWUtQg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInRpcHVzIjoxLCJpYXQiOjE3NDE2MTYxODIsImV4cCI6MTc0MTYxOTc4Mn0.3s3ePmjJSOYctIHOereG3He6o7xZVSTHyMrW2NNImgA
 
 {
   "modell": "Golf",
@@ -101,17 +106,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQ
 }
 
 
-### Hirdetés létrehozása (DELETE)
+### Hirdetés törélse (DELETE)
 
 DELETE http://localhost:5000/hirdetesek/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTYwMTcxMCwiZXhwIjoxNzQxNjA1MzEwfQ.ZKercUVCU48sIpN1ZI3ia0d9OXDneX5lt7uhjy_TSjk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MTYyNDIsImV4cCI6MTc0MTYxOTg0Mn0.8MJfDrjY1dnM3PWA1yY6PTx6uk3CXJygB3nIOKs0g8I
 
 
 ### Poszt létrehozása (POST)
 
 POST http://localhost:5000/api/poszt
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg5NzE3MSwiZXhwIjoxNzM5OTAwNzcxfQ.Ch0-fDedku3cZNeIdGVTyCqMitly_eGvukFto7uNrns
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInRpcHVzIjoxLCJpYXQiOjE3NDE2MTcwNjksImV4cCI6MTc0MTYyMDY2OX0.Usb-nObK9b_FlleOmkzQ5i9SzhIHTfvUna-c4HZXr8Y
 
 {
     "tartalom": "Ez egy másik poszt"
@@ -119,8 +124,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQ
 
 ### Poszt törlése (DELETE)
 
-DELETE   http://localhost:5000/api/poszt/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4NzQzNSwiZXhwIjoxNzM5ODkxMDM1fQ.wfOdedt_fs6cBIm8-APd-esA4mC_EA0OGxSSDT0sAak
+DELETE   http://localhost:5000/api/poszt/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MTcxMTAsImV4cCI6MTc0MTYyMDcxMH0.RUxv6v_3ap7JB8a5i2DwPaDdBMzuQi6jo3n4smx4SyQ
 
 ### Poszt módosítása (PATCH)
 

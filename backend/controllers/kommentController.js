@@ -76,7 +76,7 @@ export default {
                 });
             }
 
-            if (req.user.id !== kommentById.felhasznaloId) {
+            if (req.user.id !== kommentById.felhasznaloId && req.user.tipus !== 0) {
                 return res.status(403).json({
                     error: true,
                     message: "Nincs jogosultságod a komment törléséhez!"

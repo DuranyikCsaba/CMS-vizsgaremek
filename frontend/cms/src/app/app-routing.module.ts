@@ -16,6 +16,7 @@ import { GyikKotelezoComponent } from './gyik-kotelezo/gyik-kotelezo.component';
 import { GyikCascoComponent } from './gyik-casco/gyik-casco.component';
 import { GyikBetetlapComponent } from './gyik-betetlap/gyik-betetlap.component';
 import { RolunkComponent } from './rolunk/rolunk.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'gyik-casco', component: GyikCascoComponent },
   { path: 'gyik-betetlap', component: GyikBetetlapComponent },
   { path: 'rolunk', component: RolunkComponent},
+  { path: 'admin', component: AdminComponent },
 
 ];
 

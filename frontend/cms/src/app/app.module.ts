@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForumComponent } from './forum/forum.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RolunkComponent } from './rolunk/rolunk.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { RolunkComponent } from './rolunk/rolunk.component';
     ForumComponent,
     ProfilComponent,
     RolunkComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

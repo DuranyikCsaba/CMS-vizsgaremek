@@ -102,7 +102,7 @@ export default {
                 });
             }
     
-            if (req.user.id !== posztById.felhasznaloId) {
+            if (req.user.id !== posztById.felhasznaloId && req.user.tipus !== 0) {
                 return res.status(403).json({
                     error: true,
                     message: "Nincs jogosultságod a poszt törléséhez!"
