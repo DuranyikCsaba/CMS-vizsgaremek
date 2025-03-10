@@ -41,9 +41,9 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "nev": "user6",
+    "nev": "user1",
     "jelszo": "user12345",
-    "email": "user6@test.com",
+    "email": "user1@test.com",
     "tel": "+36201234567",
     "tipus": 1
 }
