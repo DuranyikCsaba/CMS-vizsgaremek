@@ -11,12 +11,12 @@ import { Subscription } from 'rxjs';
 export class NavComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   userName: string | null = null;
+  userType: number | null = null;
   private subscription: Subscription = new Subscription();
 
   constructor(private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
-    
     this.subscription.add(
       this.authService.isLoggedIn().subscribe(
         (loggedIn: boolean) => {
@@ -25,28 +25,26 @@ export class NavComponent implements OnInit, OnDestroy {
             this.loadUserData(); 
           } else {
             this.userName = null;
+            this.userType = null; 
           }
         }
       )
     );
 
-    
     this.subscription.add(
       this.userService.userUpdated$.subscribe(() => {
-        this.loadUserData(); // Újratölti a felhasználói adatokat
+        this.loadUserData();
       })
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe(); // Feliratkozások lemondása
+    this.subscription.unsubscribe(); 
   }
-
-  userType: number | null = null;
 
   loadUserData(): void {
     const user = this.authService.getCurrentUser ();
-    this.userName = user ? user.nev : null; // Beállítja a felhasználó nevét
+    this.userName = user ? user.nev : null;
     this.userType = user ? user.tipus : null;
   }
 

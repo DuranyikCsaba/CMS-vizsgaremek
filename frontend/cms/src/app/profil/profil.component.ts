@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-profil',
@@ -14,13 +13,13 @@ export class ProfilComponent implements OnInit {
   user: any;
   passwordForm: FormGroup;
   deleteForm: FormGroup;
-  userDataForm: FormGroup; // Új űrlap a felhasználói adatokhoz
-  showPasswordForm: boolean = false; // Jelszó módosító űrlap láthatósága
-  showDeleteForm: boolean = false; // Felhasználó törlő űrlap láthatósága
-  feedbackMessage: string = ''; // Visszajelzés szövege
+  userDataForm: FormGroup;
+  showUserDataForm: boolean = false;
+  showPasswordForm: boolean = false;
+  showDeleteForm: boolean = false;
+  feedbackMessage: string = '';
 
   constructor(private http: HttpClient, private authService: AuthService, private fb: FormBuilder, private userService: UserService) {
-    // FormGroup inicializálása
     this.passwordForm = this.fb.group({
       previousPassword: ['', Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -32,7 +31,6 @@ export class ProfilComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
 
-    // Felhasználói adatok űrlap inicializálása
     this.userDataForm = this.fb.group({
       nev: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -52,7 +50,6 @@ export class ProfilComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.user = response.user;
-          // Az űrlap kitöltése a felhasználói adatokkal
           this.userDataForm.patchValue({
             nev: this.user.nev,
             email: this.user.email,
@@ -65,8 +62,6 @@ export class ProfilComponent implements OnInit {
       });
   }
 
-  showUserDataForm: boolean = false;
-
   updateUserData(): void {
     if (this.userDataForm.invalid) {
       return;
@@ -75,21 +70,23 @@ export class ProfilComponent implements OnInit {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-    // A felhasználói adatok frissítése
     this.http.post(`http://localhost:5000/api/auth/user`, this.userDataForm.value, { headers })
       .subscribe({
         next: (response) => {
           console.log('Felhasználói adatok sikeresen frissítve:', response);
-          this.feedbackMessage = 'A felhasználói adatok sikeresen frissítve!'; // Visszajelzés
+          this.feedbackMessage = 'A felhasználói adatok sikeresen frissítve!';
           this.userService.notifyUserUpdate();
-          window.location.reload();
+            setTimeout(function() {
+              window.location.reload();
+              }, 2000);
         },
         error: (error) => {
           console.error('Hiba a felhasználói adatok frissítése során:', error);
-          this.feedbackMessage = 'Hiba történt a felhasználói adatok frissítése során.'; // Hiba visszajelzés
+          this.feedbackMessage = 'Hiba történt a felhasználói adatok frissítése során.';
         }
       });
   }
+
 
   updatePassword(): void {
     if (this.passwordForm.invalid) {

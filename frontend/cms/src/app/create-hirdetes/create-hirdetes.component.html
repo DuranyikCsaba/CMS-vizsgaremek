@@ -25,7 +25,7 @@
        <!-- Hengerűrtartalom mező -->
     <div class="form-group">
       <label for="hengerurtartalom">Hengerűrtartalom</label>
-      <input type="number" step="0.1" id="hengerurtartalom" class="hirdetesInputs" formControlName="hengerurtartalom" required min="0">
+      <input type="number" step="0.1" id="hengerurtartalom" class="hirdetesInputs" formControlName="hengerurtartalom" placeholder="cm3-ben megadva" required min="0">
       <div *ngIf="hirdetesForm.get('hengerurtartalom')?.invalid && hirdetesForm.get('hengerurtartalom')?.touched" class="error-message">
         A hengerűrtartalom nem lehet negatív!
       </div>
@@ -34,9 +34,9 @@
       <!-- Ajtók száma mező -->
       <div class="form-group">
         <label for="ajtok_szama">Ajtók száma</label>
-        <input type="number" id="ajtok_szama" class="hirdetesInputs" formControlName="ajtok_szama" required min="1">
+        <input type="number" id="ajtok_szama" class="hirdetesInputs" formControlName="ajtok_szama" required min="1" max="5">
         <div *ngIf="hirdetesForm.get('ajtok_szama')?.invalid && hirdetesForm.get('ajtok_szama')?.touched" class="error-message">
-          Az ajtók száma nem lehet kisebb, mint 1!
+          Az ajtók száma 1 és 5 között kell, hogy legyen!
         </div>
       </div>
 
@@ -51,6 +51,7 @@
         <option value="Dízel">Dízel</option>
         <option value="Elektromos">Elektromos</option>
         <option value="Hibrid">Hibrid</option>
+        <option value="Benzin/gáz">Benzin/gáz</option>
       </select>
       <div *ngIf="hirdetesForm.get('uzemanyag')?.invalid && hirdetesForm.get('uzemanyag')?.touched" class="error-message">
         Az üzemanyag kiválasztása kötelező!
@@ -69,7 +70,7 @@
     <!-- Futott kilométer mező -->
     <div class="form-group">
       <label for="futott_kilometer">Futott kilométer</label>
-      <input type="number" id="futott_kilometer" class="hirdetesInputs" formControlName="futott_kilometer" required min="0">
+      <input type="number" id="futott_kilometer" class="hirdetesInputs" formControlName="futott_kilometer" placeholder="km-ben" required min="0">
       <div *ngIf="hirdetesForm.get('futott_kilometer')?.invalid && hirdetesForm.get('futott_kilometer')?.touched" class="error-message">
         A futott kilométer nem lehet negatív!
       </div>
@@ -100,7 +101,7 @@
      <!-- Adatok mező -->
      <div class="form-group">
       <label for="adatok">Leírás</label>
-      <textarea type="text" id="adatok" formControlName="adatok" required></textarea>
+      <textarea type="text" id="adatok" formControlName="adatok" placeholder="(max 255 karakter)" required></textarea>
       <div *ngIf="hirdetesForm.get('adatok')?.invalid && hirdetesForm.get('adatok')?.touched" class="error-message">
         Leírás megadása kötelező
       </div>
