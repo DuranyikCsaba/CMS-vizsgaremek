@@ -8,11 +8,9 @@ export class NavbarService {
 
   updateNavbar(status: boolean) {
     this.loggedIn = status;
-    // Logic to update the navbar buttons
     if (this.loggedIn) {
-      // Change login and register buttons to profile and logout
     } else {
-      // Change profile and logout buttons to login and register
+      
     }
   }
 }

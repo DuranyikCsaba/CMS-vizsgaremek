@@ -23,7 +23,7 @@ button {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #272829;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -32,15 +32,15 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #5a5a5a;
 }
 
 .form-container {
   margin-top: 20px;
   padding: 15px;
-  border: 1px solid #007bff;
+  border: 1px solid #000000;
   border-radius: 5px;
-  background-color: #e9f7ff;
+  background-color: #e4e4e4;
 }
 
 label {
@@ -57,20 +57,20 @@ input {
 }
 
 input:focus {
-  border-color: #007bff;
+  border-color: #000000;
   outline: none;
 }
 
 button[type="submit"] {
-  background-color: #28a745;
+  background-color: #292929;
 }
 
 button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #555555;
 }
 
 .feedback-message {
-background-color: #28a745;
+background-color: #636363;
 color: white;
 font-size: xx-large;
 width: 50vw;
@@ -79,6 +79,6 @@ margin: auto;
 display: block;
 text-align: center;
 border-radius: 5px;
-border: 3px solid green;
+border: 3px solid rgb(43, 43, 43);
 margin-top: 1vh;
 }

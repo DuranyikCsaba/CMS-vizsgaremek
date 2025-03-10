@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-import { Router } from '@angular/router'; // Importáld a Router-t
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Router } from '@angular/router'; // Importáld a Router-t
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private router: Router) {} // Injectáld a Router-t
+  constructor(private router: Router) {}
 
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
@@ -37,7 +37,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token) as { id: number; nev: string; tipus: number }; // Itt hozzáadjuk a tipus mezőt
+        const decodedToken = jwtDecode(token) as { id: number; nev: string; tipus: number };
         return decodedToken;
       } catch (error) {
         console.error('Hiba a token dekódolása során:', error);

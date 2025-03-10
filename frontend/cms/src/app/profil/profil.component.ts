@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-profil',
@@ -81,6 +82,7 @@ export class ProfilComponent implements OnInit {
           console.log('Felhasználói adatok sikeresen frissítve:', response);
           this.feedbackMessage = 'A felhasználói adatok sikeresen frissítve!'; // Visszajelzés
           this.userService.notifyUserUpdate();
+          window.location.reload();
         },
         error: (error) => {
           console.error('Hiba a felhasználói adatok frissítése során:', error);

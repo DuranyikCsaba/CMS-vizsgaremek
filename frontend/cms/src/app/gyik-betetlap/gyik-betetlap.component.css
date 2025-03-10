@@ -1,48 +1,73 @@
-/* Alap stílusok */
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #1212125e; 
+    color: #ffffff; 
 }
 
-/* Gyik szekció */
-.gyik-section {
-    background: #fff;
+.gyik-section{
+    max-width: 75vw;
+    margin: auto;
+    display: block;
+}
+
+.gyik-section p{
+    background: #2a2a2ab6;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     padding: 20px;
     margin: 20px 0;
+    color: #f0f0f0;
 }
 
-/* Címek stílusa */
+
 .gyik-section h2 {
-    color: #333;
+    color: #ffffff;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 .gyik-section h3 {
-    color: #555;
+    color: #e0e0e0;
     font-size: 20px;
     margin-bottom: 15px;
 }
 
-/* Lista stílusa */
+
 .gyik-section ul {
-    list-style-type: none; /* Eltávolítja a lista jelöléseket */
+    list-style-type: none;
     padding: 0;
 }
 
 .gyik-section ul li {
-    background: #e9ecef;
+    background: #2a2a2ab6;
     border-radius: 5px;
     margin: 10px 0;
     padding: 10px;
+    color: rgb(231, 231, 231);
 }
 
-/* Kiemelt szöveg stílusa */
+.gyik-section ol li {
+    background: #2a2a2ab6;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    color: rgb(231, 231, 231);
+}
+
+
 .gyik-section ul li strong {
-    color: #007bff; /* Kék szín a kiemelt szöveghez */
+    color: #ffffff; 
+}
+
+a:any-link{
+    color: rgb(133, 195, 250);
+}
+
+
+a:hover{
+    color: rgb(180, 180, 180);
 }

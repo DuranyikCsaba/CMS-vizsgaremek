@@ -38,7 +38,7 @@ db.authenticate()
     .then(() => {
         console.log('Az adatbázis kapcsolat sikeresen létrejött');
 
-        return db.sync({ force: true })
+        return db.sync({ alter: true })
             .then(() => {
                 console.log("A modellek szinkronizációja sikeres!");
                 app.listen(PORT, () => {

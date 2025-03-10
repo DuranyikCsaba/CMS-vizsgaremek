@@ -31,7 +31,7 @@ Content-Type: application/json
     "nev": "Admin",
     "jelszo": "Adminpwd",
     "email": "admin@admin.com",
-    "tel": "06201234456",
+    "tel": "+36201234456",
     "tipus": 0
 }
 
@@ -41,11 +41,11 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "nev": "test",
-    "jelszo": "test",
-    "email": "test@test.com",
-    "tel": "06201234456",
-    "tipus": 0
+    "nev": "user6",
+    "jelszo": "user12345",
+    "email": "user6@test.com",
+    "tel": "+36201234567",
+    "tipus": 1
 }
 
 ### Saját felhasználó lekérése
@@ -84,7 +84,7 @@ GET http://localhost:5000/hirdetesek/6
 ### Create a new hirdetes ###
 POST http://localhost:5000/hirdetesek
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInRpcHVzIjoxLCJpYXQiOjE3NDE2MTYxODIsImV4cCI6MTc0MTYxOTc4Mn0.3s3ePmjJSOYctIHOereG3He6o7xZVSTHyMrW2NNImgA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MzIxMDcsImV4cCI6MTc0MTYzNTcwN30.EZ8n__b5qCLV5bpkmhGUmpICCTqm0PNLNHIXrH9iyRM
 
 {
   "modell": "Golf",

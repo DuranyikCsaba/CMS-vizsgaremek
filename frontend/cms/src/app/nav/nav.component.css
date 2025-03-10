@@ -1,6 +1,6 @@
 .custom-navbar {
   font-family: 'Montserrat', sans-serif;
-  background-color: #3A4750;
+  background-color: #313233;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #EEEEEE;
@@ -12,11 +12,11 @@
 }
 
 .nav-link.active {
-  color: #00ADB5 !important;
+  color: #535353 !important;
 }
 
 .nav-link:hover {
-  color: #00ADB5 !important;
+  color: #999999 !important;
 }
 
 .navbar-toggler {

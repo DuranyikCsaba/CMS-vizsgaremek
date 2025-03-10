@@ -7,17 +7,17 @@
 
 #accordion .card {
   border: none;
-  border-radius: 10px;
+  border-radius: 2.5vh;
   margin-bottom: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #accordion .card-header {
-  background-color: #007bff;
+  background-color: #353535;
   color: white;
   padding: 10px 15px;
   border: none;
-  border-radius: 10px 10px 0 0;
+  border-radius: 2vh;
   cursor: pointer;
 }
 

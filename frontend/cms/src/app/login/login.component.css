@@ -1,15 +1,15 @@
 #loginPanel {
-  border: 0.3vw solid rgb(54, 54, 54);
-  border-radius: 30px;
-  width: fit-content;
-  padding: 0.8vw 2.5vw 2vw 2.5vw;
-  background-color: #3A4750;
-  font-family: 'Montserrat', sans-serif;
-  color: #EEEEEE;
-  margin: 10vh auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 0.3vw solid rgb(34, 34, 34);
+    border-radius: 30px;
+    width: fit-content;
+    padding: 0.8vw 2.5vw 2vw 2.5vw;
+    background-color: #4d4d4d;
+    font-family: 'Montserrat', sans-serif;
+    color: #EEEEEE;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #loginForm {
@@ -20,12 +20,12 @@
 }
 
 .loginInputs {
-  border-radius: 30px;
-  border: #2d3a42 0.2vw solid;
-  width: 20vw;
+  border-radius: 1vh;
+  border: #363636 0.2vw solid;
+  width: 25vw;
   height: 2vw;
-  padding: 0.1vw;
-  margin-bottom: 0.1vw; /* Reduced margin-bottom */
+  padding: 0.4vw;
+  margin-bottom: 0.1vw;
 }
 
 #loginTitle {
@@ -38,29 +38,27 @@
 }
 
 #loginSubmit {
-  background-color: #00ADB5;
+  background-color: #292929;
   color: #EEEEEE;
   border-radius: 30px;
-  border: #00ADB5 0.2vw solid;
+  border: #242424 0.2vw solid;
   width: 10vw;
   height: 2vw;
-  margin-top: 0.5vw;
-  margin-bottom: 0.5vw; /* Increased margin-bottom */
+  margin-top: 1vw;
+  margin-bottom: 1vw;
 }
 
-#loginToRegister {
-  margin-top: 1vw; /* Increased margin-top */
-  margin: auto;
-  max-width: 80%;
-  display: block;
-  text-align: center;
+#loginToRegister :any-link{
+  margin-top: 1vw;
+  color: #e4e4e4;
 }
 
-.loginToRegLink {
-  color: #00ADB5;
+#loginToRegister :hover{
+  margin-top: 1vw;
+  color: #a8a8a8;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   #loginPanel {
     width: 90%;
@@ -79,7 +77,7 @@
   }
 
   #loginToRegister {
-    margin-top: 2vw; /* Adjusted for responsiveness */
+    margin-top: 2vw; 
   }
 }
 
@@ -101,6 +99,6 @@
   }
 
   #loginToRegister {
-    margin-top: 3vw; /* Adjusted for responsiveness */
+    margin-top: 3vw;
   }
 }

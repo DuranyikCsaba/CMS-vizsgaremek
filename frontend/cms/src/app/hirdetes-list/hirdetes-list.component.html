@@ -16,7 +16,7 @@
           <p class="card-text"><strong>Üzemanyag:</strong> {{ hirdetes.uzemanyag }}</p>
           <p class="card-text"><strong>Évjárat:</strong> {{ hirdetes.evjarat }}</p>
           <p class="card-text"><strong>Futott kilométer:</strong> {{ hirdetes.futott_kilometer }} km</p>
-          <button class="btn btn-primary" (click)="viewHirdetesDetails(content, hirdetes.id)">Részletek</button>
+          <button class="btn btn-secondary" (click)="viewHirdetesDetails(content, hirdetes.id)">Részletek</button>
         </div>
       </div>
     </div>
@@ -45,8 +45,8 @@
         <div *ngFor="let kep of selectedHirdetes.kepek">
           <img [src]="'http://localhost:5000/' + kep.file_path" class="img-fluid" alt="Hirdetés kép" ngOptimizedImage>
         </div>
-        <button *ngIf="canEditOrDelete(selectedHirdetes)" class="btn btn-danger" (click)="deleteHirdetes(selectedHirdetes.id)">Törlés</button>
-        <button *ngIf="canEditOrDelete(selectedHirdetes)" class="btn btn-warning" [routerLink]="['/edit', selectedHirdetes.id]">Módosítás</button>
+        <button *ngIf="canEditOrDelete(selectedHirdetes)" class="btn btn-secondary" (click)="deleteHirdetes(selectedHirdetes.id)">Törlés</button>
+        <button *ngIf="canEditOrDelete(selectedHirdetes)" class="btn btn-secondary" [routerLink]="['/edit', selectedHirdetes.id]">Módosítás</button>
       </div>
     </div>
     <div class="modal-footer">

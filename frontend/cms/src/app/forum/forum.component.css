@@ -1,10 +1,10 @@
 .forum-container {
     max-width: 800px;
-    margin: 20px auto;
+    margin:  auto;
     padding: 20px;
-    border: 2px solid #ccc;
+    border: 2px solid #202020;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #3a3a3a;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -29,7 +29,7 @@ textarea {
 }
 
 button {
-    background-color: #007bff;
+    background-color: #202020;
     color: white;
     border: none;
     border-radius: 8px;
@@ -47,7 +47,7 @@ img{
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #6d6d6d;
 }
 
 .post {
