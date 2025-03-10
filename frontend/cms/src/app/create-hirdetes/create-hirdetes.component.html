@@ -156,7 +156,7 @@
       </div>
     </div>
 
-    <p class="hirdetesSzoveg"><strong>Egy hirdetés időtartama 2 hét!</strong></p>
+    <p class="hirdetesSzoveg"><strong>Egy hirdetés időtartama 2 hét! <br> A hirdetés később csak annak törlésével majd újbóli létrehozásával módosítható!</strong></p>
 
     <!-- Hirdetés feladása gomb -->
     <button id="hirdetesSubmit" *ngIf="isLoggedIn$ | async" type="submit" class="btn" [disabled]="!hirdetesForm.valid || selectedFiles.length === 0">
@@ -164,6 +164,6 @@
     </button>
 
     <!-- Bejelentkezési üzenet -->
-    <p class="hirdetesToLogin" *ngIf="!(isLoggedIn$ | async)">Kérjük, jelentkezzen be a hirdetés feladásához.</p>
+    <p class="hirdetesSzoveg" *ngIf="!(isLoggedIn$ | async)">Kérjük, jelentkezzen be a hirdetés feladásához.</p>
   </div>
 </form>

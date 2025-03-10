@@ -46,7 +46,6 @@
           <img [src]="'http://localhost:5000/' + kep.file_path" class="img-fluid" alt="Hirdetés kép" ngOptimizedImage>
         </div>
         <button *ngIf="canEditOrDelete(selectedHirdetes)" class="btn btn-secondary" (click)="deleteHirdetes(selectedHirdetes.id)">Törlés</button>
-        <button *ngIf="canEditOrDelete(selectedHirdetes)" class="btn btn-secondary" [routerLink]="['/edit', selectedHirdetes.id]">Módosítás</button>
       </div>
     </div>
     <div class="modal-footer">

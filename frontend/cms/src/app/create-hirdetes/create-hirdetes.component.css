@@ -76,6 +76,10 @@ textarea {
   color: red;
 }
 
+.hirdetesSzoveg{
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   #hirdetesPanel {
     width: 90%;
