@@ -36,7 +36,8 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li><a class="dropdown-item" routerLink="profil">Profil</a></li>
-              <li *ngIf="userType === 0"><a class="dropdown-item" routerLink="admin">Admin</a></li>
+              <li *ngIf="userType === 0"><a class="dropdown-item" routerLink="admin">Felhasználók</a></li>
+              <li *ngIf="userType === 0"><a class="dropdown-item" routerLink="moderators">Moderátorok</a></li>
               <li><a class="dropdown-item" (click)="logout()">Kijelentkezés</a></li>
             </ul>
           </div>

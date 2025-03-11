@@ -36,9 +36,9 @@ export class LoginComponent {
     // Üres felhasználónév ellenőrzése
     if (!this.username.trim()) {
       this.usernameError = 'Felhasználónév megadása kötelező!';
-    } else if (!/^[a-zA-Z0-9]+$/.test(this.username)) {
-      this.usernameError = 'A felhasználónév csak betűket és számokat tartalmazhat!';
-    }
+    } else if (!/^[a-zA-Z0-9áéíóöőúüÁÉÍÓÖŐÚÜ]+$/.test(this.username)) {
+      this.usernameError = 'A felhasználónév csak betűket, számokat és ékezetes karaktereket tartalmazhat!';
+  }
 
     // Üres vagy túl rövid jelszó ellenőrzése
     if (!this.password.trim()) {

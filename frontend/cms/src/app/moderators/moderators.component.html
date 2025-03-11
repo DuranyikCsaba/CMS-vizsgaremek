@@ -1,5 +1,5 @@
 <div class="admin-container">
-    <h1>Felhasználók kezelése</h1>
+    <h1>Moderátorok kezelése</h1>
     <table>
       <thead>
         <tr>
@@ -17,8 +17,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.tel }}</td>
           <td>
-            <button (click)="deleteUser (user.id)">Törlés</button>
-            <button (click)="promoteModerator (user.id)">Promótálás</button>
+            <button (click)="demoteModerator (user.id)">Lefokozás</button>
           </td>
         </tr>
       </tbody>

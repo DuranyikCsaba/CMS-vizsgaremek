@@ -21,6 +21,7 @@ import { ForumComponent } from './forum/forum.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RolunkComponent } from './rolunk/rolunk.component';
 import { AdminComponent } from './admin/admin.component';
+import { ModeratorsComponent } from './moderators/moderators.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { AdminComponent } from './admin/admin.component';
     ProfilComponent,
     RolunkComponent,
     AdminComponent,
+    ModeratorsComponent,
   ],
   imports: [
     BrowserModule,

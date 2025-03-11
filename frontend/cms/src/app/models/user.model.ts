@@ -10,3 +10,11 @@ export interface User {
     message: string;
     users: User[];
   }
+
+  export interface PromoteResponse {
+    message: string;
+}
+
+export interface DemoteResponse {
+  message: string;
+}

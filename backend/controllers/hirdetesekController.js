@@ -141,7 +141,7 @@ export const deleteHirdetes = async (req, res) => {
     if (!hirdetes) {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
-    if (req.user.tipus === 0 || hirdetes.felhasznalo_id === req.user.id) {
+    if (req.user.tipus === 0 || hirdetes.felhasznalo_id === req.user.id || req.user.tipus === 2) {
       await hirdetes.destroy();
       return res.status(200).json({ message: 'Hirdetés törölve' });
     } else {

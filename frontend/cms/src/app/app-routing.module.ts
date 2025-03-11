@@ -17,6 +17,7 @@ import { GyikCascoComponent } from './gyik-casco/gyik-casco.component';
 import { GyikBetetlapComponent } from './gyik-betetlap/gyik-betetlap.component';
 import { RolunkComponent } from './rolunk/rolunk.component';
 import { AdminComponent } from './admin/admin.component';
+import { ModeratorsComponent } from './moderators/moderators.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'gyik-betetlap', component: GyikBetetlapComponent },
   { path: 'rolunk', component: RolunkComponent},
   { path: 'admin', component: AdminComponent },
+  { path: 'moderators', component:ModeratorsComponent }
 
 ];
 

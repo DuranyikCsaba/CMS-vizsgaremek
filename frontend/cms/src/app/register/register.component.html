@@ -4,7 +4,7 @@
     <form id="registerForm" (ngSubmit)="onSubmit()">
       <!-- Felhasználónév -->
       <span class="error" *ngIf="usernameError">{{ usernameError }}</span><br>
-      <input class="registerInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username"><br>
+      <input class="registerInputs" type="text" placeholder="Felhasználónév (5-15 karakter)" [(ngModel)]="username" name="username" required minlength="5" maxlength="15"><br>
 
       <!-- E-mail -->
       <span class="error" *ngIf="emailError">{{ emailError }}</span><br>

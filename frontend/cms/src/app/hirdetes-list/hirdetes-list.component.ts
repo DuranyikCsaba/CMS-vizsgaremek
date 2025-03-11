@@ -101,6 +101,6 @@ export class HirdetesListComponent implements OnInit {
 
   canEditOrDelete(hirdetes: Hirdetes): boolean {
     const user = this.authService.getCurrentUser ();
-    return user !== null && (hirdetes.felhasznalo_id === user.id || user.tipus === 0);
+    return user !== null && (hirdetes.felhasznalo_id === user.id || user.tipus === 0 || user.tipus === 2);
   }
 }

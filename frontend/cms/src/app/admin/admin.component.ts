@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
-import { User, UserResponse } from '../models/user.model';
+import { User, UserResponse, PromoteResponse } from '../models/user.model';
 
 @Component({
   selector: 'app-admin',
@@ -52,4 +52,21 @@ export class AdminComponent implements OnInit {
       });
     }
   }
+
+  promoteModerator(userId: number): void {
+      const token = this.authService.getToken(); // Token lekérése az AuthService-ből
+      this.http.post<PromoteResponse>(`http://localhost:5000/api/auth/moderatorP/${userId}`, {}, {
+        headers: {
+          'Authorization': `Bearer ${token}` // Token hozzáadása a kéréshez
+        }
+      }).subscribe({
+        next: (response) => {
+          console.log('Sikeres promóció:', response.message);
+          this.fetchUsers();
+        },
+        error: (error) => {
+          console.error('Hiba a felhasználó promóciója során:', error);
+        }
+      });
+    }
 }

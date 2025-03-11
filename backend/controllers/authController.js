@@ -89,7 +89,7 @@ export const getUser  = async (req, res) => {
   }
 };
 
-// Minden felhasználó lekérdezése
+// Minden átlagos felhasználó lekérdezése
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -111,6 +111,30 @@ export const getAllUsers = async (req, res) => {
     });
   }
 };
+
+// Moderátorok lekérdezése
+
+export const getModerators = async (req, res) => {
+  try {
+    const users = await Felhasznalok.findAll({
+      where: {
+        tipus: 2
+      }
+    });
+    res.status(200).json({
+      error: false,
+      message: "Felhasználók lekérdezése sikeres",
+      users
+    });
+  } catch (error) {
+    console.error("Hiba történt a felhasználók lekérdezésekor:", error);
+    res.status(500).json({
+      error: true,
+      message: "Hiba történt a felhasználók lekérdezése során."
+    });
+  }
+};
+
 
 // Felhasználói adatok módosítása
 export const updateUserData = async (req, res) => {
@@ -222,5 +246,55 @@ export const adminDeleteUser  = async (req, res) => {
   } catch (error) {
     console.error('Felhasználó törlése hiba:', error);
     res.status(500).json({ message: 'Hiba történt a felhasználó törlése során.' });
+  }
+};
+
+export const moderatorPromote = async (req, res) => {
+  const { id } = req.params; // A felhasználó azonosítója
+
+  try {
+    // Ellenőrizzük, hogy a kérés indítója admin-e
+    if (req.user.tipus !== 0) {
+      return res.status(403).json({ message: 'Nincs jogosultságod a felhasználó típusának módosításához.' });
+    }
+
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
+    }
+
+    // Felhasználó típusának módosítása 2-re
+    user.tipus = 2;
+    await user.save(); // Mentjük a módosított felhasználót
+
+    res.status(200).json({ message: 'A felhasználó típusa sikeresen módosítva lett.' });
+  } catch (error) {
+    console.error('Felhasználó típusa módosítása hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a felhasználó típusa módosítása során.' });
+  }
+};
+
+export const moderatorDemote = async (req, res) => {
+  const { id } = req.params; // A felhasználó azonosítója
+
+  try {
+    // Ellenőrizzük, hogy a kérés indítója admin-e
+    if (req.user.tipus !== 0) {
+      return res.status(403).json({ message: 'Nincs jogosultságod a felhasználó típusának módosításához.' });
+    }
+
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
+    }
+
+    // Felhasználó típusának módosítása 1-re
+    user.tipus = 1;
+    await user.save(); // Mentjük a módosított felhasználót
+
+    res.status(200).json({ message: 'A felhasználó típusa sikeresen módosítva lett.' });
+  } catch (error) {
+    console.error('Felhasználó típusa módosítása hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a felhasználó típusa módosítása során.' });
   }
 };
