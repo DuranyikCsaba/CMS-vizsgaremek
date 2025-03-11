@@ -2,4 +2,5 @@
 <div id="allContent">
 <router-outlet></router-outlet>
 </div>
+<button class="go-to-top" *ngIf="showButton" (click)="scrollToTop()">↑</button>
 <app-footer></app-footer>

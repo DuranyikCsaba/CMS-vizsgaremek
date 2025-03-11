@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
+
 export class NavComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   userName: string | null = null;

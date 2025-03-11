@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent {
   username: string = '';
   email: string = '';
@@ -64,8 +65,8 @@ export class RegisterComponent {
     if (!this.password) {
       this.passwordError = 'A jelszó megadása kötelező!';
       isValid = false;
-    } else if (this.password.length < 8) {
-      this.passwordError = 'Min. karakterhossz: 8 karakter';
+    } else if (this.password.length < 8 && this.password.length > 32) {
+      this.passwordError = 'Min. karakterhossz: 8 karakter. Max. karakterhossz: 32 karakter';
       isValid = false;
     } else {
       this.passwordError = '';
@@ -107,8 +108,7 @@ export class RegisterComponent {
           next: (response) => {
             console.log('Sikeres regisztráció:', response);
             this.successMessage = 'Sikeres regisztráció!';
-
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'])
           },
           error: (error) => {
             console.error('Hiba történt:', error);
