@@ -62,6 +62,20 @@ export class ProfilComponent implements OnInit {
       });
   }
 
+  toggleForm(form: string): void {
+    this.showUserDataForm = false;
+    this.showPasswordForm = false;
+    this.showDeleteForm = false;
+
+    if (form === 'userData') {
+      this.showUserDataForm = true;
+    } else if (form === 'password') {
+      this.showPasswordForm = true;
+    } else if (form === 'delete') {
+      this.showDeleteForm = true;
+    }
+  }
+
   updateUserData(): void {
     if (this.userDataForm.invalid) {
       return;
@@ -76,9 +90,9 @@ export class ProfilComponent implements OnInit {
           console.log('Felhasználói adatok sikeresen frissítve:', response);
           this.feedbackMessage = 'A felhasználói adatok sikeresen frissítve!';
           this.userService.notifyUserUpdate();
-            setTimeout(function() {
-              window.location.reload();
-              }, 2000);
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         },
         error: (error) => {
           console.error('Hiba a felhasználói adatok frissítése során:', error);
@@ -86,7 +100,6 @@ export class ProfilComponent implements OnInit {
         }
       });
   }
-
 
   updatePassword(): void {
     if (this.passwordForm.invalid) {
@@ -103,7 +116,6 @@ export class ProfilComponent implements OnInit {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-    // A jelszó frissítése
     this.http.post(`http://localhost:5000/api/auth/user/password`, {
       jelszo: previousPassword,
       ujJelszo: newPassword,
@@ -112,18 +124,18 @@ export class ProfilComponent implements OnInit {
     .subscribe({
       next: (response) => {
         console.log('Jelszó sikeresen frissítve:', response);
-        this.feedbackMessage = 'A jelszó sikeresen módosítva!'; // Visszajelzés
-        this.passwordForm.reset(); // Űrlap törlése
-        this.showPasswordForm = false; // Űrlap elrejtése
+        this.feedbackMessage = 'A jelszó sikeresen módosítva!'; 
+        this.passwordForm.reset(); 
+        this.showPasswordForm = false; 
       },
       error: (error) => {
         console.error('Hiba a jelszó módosítása során:', error);
-        this.feedbackMessage = 'Hiba történt a jelszó módosítása során.'; // Hiba visszajelzés
+        this.feedbackMessage = 'Hiba történt a jelszó módosítása során.'; 
       }
     });
   }
   
-  deleteUser  (): void {
+  deleteUser (): void {
     if (this.deleteForm.invalid) {
       return;
     }
@@ -148,12 +160,12 @@ export class ProfilComponent implements OnInit {
     .subscribe({
       next: (response) => {
         console.log('Felhasználó sikeresen törölve:', response);
-        this.feedbackMessage = 'A profil sikeresen törölve!'; // Visszajelzés
-        this.authService.logout(); // Kijelentkeztetés
+        this.feedbackMessage = 'A profil sikeresen törölve!'; 
+        this.authService.logout(); 
       },
       error: (error) => {
         console.error('Hiba a felhasználó törlésekor:', error);
-        this.feedbackMessage = 'Hiba történt a profil törlése során.'; // Hiba visszajelzés
+        this.feedbackMessage = 'Hiba történt a profil törlése során.'; 
       }
     });
   }

@@ -7,7 +7,7 @@
           <th>Név</th>
           <th>Email</th>
           <th>Telefonszám</th>
-          <th>Akciók</th>
+          <th>Műveletek</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +17,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.tel }}</td>
           <td>
-            <button (click)="demoteModerator (user.id)">Lefokozás</button>
+            <button (click)="demoteModerator (user.id)" title="Moderátor lefokozása">⬇</button>
           </td>
         </tr>
       </tbody>

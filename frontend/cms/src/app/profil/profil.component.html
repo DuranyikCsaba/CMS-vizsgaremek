@@ -9,9 +9,9 @@
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Telefonszám:</strong> {{ user.tel }}</p>
     
-    <button (click)="showUserDataForm = !showUserDataForm">Felhasználói Adatok Módosítása</button>
-    <button (click)="showPasswordForm = !showPasswordForm">Jelszó Módosítása</button>
-    <button (click)="showDeleteForm = !showDeleteForm">Felhasználó Törlése</button>
+    <button (click)="toggleForm('userData')">Felhasználói Adatok Módosítása</button>
+    <button (click)="toggleForm('password')">Jelszó Módosítása</button>
+    <button (click)="toggleForm('delete')">Felhasználó Törlése</button>
     
     <!-- Felhasználói adatok módosító űrlap -->
     <div *ngIf="showUserDataForm" class="form-container">
@@ -54,7 +54,7 @@
         <label for="deletePassword">Jelszó:</label>
         <input type="password" id="deletePassword" formControlName="password" required>
         
-        <label for="confirmDelete Password">Jelszó Megerősítése:</label>
+        <label for="confirmDeletePassword">Jelszó Megerősítése:</label>
         <input type="password" id="confirmDeletePassword" formControlName="confirmPassword" required>
         
         <button type="submit" [disabled]="deleteForm.invalid">Törlés</button>
