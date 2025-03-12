@@ -1,6 +1,7 @@
 import Hirdetesek from '../models/Hirdetesek.js';
 import multer from 'multer';
 import Kep from '../models/Kep.js';
+import fs from 'fs'
 
 const upload = multer({ dest: 'uploads/' });
 
@@ -137,15 +138,27 @@ export const updateHirdetes = async (req, res) => {
 export const deleteHirdetes = async (req, res) => {
   const { id } = req.params;
   try {
-    const hirdetes = await Hirdetesek.findByPk(id);
+    const hirdetes = await Hirdetesek.findByPk(id, {
+      include: [{ model: Kep, as: 'kepek' }]
+    });
+
     if (!hirdetes) {
       return res.status(404).json({ message: 'A hirdetés nem található.' });
     }
+
     if (req.user.tipus === 0 || hirdetes.felhasznalo_id === req.user.id || req.user.tipus === 2) {
+      const imagePaths = hirdetes.kepek.map(kep => kep.file_path);
+      for (const path of imagePaths) {
+        fs.unlink(path, (err) => {
+          if (err) {
+            console.error(`Hiba a kép törlésekor: ${path}`, err);
+          }
+        });
+      }
+
       await hirdetes.destroy();
       return res.status(200).json({ message: 'Hirdetés törölve' });
     } else {
-      console.log(req.user.tipus)
       return res.status(403).json({ error: true, message: "Nincs jogosultságod a törléshez." });
     }
   } catch (error) {

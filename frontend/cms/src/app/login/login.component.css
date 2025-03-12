@@ -1,15 +1,15 @@
 #loginPanel {
   border: 0.3vw solid rgb(34, 34, 34);
-    border-radius: 30px;
-    width: fit-content;
-    padding: 0.8vw 2.5vw 2vw 2.5vw;
-    background-color: #4d4d4d;
-    font-family: 'Montserrat', sans-serif;
-    color: #EEEEEE;
-    margin: 15vh auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  border-radius: 30px;
+  width: 30%; 
+  padding: 0.8vw 2.5vw 2vw 2.5vw;
+  background-color: #4d4d4d;
+  font-family: 'Montserrat', sans-serif;
+  color: #EEEEEE;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #loginForm {
@@ -19,21 +19,34 @@
   width: 100%;
 }
 
+.form-group {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  width: 100%; 
+  margin-bottom: 15px; 
+}
+
+.form-group label {
+  width: 40%; 
+  margin-right: 10px; 
+  color: #ffffff; 
+}
+
 .loginInputs {
   border-radius: 1vh;
   border: #363636 0.2vw solid;
-  width: 25vw;
+  width: 100%; 
   height: 2vw;
   padding: 0.4vw;
-  margin-bottom: 0.1vw;
 }
 
 #loginPanelTitle {
   max-width: 55%;
   margin: auto;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  position: inherit;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  position: relative;
   text-align: center;
 }
 
@@ -48,17 +61,22 @@
   margin-bottom: 1vw;
 }
 
-#loginToRegister :any-link{
+#errorMessage {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#loginToRegister a {
   margin-top: 1vw;
   color: #e4e4e4;
 }
 
-#loginToRegister :hover{
-  margin-top: 1vw;
+#loginToRegister a:hover {
   color: #a8a8a8;
 }
 
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
   #loginPanel {
     width: 90%;

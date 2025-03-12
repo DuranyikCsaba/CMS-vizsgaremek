@@ -4,19 +4,21 @@
     <form id="loginForm" (ngSubmit)="onSubmit()">
       
       <!-- Felhasználónév -->
-      <input class="loginInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username">
-      <span class="error" *ngIf="usernameError">{{ usernameError }}</span><br>
+      <div class="form-group">
+        <span class="error" *ngIf="usernameError">{{ usernameError }}</span>
+        <label for="username">Felhasználónév</label>
+        <input class="loginInputs" type="text" id="username" [(ngModel)]="username" name="username" required>
+      </div>
 
       <!-- Jelszó -->
-      <input class="loginInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password">
-      <span class="error" *ngIf="passwordError">{{ passwordError }}</span><br>
-
-      <!-- Bejelentkezési hibaüzenet (backend-től érkező) -->
-      <p class="server-error" *ngIf="serverErrorMessage">{{ serverErrorMessage }}</p>
+      <div class="form-group">
+        <span class="error" *ngIf="passwordError">{{ passwordError }}</span>
+        <label for="password">Jelszó</label>
+        <input class="loginInputs" type="password" id="password" [(ngModel)]="password" name="password" required>
+      </div>
 
       <input type="submit" value="Bejelentkezés" id="loginSubmit">
-      <p id="loginToRegister">Még nincs fiókod? <a routerLink="/register" class="loginToRegLink">Regisztrálj!</a>
-      <p id="loginToRegister">Elfelejtette a jelszavát? Keresse fel az adminisztrátort:  <a href="https://www.instagram.com/_gamauf_marcell_/" target="_blank" class="loginToRegLink">Katt!</a></p>
+      <p id="loginToRegister">Még nem regisztráltál? <a routerLink="/register" id="regToLogLink">Regisztrálj!</a></p>
     </form>
   </div>
 </div>

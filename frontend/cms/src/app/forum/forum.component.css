@@ -79,6 +79,8 @@ button:hover {
 .post-content {
     margin: 10px 0;
     font-size: larger;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
 .post-actions {
@@ -108,6 +110,8 @@ button:hover {
 .comment-content {
     margin: 5px 0;
     font-size: larger;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
 .comment-actions {

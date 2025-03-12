@@ -6,7 +6,7 @@
 
     <!-- Márka mező -->
     <div class="form-group">
-      <label for="marka">Márka</label>
+      <label for="marka">*Márka</label>
       <input type="text" id="marka" class="hirdetesInputs" formControlName="marka" required>
       <div *ngIf="hirdetesForm.get('marka')?.invalid && hirdetesForm.get('marka')?.touched" class="error-message">
         A márka megadása kötelező!
@@ -15,7 +15,7 @@
 
       <!-- Modell mező -->
       <div class="form-group">
-        <label for="modell">Modell</label>
+        <label for="modell">*Modell</label>
         <input type="text" id="modell" class="hirdetesInputs" formControlName="modell" required>
         <div *ngIf="hirdetesForm.get('modell')?.invalid && hirdetesForm.get('modell')?.touched" class="error-message">
           A modell megadása kötelező!
@@ -24,7 +24,7 @@
 
        <!-- Hengerűrtartalom mező -->
     <div class="form-group">
-      <label for="hengerurtartalom">Hengerűrtartalom</label>
+      <label for="hengerurtartalom">*Hengerűrtartalom</label>
       <input type="number" step="0.1" id="hengerurtartalom" class="hirdetesInputs" formControlName="hengerurtartalom" placeholder="cm3-ben megadva" required min="0">
       <div *ngIf="hirdetesForm.get('hengerurtartalom')?.invalid && hirdetesForm.get('hengerurtartalom')?.touched" class="error-message">
         A hengerűrtartalom nem lehet negatív!
@@ -33,7 +33,7 @@
 
       <!-- Ajtók száma mező -->
       <div class="form-group">
-        <label for="ajtok_szama">Ajtók száma</label>
+        <label for="ajtok_szama">*Ajtók száma</label>
         <input type="number" id="ajtok_szama" class="hirdetesInputs" formControlName="ajtok_szama" required min="1" max="5">
         <div *ngIf="hirdetesForm.get('ajtok_szama')?.invalid && hirdetesForm.get('ajtok_szama')?.touched" class="error-message">
           Az ajtók száma 1 és 5 között kell, hogy legyen!
@@ -44,7 +44,7 @@
 
     <!-- Üzemanyag mező -->
     <div class="form-group">
-      <label for="uzemanyag">Üzemanyag</label>
+      <label for="uzemanyag">*Üzemanyag</label>
       <select id="uzemanyag" class="hirdetesInputs" formControlName="uzemanyag" required>
         <option value="">Válasszon üzemanyagot</option>
         <option value="Benzin">Benzin</option>
@@ -60,7 +60,7 @@
 
     <!-- Évjárat mező -->
     <div class="form-group">
-      <label for="evjarat">Évjárat</label>
+      <label for="evjarat">*Évjárat</label>
       <input type="number" id="evjarat" class="hirdetesInputs" formControlName="evjarat" required min="1900" [max]="currentYear">
       <div *ngIf="hirdetesForm.get('evjarat')?.invalid && hirdetesForm.get('evjarat')?.touched" class="error-message">
         Az évjáratnak 1900 és {{ currentYear }} között kell lennie!
@@ -69,7 +69,7 @@
 
     <!-- Futott kilométer mező -->
     <div class="form-group">
-      <label for="futott_kilometer">Futott kilométer</label>
+      <label for="futott_kilometer">*Futott kilométer</label>
       <input type="number" id="futott_kilometer" class="hirdetesInputs" formControlName="futott_kilometer" placeholder="km-ben" required min="0">
       <div *ngIf="hirdetesForm.get('futott_kilometer')?.invalid && hirdetesForm.get('futott_kilometer')?.touched" class="error-message">
         A futott kilométer nem lehet negatív!
@@ -78,7 +78,7 @@
 
     <!-- Szín mező -->
     <div class="form-group">
-      <label for="szin">Szín</label>
+      <label for="szin">*Szín</label>
       <input type="text" id="szin" class="hirdetesInputs" formControlName="szin" required>
       <div *ngIf="hirdetesForm.get('szin')?.invalid && hirdetesForm.get('szin')?.touched" class="error-message">
         A szín megadása kötelező!
@@ -87,7 +87,7 @@
 
     <!-- Sebességváltó típusa mező -->
     <div class="form-group">
-      <label for="sebessegvalto_tipus">Sebességváltó típusa</label>
+      <label for="sebessegvalto_tipus">*Sebességváltó típusa</label>
       <select id="sebessegvalto_tipus" class="hirdetesInputs" formControlName="sebessegvalto_tipus" required>
         <option value="">Válasszon sebességváltó típust</option>
         <option value="Manuális">Manuális</option>
@@ -100,7 +100,7 @@
 
      <!-- Adatok mező -->
      <div class="form-group">
-      <label for="adatok">Leírás</label>
+      <label for="adatok">*Leírás</label>
       <textarea type="text" id="adatok" formControlName="adatok" placeholder="(max 255 karakter)" required></textarea>
       <div *ngIf="hirdetesForm.get('adatok')?.invalid && hirdetesForm.get('adatok')?.touched" class="error-message">
         Leírás megadása kötelező
@@ -126,7 +126,7 @@
     </div>
 
     <div class="form-group">
-      <label for="ar">Ár</label>
+      <label for="ar">*Ár</label>
       <input type="number" step="0.1" id="ar" class="hirdetesInputs" formControlName="ar" required min="0">
       <div *ngIf="hirdetesForm.get('ar')?.invalid && hirdetesForm.get('ar')?.touched" class="error-message">
         Az ár nem lehet negatív!
@@ -134,7 +134,7 @@
     </div>
 
     <div class="form-group">
-    <label for="ert_telszam">Telefonszám</label>
+    <label for="ert_telszam">*Telefonszám</label>
     <input type="tel" id="ert_telszam" class="hirdetesInputs" formControlName="ert_telszam" required pattern="^\+36[0-9]{9}$" placeholder="+36xxxxxxxxx">
     <div *ngIf="hirdetesForm.get('ert_telszam')?.invalid && hirdetesForm.get('ert_telszam')?.touched" class="error-message">
         Kérjük, adjon meg egy érvényes telefonszámot a következő formátumban: +36xxxxxxxxx!
@@ -143,7 +143,7 @@
 
     <!-- Képek feltöltése -->
     <div class="form-group">
-      <label for="kepek">Képek</label>
+      <label for="kepek">*Képek</label>
       <input type="file" id="kepek" (change)="onFileSelected($event)" accept="image/*" multiple>
       <div *ngIf="selectedFiles.length === 0 && hirdetesForm.get('kepek')?.touched" class="error-message">
         Legalább egy kép kiválasztása kötelező!
