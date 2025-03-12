@@ -42,7 +42,7 @@
     <input id="tel" formControlName="tel" required maxlength="12">
     
     <label for="jelszo">Új Jelszó:</label>
-    <input id="jelszo" type="password" formControlName="jelszo">
+    <input id="jelszo" type="password" formControlName="jelszo" minlength="8">
   
     <button type="submit" [disabled]="userDataForm.invalid">Módosítás</button>
   </form>
