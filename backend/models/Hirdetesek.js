@@ -60,7 +60,7 @@ const Hirdetesek = sequelize.define('Hirdetesek', {
     allowNull: false
   },
   adatok: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: true
   },
   ar: {

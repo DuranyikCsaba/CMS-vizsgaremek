@@ -101,7 +101,7 @@
      <!-- Adatok mező -->
      <div class="form-group">
       <label for="adatok">*Leírás</label>
-      <textarea type="text" id="adatok" formControlName="adatok" placeholder="(max 255 karakter)" required></textarea>
+      <textarea type="text" id="adatok" formControlName="adatok" required></textarea>
       <div *ngIf="hirdetesForm.get('adatok')?.invalid && hirdetesForm.get('adatok')?.touched" class="error-message">
         Leírás megadása kötelező
       </div>
