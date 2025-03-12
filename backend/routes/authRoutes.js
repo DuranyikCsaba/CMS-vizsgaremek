@@ -16,5 +16,6 @@ router.delete('/user/:id', authenticateToken, authControllerJs.adminDeleteUser);
 router.get('/moderators', authControllerJs.getModerators);
 router.post('/moderatorP/:id', authenticateToken, authControllerJs.moderatorPromote);
 router.post('/moderatorD/:id', authenticateToken, authControllerJs.moderatorDemote);
+router.post('/aUpdate', authenticateToken, authControllerJs.adminUpdateUserData);
 
 export default router;

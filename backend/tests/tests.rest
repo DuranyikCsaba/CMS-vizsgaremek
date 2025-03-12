@@ -69,6 +69,20 @@ Content-Type: application/json
     "tel": "06201234457"
 }
 
+### A. felh. adat mod.
+
+POST http://localhost:5000/api/auth/aUpdate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE3NzQxMDYsImV4cCI6MTc0MTc3NzcwNn0.q_N2rfzBn3P9TSKsydaFvzauBIGJqDGg0oGFdUBqq_g
+Content-Type: application/json
+
+{
+    "nev": "Felhasznalonev",
+    "email": "adminupdated@admin.com",
+    "tel": "+36201234457",
+    "id": 3,
+    "jelszo": "Modositott10"
+}
+
 ### Felhasználó törlése
 DELETE http://localhost:5000/api/auth/user
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzMDI2MywiZXhwIjoxNzQxNTMzODYzfQ.H71IiEUBybnm3U26IausBKu2slXC9FTvrXrpaYm71lQ

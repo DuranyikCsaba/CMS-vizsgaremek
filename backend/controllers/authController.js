@@ -161,6 +161,37 @@ export const updateUserData = async (req, res) => {
   }
 };
 
+// Admin által felhasználó adatainak módosítása
+
+export const adminUpdateUserData = async (req, res) => {
+  if (req.user.tipus !== 0) {
+    return res.status(403).json({ message: 'Nincs jogosultságod a felhasználó törléséhez.' });
+  }
+
+  const { nev, email , tel, jelszo, id } = req.body; // Felhasználói adatok
+
+  try {
+    const user = await Felhasznalok.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Nincs ilyen felhasználó.' });
+    }
+
+    // Felhasználói adatok frissítése
+    if (nev) user.nev = nev;
+    if (email) user.email = email;
+    if (tel) user.tel = tel;
+    if (jelszo) user.jelszo = await bcrypt.hash(jelszo, 10);
+
+
+    await user.save(); // Változások mentése
+
+    res.status(200).json({ message: 'A felhasználói adatok sikeresen frissítve lettek!', user });
+  } catch (error) {
+    console.error('Felhasználói adatok módosítása hiba:', error);
+    res.status(500).json({ message: 'Hiba történt a felhasználói adatok módosítása során.' });
+  }
+};
+
 // Jelszó módosítása
 export const updatePassword = async (req, res) => {
   const id = req.user.id; // A felhasználó azonosítója a JWT-ből
