@@ -1,0 +1,10 @@
+Admin: Adminpwd
+Admin2: Admin2pwd
+JánosMod: JánosMod123
+FerencMod: FerencMod123
+SándorMod: SándorMod123
+Csabi: Csabi123
+Marci: Marci123
+Szabi: Szabi123
+Bálint: Bálint123
+Pisti: Pisti123
