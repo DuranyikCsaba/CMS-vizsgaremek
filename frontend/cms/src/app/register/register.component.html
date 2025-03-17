@@ -2,28 +2,44 @@
   <div id="registerPanel">
     <h1 id="regpanelTitle">Regisztráció</h1>
     <form id="registerForm" (ngSubmit)="onSubmit()">
+      
       <!-- Felhasználónév -->
-      <input class="registerInputs" type="text" placeholder="Felhasználónév" [(ngModel)]="username" name="username"><br>
-      <span class="error" *ngIf="usernameError">{{ usernameError }}</span><br>
+      <div class="form-group">
+        <span class="error" *ngIf="usernameError">{{ usernameError }}</span>
+        <label for="username">Felhasználónév (5-15 karakter)</label>
+        <input class="registerInputs" type="text" id="username" [(ngModel)]="username" name="username" required minlength="5" maxlength="15">
+      </div>
 
       <!-- E-mail -->
-      <input class="registerInputs" type="email" placeholder="E-mail" [(ngModel)]="email" name="email"><br>
-      <span class="error" *ngIf="emailError">{{ emailError }}</span><br>
+      <div class="form-group">
+        <span class="error" *ngIf="emailError">{{ emailError }}</span>
+        <label for="email">E-mail</label>
+        <input class="registerInputs" type="email" id="email" [(ngModel)]="email" name="email">
+      </div>
 
       <!-- Telefonszám -->
-      <input class="registerInputs" type="tel" placeholder="Telefonszám" [(ngModel)]="phone" name="phone"><br>
-      <span class="error" *ngIf="phoneError">{{ phoneError }}</span><br>
+      <div class="form-group">
+        <span class="error" *ngIf="phoneError">{{ phoneError }}</span>
+        <label for="phone">Telefonszám (+36...)</label>
+        <input class="registerInputs" type="tel" id="phone" [(ngModel)]="phone" name="phone">
+      </div>
 
       <!-- Jelszó -->
-      <input class="registerInputs" type="password" placeholder="Jelszó" [(ngModel)]="password" name="password"><br>
-      <span class="error" *ngIf="passwordError">{{ passwordError }}</span><br>
+      <div class="form-group">
+        <span class="error" *ngIf="passwordError">{{ passwordError }}</span>
+        <label for="password">Jelszó</label>
+        <input class="registerInputs" type="password" id="password" [(ngModel)]="password" name="password">
+      </div>
 
       <!-- Jelszó mégegyszer -->
-      <input class="registerInputs" type="password" placeholder="Jelszó mégegyszer" [(ngModel)]="confirmPassword" name="confirmPassword"><br>
-      <span class="error" *ngIf="confirmPasswordError">{{ confirmPasswordError }}</span><br>
+      <div class="form-group">
+        <span class="error" *ngIf="confirmPasswordError">{{ confirmPasswordError }}</span>
+        <label for="confirmPassword">Jelszó mégegyszer</label>
+        <input class="registerInputs" type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword">
+      </div>
 
-      <button id="registerSubmit" type="submit">Regisztráció</button>
-      <p id="registerToLogin">Már regisztráltál? <a routerLink="/login">Jelentkezz be!</a></p>
+      <input type="submit" value="Regisztráció" id="registerSubmit">
+      <p id="registerToLogin">Már regisztráltál? <a routerLink="/login" id="regToLogLink">Jelentkezz be!</a></p>
     </form>
   </div>
 </div>

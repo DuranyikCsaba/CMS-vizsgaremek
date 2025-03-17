@@ -1,0 +1,197 @@
+### Authentication Endpoints ###
+
+// Login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "nev" : "Admin",
+    "jelszo" : "Adminpwd"
+}
+
+### 2. user számára bejelentkezés (POST)
+
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "nev" : "test",
+    "jelszo" : "test"
+}
+
+
+###
+
+// Register Admin
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "nev": "Admin",
+    "jelszo": "Adminpwd",
+    "email": "admin@admin.com",
+    "tel": "+36201234456",
+    "tipus": 0
+}
+
+### 2. user létrehozása (POST)
+
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "nev": "user1",
+    "jelszo": "user12345",
+    "email": "user1@test.com",
+    "tel": "+36201234567",
+    "tipus": 1
+}
+
+### Saját felhasználó lekérése
+
+GET http:localhost:5000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjoxLCJpYXQiOjE3NDE2MTkxNDUsImV4cCI6MTc0MTYyMjc0NX0.MRR77JtMaYQ5xLtRhqSZDjpDcV2Jhtdd9G-_toRrlrw
+
+### Minden felhasználó lekérése
+
+GET http://localhost:5000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MTk0OTIsImV4cCI6MTc0MTYyMzA5Mn0.1z7_EjPUTZVJ5c9ZZzf4G7msH6AHDRKhZLDmjXTnCwA
+
+### Felhasználói adatok frissítése
+POST http://localhost:5000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzNjEyNywiZXhwIjoxNzQxNTM5NzI3fQ.o9AipgkiBJrTe6CrK7cOkmJHuiWrxd_NMUfhsElir4c
+Content-Type: application/json
+
+{
+    "nev": "AdminUpdated",
+    "email": "adminupdated@admin.com",
+    "tel": "06201234457"
+}
+
+### A. felh. adat mod.
+
+POST http://localhost:5000/api/auth/aUpdate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE3NzQxMDYsImV4cCI6MTc0MTc3NzcwNn0.q_N2rfzBn3P9TSKsydaFvzauBIGJqDGg0oGFdUBqq_g
+Content-Type: application/json
+
+{
+    "nev": "Felhasznalonev",
+    "email": "adminupdated@admin.com",
+    "tel": "+36201234457",
+    "id": 3,
+    "jelszo": "Modositott10"
+}
+
+### Felhasználó törlése
+DELETE http://localhost:5000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0MTUzMDI2MywiZXhwIjoxNzQxNTMzODYzfQ.H71IiEUBybnm3U26IausBKu2slXC9FTvrXrpaYm71lQ
+
+### Hirdetesek Endpoints ###
+
+GET http://localhost:5000/hirdetesek
+
+###
+
+GET http://localhost:5000/hirdetesek/6
+
+### Create a new hirdetes ###
+POST http://localhost:5000/hirdetesek
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MzIxMDcsImV4cCI6MTc0MTYzNTcwN30.EZ8n__b5qCLV5bpkmhGUmpICCTqm0PNLNHIXrH9iyRM
+
+{
+  "modell": "Golf",
+  "marka": "Volkswagen",
+  "ajtok_szama": 5,
+  "hengerurtartalom": 1.6,
+  "uzemanyag": "benzin",
+  "evjarat": 2018,
+  "futott_kilometer": 85000,
+  "szin": "fekete",
+  "sebessegvalto_tipus": "manuális",
+  "kiegeszitok": "klíma, ülésfűtés",
+  "muszaki_vizsga_ervenyes": "2026-06-30",
+  "baleseti_elozmenyek": "nincs",
+  "felhasznalo_id": 3,
+  "adatok": "Megkímélt állapot",
+  "ar": 4500000,
+  "ert_telszam": "+36202939772"
+}
+
+
+### Hirdetés törélse (DELETE)
+
+DELETE http://localhost:5000/hirdetesek/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MTYyNDIsImV4cCI6MTc0MTYxOTg0Mn0.8MJfDrjY1dnM3PWA1yY6PTx6uk3CXJygB3nIOKs0g8I
+
+
+### Poszt létrehozása (POST)
+
+POST http://localhost:5000/api/poszt
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInRpcHVzIjoxLCJpYXQiOjE3NDE2MTcwNjksImV4cCI6MTc0MTYyMDY2OX0.Usb-nObK9b_FlleOmkzQ5i9SzhIHTfvUna-c4HZXr8Y
+
+{
+    "tartalom": "Ez egy másik poszt"
+}
+
+### Poszt törlése (DELETE)
+
+DELETE   http://localhost:5000/api/poszt/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInRpcHVzIjowLCJpYXQiOjE3NDE2MTcxMTAsImV4cCI6MTc0MTYyMDcxMH0.RUxv6v_3ap7JB8a5i2DwPaDdBMzuQi6jo3n4smx4SyQ
+
+### Poszt módosítása (PATCH)
+
+PATCH  http://localhost:5000/api/poszt/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmV2IjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTczOTczODk2MywiZXhwIjoxNzM5NzQyNTYzfQ.jKMyEaTqW4jOvSN4WZcZbO7YKCTqMwKcc6I37p8cpPc
+
+{
+    "tartalom": "Pacski"
+}
+
+### Posztok lekérése (GET)
+
+GET http://localhost:5000/api/poszt/
+
+### Posztok lekérése id szerint (GET)
+
+GET http://localhost:5000/api/poszt/1
+
+### Komment létrehozása (PUT)
+
+POST http://localhost:5000/api/komment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg5NzE3MSwiZXhwIjoxNzM5OTAwNzcxfQ.Ch0-fDedku3cZNeIdGVTyCqMitly_eGvukFto7uNrns
+
+{
+    "posztId": 2,
+    "kommentTartalom": "Ez egy szuper poszt!"
+}
+
+### Komment lekérdezése (GET)
+
+GET http://localhost:5000/api/komment/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4MzE0MiwiZXhwIjoxNzM5ODg2NzQyfQ.mNG5RUF9CiCCPpFoyXyyNoV4iJnxNChryyxP5M7vrlo
+
+### Komment törlése (DELETE)
+
+DELETE http://localhost:5000/api/komment/1
+Authorization: Bearer <token>
+
+### Komment módosítása (PATCH)
+
+PATCH http://localhost:5000/api/komment/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4MzE0MiwiZXhwIjoxNzM5ODg2NzQyfQ.mNG5RUF9CiCCPpFoyXyyNoV4iJnxNChryyxP5M7vrlo
+
+{
+    "kommentTartalom": "Ez egy frissített komment!"
+}
+
+
+###
+
+GET http://localhost:5000/api/poszt/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmV2IjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTczOTg4MzE0MiwiZXhwIjoxNzM5ODg2NzQyfQ.mNG5RUF9CiCCPpFoyXyyNoV4iJnxNChryyxP5M7vrlo

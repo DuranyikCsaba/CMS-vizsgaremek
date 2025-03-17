@@ -1,0 +1,51 @@
+.admin-container {
+  max-width: 75vw;
+  margin: auto;
+  display: block;
+  padding: 1%;
+  background-color: #44444494;
+  border-radius: 3vh;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+  color: whitesmoke;
+}
+
+
+th {
+  background-color: #363636;
+  color: white;
+  width: 20%;
+}
+
+td {
+  width: 20%;
+}
+
+button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c82333;
+}

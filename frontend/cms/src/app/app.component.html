@@ -1,9 +1,6 @@
-<header>
-  <nav>
-    <ul>
-      <li><a routerLink="/register">Register</a></li>
-    </ul>
-  </nav>
-</header>
-
+<app-nav></app-nav>
+<div id="allContent">
 <router-outlet></router-outlet>
+</div>
+<button class="go-to-top" *ngIf="showButton" (click)="scrollToTop()">↑</button>
+<app-footer></app-footer>

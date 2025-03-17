@@ -1,0 +1,49 @@
+<div class="admin-container">
+  <h1>Felhasználók kezelése</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Név</th>
+        <th>Email</th>
+        <th>Telefonszám</th>
+        <th>Műveletek</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.nev }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.tel }}</td>
+        <td>
+          <button (click)="deleteUser (user.id)" title="Felhasználó törlése">✖</button>
+          <button (click)="promoteModerator(user.id)" title="Felhasználó moderátorrá tétele">⬆</button>
+          <button (click)="editUser (user)" title="Felhasználó adatainak módosítása">✏</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- Felhasználói adatok módosító űrlap -->
+<div *ngIf="showUserDataForm" class="form-container" id="userDataForm">
+  <h3>Felhasználói Adatok Módosítása</h3>
+  <form [formGroup]="userDataForm" (ngSubmit)="updateUserData()">
+    <label for="nev">Név:</label>
+    <input id="nev" formControlName="nev" required>
+    
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" required>
+    
+    <label for="tel">Telefonszám:</label>
+    <input id="tel" formControlName="tel" required maxlength="12">
+    
+    <label for="jelszo">Új Jelszó:</label>
+    <input id="jelszo" type="password" formControlName="jelszo" minlength="8">
+  
+    <button type="submit" [disabled]="userDataForm.invalid">Módosítás</button>
+  </form>
+</div>

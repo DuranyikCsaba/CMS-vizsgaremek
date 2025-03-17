@@ -1,8 +1,9 @@
 import {Sequelize} from 'sequelize';
 
-const sequelize = Sequelize('cms_vizsga', 'admin', 'pwd',{
+const sequelize = new Sequelize('cms_vizsga', 'admin', 'pwd',{
     host: 'localhost',
-    dialect:'mysql',
+    dialect:'mariadb',
+    logging: console.log,
 });
 
 export default sequelize;

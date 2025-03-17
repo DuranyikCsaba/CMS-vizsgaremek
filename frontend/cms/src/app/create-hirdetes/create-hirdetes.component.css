@@ -1,0 +1,125 @@
+#hirdetesPanel {
+  border: 0.3vw solid rgb(34, 34, 34);
+  border-radius: 30px;
+  width: 40vw; 
+  padding: 0.8vw 2.5vw 2vw 2.5vw;
+  background-color: #4d4d4d;
+  font-family: 'Montserrat', sans-serif;
+  color: #EEEEEE;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+#hirdetesForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.hirdetesInputs {
+  border-radius: 1vh;
+  border: #363636 0.2vw solid;
+  width: 35vw;
+  height: 2vw;
+  padding: 0.4vw;
+  margin-bottom: 0.1vw;
+}
+
+textarea {
+  border-radius: 1vh;
+  border: #363636 0.2vw solid;
+  width: 35vw;
+  height: 2vw;
+  padding: 0.4vw;
+  margin-bottom: 0.1vw;
+  min-height: 5vh;
+}
+
+#hirdetesTitle {
+  max-width: 55%;
+  margin: auto;
+  padding-top: 1vw;
+  position: relative;
+  padding-bottom: 1vw;
+  text-align: center;
+}
+
+#hirdetesSubmit {
+  background-color: #292929;
+  color: #EEEEEE;
+  border-radius: 30px;
+  border: #242424 0.2vw solid;
+  width: 10vw;
+  height: 2vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  align-self: center;
+}
+
+#error-message {
+  color: red;
+}
+
+.hirdetesSzoveg{
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #hirdetesPanel {
+    width: 90%;
+    padding: 2vw;
+  }
+
+  .hirdetesInputs {
+    width: 80%;
+    height: 5vw;
+    padding: 1vw;
+  }
+
+  #hirdetesSubmit {
+    width: 50%;
+    height: 5vw;
+  }
+
+  #hirdetesToLogin {
+    margin-top: 2vw;
+  }
+}
+
+@media (max-width: 480px) {
+  #hirdetesPanel {
+    width: 95%;
+    padding: 3vw;
+  }
+
+  .hirdetesInputs {
+    width: 90%;
+    height: 6vw;
+    padding: 1.5vw;
+  }
+
+  #hirdetesSubmit {
+    width: 60%;
+    height: 6vw;
+  }
+
+  #hirdetesToLogin {
+    margin-top: 3vw;
+  }
+}

@@ -1,0 +1,66 @@
+
+#accordion {
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 1vw;
+}
+
+#accordion .card {
+  border: none;
+  border-radius: 2.5vh;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#accordion .card-header {
+  background-color: #353535;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 2vh;
+  cursor: pointer;
+}
+
+#accordion .card-header h5 {
+  margin: 0;
+}
+
+#accordion .card-header .btn-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#accordion .card-header .btn-link:hover {
+  text-decoration: none;
+  color: #d4d4d4;
+}
+
+#accordion .card-body {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 0 0 10px 10px;
+}
+
+#accordion .card-body ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#accordion .card-body ul li {
+  margin-bottom: 10px;
+}
+
+#accordion .card-body ul li p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#accordion .card-body ul li ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#accordion .card-body ul li ul li {
+  margin-bottom: 5px;
+}

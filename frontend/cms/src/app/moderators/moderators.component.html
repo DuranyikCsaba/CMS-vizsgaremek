@@ -1,0 +1,25 @@
+<div class="admin-container">
+    <h1>Moderátorok kezelése</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Név</th>
+          <th>Email</th>
+          <th>Telefonszám</th>
+          <th>Műveletek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.nev }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.tel }}</td>
+          <td>
+            <button (click)="demoteModerator (user.id)" title="Moderátor lefokozása">⬇</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

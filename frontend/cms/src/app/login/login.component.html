@@ -1,0 +1,24 @@
+<div id="loginPage">
+  <div id="loginPanel">
+    <h1 id="loginPanelTitle">Bejelentkezés</h1>
+    <form id="loginForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Felhasználónév -->
+      <div class="form-group">
+        <span class="error" *ngIf="usernameError">{{ usernameError }}</span>
+        <label for="username">Felhasználónév</label>
+        <input class="loginInputs" type="text" id="username" [(ngModel)]="username" name="username" required>
+      </div>
+
+      <!-- Jelszó -->
+      <div class="form-group">
+        <span class="error" *ngIf="passwordError">{{ passwordError }}</span>
+        <label for="password">Jelszó</label>
+        <input class="loginInputs" type="password" id="password" [(ngModel)]="password" name="password" required>
+      </div>
+
+      <input type="submit" value="Bejelentkezés" id="loginSubmit">
+      <p id="loginToRegister">Még nem regisztráltál? <a routerLink="/register" id="regToLogLink">Regisztrálj!</a></p>
+    </form>
+  </div>
+</div>

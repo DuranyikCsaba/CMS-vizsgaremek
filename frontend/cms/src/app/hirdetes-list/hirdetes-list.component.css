@@ -1,0 +1,18 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 25vw;
+}
+
+.card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+button{
+  margin-right: 0.5vw;
+}
