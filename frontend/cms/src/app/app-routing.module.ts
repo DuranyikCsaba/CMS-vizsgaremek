@@ -40,7 +40,6 @@ const routes: Routes = [
   { path: 'rolunk', component: RolunkComponent},
   { path: 'admin', component: AdminComponent },
   { path: 'moderators', component:ModeratorsComponent }
-
 ];
 
 @NgModule({

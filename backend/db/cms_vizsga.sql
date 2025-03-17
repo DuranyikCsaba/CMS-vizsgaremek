@@ -1,6 +1,19 @@
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2024. Nov 27. 08:50
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT;
 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS;
@@ -12,12 +25,14 @@ USE `cms_vizsga`;
 
 CREATE TABLE `felhasznalok` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+
   `nev` varchar(255) NOT NULL,
   `jelszo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `tel` varchar(255) DEFAULT NULL,
   `tipus` int(11) DEFAULT 1,
   `createdAt` datetime DEFAULT current_timestamp(),
+
   `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
@@ -121,3 +136,4 @@ COMMIT;
 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT;
 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS;
 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION;
+

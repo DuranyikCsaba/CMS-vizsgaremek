@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,15 +22,18 @@ export class RegisterComponent {
   passwordError: string = '';
   confirmPasswordError: string = '';
 
+
   successMessage: string = '';
   serverErrorMessage: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
+
   validateForm() {
     let isValid = true;
 
     // Felhasználónév ellenőrzése
+
     if (!this.username) {
       this.usernameError = 'A felhasználónév megadása kötelező!';
       isValid = false;
@@ -37,7 +41,9 @@ export class RegisterComponent {
       this.usernameError = '';
     }
 
+
     // E-mail ellenőrzése
+    
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!this.email) {
       this.emailError = 'Az e-mail megadása kötelező!';
@@ -51,6 +57,7 @@ export class RegisterComponent {
 
     // Telefonszám ellenőrzése
     const phonePattern = /^\+36[0-9]{9}$/;
+
     if (!this.phone) {
       this.phoneError = 'A telefonszám megadása kötelező!';
       isValid = false;
@@ -72,7 +79,9 @@ export class RegisterComponent {
       this.passwordError = '';
     }
 
+
     // Jelszó megerősítésének ellenőrzése
+    
     if (this.password !== this.confirmPassword) {
       this.confirmPasswordError = 'A jelszavak nem egyeznek!';
       isValid = false;
@@ -93,6 +102,7 @@ export class RegisterComponent {
       console.log('Telefonszám:', this.phone);
       console.log('Jelszó:', this.password);
       console.log('Jelszó mégegyszer:', this.confirmPassword);
+
 
       // Backendnek küldött adatok objektuma
       const formData = {

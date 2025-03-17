@@ -1,4 +1,5 @@
 import express from 'express';
+
 import path from 'path';
 import dotenv from 'dotenv';
 import db from './config/database.js';
@@ -12,10 +13,10 @@ import Poszt from './models/Poszt.js';
 import { Hirdetesek, Kep } from './models/associations.js';
 import { fileURLToPath } from 'url';
 
-
 dotenv.config();
 
 const app = express();
+
 const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

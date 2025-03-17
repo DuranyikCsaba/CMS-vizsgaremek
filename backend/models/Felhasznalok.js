@@ -29,6 +29,7 @@ const Felhasznalok = sequelize.define('Felhasznalok', {
     defaultValue: 1
   }
 }, {
+
   tableName: 'felhasznalok',
   timestamps: true
 });

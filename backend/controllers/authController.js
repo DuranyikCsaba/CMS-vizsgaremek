@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import Felhasznalok from '../models/Felhasznalok.js';
 
 // Regisztráció
+
 export const registerUser  = async (req, res) => {
   const { nev, jelszo, email, tel } = req.body;
 
@@ -11,9 +12,8 @@ export const registerUser  = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: 'A felhasználó ezzel a felhasználónévvel már létezik.' });
     }
-
+    
     const hashedPassword = await bcrypt.hash(jelszo, 10);
-
     const newUser  = await Felhasznalok.create({
       nev,
       jelszo: hashedPassword,
@@ -30,6 +30,7 @@ export const registerUser  = async (req, res) => {
 };
 
 // Bejelentkezés
+
 export const loginUser  = async (req, res) => {
   const { nev, jelszo } = req.body;
 
@@ -327,5 +328,6 @@ export const moderatorDemote = async (req, res) => {
   } catch (error) {
     console.error('Felhasználó típusa módosítása hiba:', error);
     res.status(500).json({ message: 'Hiba történt a felhasználó típusa módosítása során.' });
+
   }
 };
