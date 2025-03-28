@@ -1,9 +1,13 @@
-# ![image](https://github.com/user-attachments/assets/9cee75f9-349d-47fa-aa5d-ed9f1d92f8c5)
-
-## Szent István Katlikus Technikum
-
-# Projekt Címe
+<p align="center">
+<img src="https://github.com/user-attachments/assets/9cee75f9-349d-47fa-aa5d-ed9f1d92f8c5" width="150px" height="200px">
+</p>
+<p align="center">
+Szent István Katlikus Technikum
+</p>
+<p align="center">
+Projekt Címe
 Car Merchants' Site
+</p>
 
 ## Projekt Csapat Tagjai
 - Durányik Csaba
@@ -105,3 +109,5 @@ Szoftver célja: A célunk az volt, hogy laikusok számára egy helyen biztosít
      git commit -m "Leírás a változtatásokról"
      git push origin [branch_name]
      ```
+9. **Trello**:
+   https://trello.com/invite/b/66ded61b7a42ce7477ae7965/ATTI5a9a44170a2bfbad1adee68e0734ca46C22A5B2B/projekt-dokumentacio-es-esemenynaplo
